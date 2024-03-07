@@ -279,17 +279,16 @@
 % ----------------------------------------------------------------------------
 %%%%%%%%% hyper ref setup %%%%%%%%%
 \usepackage[colorlinks=true]{hyperref}
-\hypersetup{pdftitle={Accurate and rapid big spatial data processing by scripting cartographic algorithms:
-advanced seafloor mapping of the deep-sea trenches along the margins of the Pacific Ocean}, 
+\hypersetup{pdftitle={Mapping landscapes of Africa using remote sensing data}, 
 	pdfauthor={Lemenkova Polina}, 
-	pdfsubject={PhD Thesis}, 
+	pdfsubject={PhD Proposal Presentation}, 
 	pdfcreator={Lemenkova Polina}, 
 	pdfproducer={Lemenkova Polina}, 
 	colorlinks=true,linkcolor=blue, 
 	citecolor=NavyBlue, 
 	filecolor=magenta, 
 	urlcolor=blue,
-	pdfkeywords={Pacific Ocean, hadal trench, deep-sea trench, geomorphology, bathymetry, cartography, mapping, GMT, Generic Mapping Tools, Python, R, programming language, Matplotlib, Seaborn, submarine geomorphology, data analysis, statistics, spatial analysis, comparative analysis, statistical analysis, cluster analysis, factor analysis, algorithm, oceanography, GIS, marine geology, geomorphology}
+	pdfkeywords={image processing, cartography, mapping, GMT, Generic Mapping Tools, Python, R, programming language, remote sensing, data analysis, statistics, spatial analysis, comparative analysis, statistical analysis, Earth observation, algorithm, environment, GIS, Africa, landscape ecology}
 	}	
 
 %%%%%%%% цветные разделители
@@ -301,21 +300,15 @@ advanced seafloor mapping of the deep-sea trenches along the margins of the Paci
 % *** TITLE <<<
 % ---------------------------------------------------------------------------
 \vspace{1em}
-\title{Accurate and rapid big spatial data processing \\
-by scripting cartographic algorithms: \\
-advanced seafloor mapping of the deep-sea trenches \\along the margins of the Pacific Ocean}
+\title{Mapping landscapes of Africa using remote sensing data: \\detecting spatio-temporal environmental dynamics \\from the satellite images}
 \subtitle{Presented at \\
-\href{https://agu.confex.com/agu/21workshop2/meetingapp.cgi/Home/0}{Bringing Land, Ocean, Atmosphere and Ionosphere Data \\to the Community for Hazard Alerts}\\
-American Geophysical Union (AGU) \\
-Online: 24-28 May 2021 \\
-Section 'Big Data and Machine Learning'}
+\href{https://www.plus.ac.at/geoinformatik/}{Universität Salzburg}\\
+Faculty of Digital and Analytical Sciences \\
+Department of Geoinformatics}
 \author{Polina Lemenkova}
-%\institute{Schmidt Institute of Physics of the Earth, Russian Academy of Science (IPE RAS)\\
-%\small{Department of Natural Disasters, Anthropogenic Hazards and Seismicity of the Earth. \\
-%Laboratory of Regional Geophysics and Natural Disasters (Nr. 303)}}
-\date{May 24, 2021}
+\date{March 11, 2024}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\logo{\includegraphics[width=.25\textwidth]{AGU100_logo_H-CMYK.png}\vspace{-35pt}\hspace{10pt}}
+\logo{\includegraphics[width=.25\textwidth]{logo_unisalzburg.png}\vspace{-35pt}\hspace{10pt}}
 %%%%%%%%%
 
 
@@ -330,7 +323,7 @@ Section 'Big Data and Machine Learning'}
 % *** END of Titlepage >>>
 % ----------------------------------------------------------------------------
 \setbeamertemplate{footline}[text line]{%
-\parbox{\linewidth}{\vspace*{-8pt}Polina Lemenkova: \emph{Accurate and rapid big spatial data processing by scripting cartographic algorithms...}, AGU, 24/05/2021} \hfill\insertpagenumber}
+\parbox{\linewidth}{\vspace*{-8pt}Polina Lemenkova: \emph{Mapping landscapes of Africa using remote sensing data...}, ZGIS, 11/03/2024} \hfill\insertpagenumber}
 %\setbeamertemplate{headline}{\insertpagenumber}
 
 
@@ -424,73 +417,77 @@ Western Pacific (WP) and Eastern Pacific (EP) are different basins, separated by
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Pacific Ocean}
+\begin{frame}\frametitle{Research Highlights: Variability of African landscapes}
 \vspace{1em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=8.0cm]{Fig-POg.jpg}
 	\caption{General geologic map of the seafloor of the Pacific Ocean. Source: \cite{Lemenkova202106}}\label{fig:POg.jpg}
 \end{figure}
-\small{Pacific Ocean is known for variability of morphostructures, complexity of tectonic features, high seismicity and magmatism, lithology and geologic evolution. \\Pacific Ocean differs from others: enormous size (ca. 40\% of the Earth's surface and ca. 50\% of the World Ocean, 178.7 M $km^2$), geologic structural complexity and bathymetric asymmetry}
+\small{Landscape ecology of diverse regions of Africa reflects a variety of impact factors: tectonic-geologic setting, climate change and anthropogenic activities}
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Pacific Ocean}
-\begin{alertblock}{Research Highlights: Trenches of the Pacific Ocean}
-\begin{itemize}\footnotesize
-            \item Trenches of the Pacific Ocean are located along its margins and have diverse geomorphology. 
-            \item Geomorphology of trenches reflects a variety of impact factors: tectonic, geographic and geologic setting
-\end{itemize}
-\end{alertblock}	
-
+\begin{frame}\frametitle{Research Progress: Current state of the project}
+Current state: mapping of 26 African countries is published in 31 journal articles
 \begin{table}\scriptsize
-\caption{General statistics on major 20 deep-sea trenches of the Pacific Ocean}
-\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{3.5cm} p{1.2cm} p{1.2cm} p{0.7cm} |}
-\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Name} & Max depth & Length* & Width* \\ 
+\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{3.5cm} p{7.5cm}  |}
+\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Name} & Publication  \\ 
 		\arrayrulecolor[RGB]{184,210,0}\hline\hline
-	Aleutian & 8,109 & 3,400 & 59 \\
+	Algeria & \citep{Lemenkova202313} \\
        		\arrayrulecolor[RGB]{195,216,37}\hline
-	Mariana & 11,034 & 2,550 & 59 \\
+	Botswana & \citep{Lemenkova202217} \\
         		\arrayrulecolor[RGB]{170,207,83}\hline
-	Philippine & 10,540 & 1,320 & 65 \\
+	Burkina Faso & \citep{Lemenkova202321} \\
         		\arrayrulecolor[RGB]{199,220,104}\hline
-	Kuril-Kamchatka & 10,542 & 2,900 & 59 \\
+	Cameroon & \citep{Lemenkova202024} \\
         		\arrayrulecolor[RGB]{216,230,152}\hline
-	Middle America & 6,669 & 2,750 & 34 \\
+	Central Africa Republic & \citep{Lemenkova202308} \\
         		\arrayrulecolor[RGB]{224,235,175}\hline
-	Peru-Chile & 8,065 & 5,900 & 64 \\
+	Chad & \citep{Lemenkova202323} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline	
-	Hikurangi & 3,750 & 350 & 80 \\
+	D.R.C. Congo & \citep{Lemenkova202229} \\
 		\arrayrulecolor[RGB]{185,208,139}\hline	
-	Puysegur & 6,300 & 620 & 76 \\
+	Egypt & \citep{Lemenkova202306} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline	
-	Palau & 10,994 & 700 & 47 \\
+	Ethiopia & \citep{Lemenkova202205,Lemenkova202221,Lemenkova202118,Lemenkova202136} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	Japan & 8,513 & 800 & 59 \\
+	Ghana & \citep{Lemenkova202211,Lemenkova202140} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	Kermadec & 10,047 & 1,200 & 88 \\
+	Guinea & \citep{Lemenkova202325} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	Tonga & 10,882 & 1,375 & 78 \\
+	Ivory Coast (Côte d'Ivoire) & \citep{Lemenkova202227} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	Izu-Bonin & 9,780 & 2,800 & 82 \\
+	Kenya & \citep{Lemenkova202315} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	New Britain (Bougainville) & 9,140 & 335 & 70 \\
+	Malawi & \citep{Lemenkova202209,Lemenkova202134} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	San Cristobal & 8,255 & 742 & 64 \\
+	Mali & \citep{Lemenkova202324} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	Manila & 5,400 & 648 & 76 \\
+	Mozambique & \citep{Lemenkova202401} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	Yap & 8,850 & 500 & 45 \\
+	Nigeria & \citep{Lemenkova202307} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	Vanuatu (New Hebrides) & 7,600 & 1,200 & 34 \\
+	Rwanda & \citep{Lemenkova202220} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	Vityaz & 5,984 & 580 & 65 \\
+	Somalia and Seychelles & \citep{Lemenkova202230} \\
         		\arrayrulecolor[RGB]{185,208,139}\hline
-	Ryukyu & 7,460 & 2,250 & 38 \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline\hline
+	South Sudan & \citep{Lemenkova202320} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Sudan & \citep{Lemenkova202310} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	South Sudan & \citep{Lemenkova202320} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Tanzania & \citep{Lemenkova202206} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Tunisia & \citep{Lemenkova202322} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Uganda & \citep{Lemenkova202122} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Zambia & \citep{Lemenkova202108} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
 \end{tabular}
 \end{table}
-*\footnotesize{Length and width are indicated in km}
 \end{frame}
 
 % ----------------------------------------------------------------------------
