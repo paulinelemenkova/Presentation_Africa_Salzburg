@@ -1,0 +1,1468 @@
+% для очистки бибера - clean up corrupted biber cash: rm -rf $(biber --cache)
+% Compile: LaTeX
+% Biber
+% ----------------------------------------------------------------------------
+% *** START PACKAGES <<<
+% ----------------------------------------------------------------------------
+%\documentclass[10pt]{beamer}
+\documentclass[pdflatex,compress,8pt,
+	xcolor={dvipsnames,svgnames,x11names,table},
+	hyperref={colorlinks = true,breaklinks = true, urlcolor = NavyBlue}]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{times}
+\usepackage{totcount}
+\usepackage{tikz}
+	\usetikzlibrary{calc} % для последнего слайда
+\regtotcounter{section}
+\usepackage{subfig}
+\usepackage{fancyhdr}
+\usepackage{metalogo}
+\usepackage[super]{nth}
+\usepackage[font={tiny,it}]{caption} % шрифт подписей к картинкам
+	\setbeamertemplate{caption}[numbered]
+\usepackage{graphicx}
+\usepackage{graphics}
+%\usepackage{textcomp}  % numero symbol
+\usepackage{gensymb} % degree symbol
+%%%%%%%% цветная таблица: начало
+\usepackage{booktabs} 
+\usepackage{tabularx}
+\usepackage{array,etoolbox}
+\usepackage{boldline}
+\usepackage{colortbl} %% цветная таблица
+\setlength{\arrayrulewidth}{0.3mm}
+%%%%%% нумерация внутри таблицы %%%
+\preto\tabular{\setcounter{magicrownumbers}{0}}
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+\usepackage{longtable}
+%%%%%%%%  цветная таблица: конец
+\usepackage{wrapfig}
+\usepackage{csquotes}
+
+% ------------------------ для разных буллитов в списках -------------------------------
+\usepackage{enumitem} 
+\usepackage{pifont}
+% ----------------------------------------------------------------------------
+
+% Путь к файлам с иллюстрациями
+\graphicspath{{figures/}} % path to folder with Figures
+
+% ----------------------------------------------------------------------------
+% *** END PACKAGES <<<
+% ----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
+% *** START SETUP <<<
+% ----------------------------------------------------------------------------
+% Swiss color Zurich
+%\definecolor{color0}{HTML}{150489} % color of title text
+%\definecolor{color1}{HTML}{B6CEE5}
+%\definecolor{color2}{HTML}{5884B3}
+%\definecolor{color3}{HTML}{E5B5C5}
+%\definecolor{color4}{HTML}{CC6686}
+%\definecolor{color5}{HTML}{F2CEC1}
+%\definecolor{color6}{HTML}{E87B70}
+%\definecolor{color7}{HTML}{F9EBAA}
+%\definecolor{color8}{HTML}{E5CF6C}
+%\definecolor{color9}{HTML}{CCE5B5} 
+%\definecolor{color10}{HTML}{91BE64}
+%\definecolor{color11}{HTML}{B6E3D1}
+%\definecolor{color12}{HTML}{5BBE94}
+%\definecolor{color13}{HTML}{B6E3D1}
+%\definecolor{color14}{HTML}{91BE64}
+%\definecolor{color15}{HTML}{CCE5B5}
+%\definecolor{color16}{HTML}{E5CF6C}
+%\definecolor{color17}{HTML}{F9EBAA}
+%\definecolor{color18}{HTML}{E87B70}
+%\definecolor{color19}{HTML}{F2CEC1}
+%\definecolor{color20}{HTML}{CC6686}
+%\definecolor{color21}{HTML}{E5B5C5}
+%\definecolor{color22}{HTML}{5884B3}
+%\definecolor{color23}{HTML}{B6CEE5}
+%\definecolor{color24}{HTML}{5884B3}
+%\definecolor{color25}{HTML}{E5B5C5}
+%\definecolor{color26}{HTML}{CC6686}
+%\definecolor{color27}{HTML}{F2CEC1}
+
+\definecolor{color0}{HTML}{150489} % color of title text
+\definecolor{color1}{HTML}{16078A}
+\definecolor{color2}{HTML}{240691}
+\definecolor{color3}{HTML}{3C049B}
+\definecolor{color4}{HTML}{4B03A1}
+\definecolor{color5}{HTML}{7100A8}
+\definecolor{color6}{HTML}{8004A8}
+\definecolor{color7}{HTML}{8D0BA5}
+\definecolor{color8}{HTML}{9B169F}
+\definecolor{color9}{HTML}{AC2694} 
+\definecolor{color10}{HTML}{B6308B}
+\definecolor{color11}{HTML}{C33D80}
+\definecolor{color12}{HTML}{CE4B75}
+\definecolor{color13}{HTML}{D7566C}
+\definecolor{color14}{HTML}{DE6164}
+\definecolor{color15}{HTML}{E56B5D}
+\definecolor{color16}{HTML}{ED7953}
+\definecolor{color17}{HTML}{F3864A}
+\definecolor{color18}{HTML}{F9973F}
+\definecolor{color19}{HTML}{FCA636}
+\definecolor{color20}{HTML}{FDB62E}
+\definecolor{color21}{HTML}{FDB52E}
+\definecolor{color22}{HTML}{FEBB2B}
+\definecolor{color23}{HTML}{FCD025}
+\definecolor{color24}{HTML}{FBD724}
+\definecolor{color25}{HTML}{F8E125}
+\definecolor{color26}{HTML}{F4ED27}
+\definecolor{color27}{HTML}{F1F426}
+\definecolor{color28}{HTML}{F1F426}
+
+\makeatletter
+
+\def\sectioncolor{color0}% color to be applied to section headers
+
+\setbeamercolor{palette primary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette secondary}{use=structure,fg=structure.fg!75!black}
+\setbeamercolor{palette tertiary}{use=structure,fg=structure.fg!50!black}
+\setbeamercolor{palette quaternary}{fg=black}
+
+\setbeamercolor{local structure}{fg=color0}
+\setbeamercolor{structure}{fg=color0}
+\setbeamercolor{title}{fg=color0}
+\setbeamercolor{section in head/foot}{fg=black}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{block title alerted}{fg=red}
+\setbeamercolor{block title example}{fg=color0}
+
+% Each \section redefines \sectioncolor and applies the shading with this color
+% add as many colors as you need
+\AtBeginSection{%
+  \renewcommand\sectioncolor{%
+    \ifcase\value{section} color0\or color1\or color2\or color3\or color4\or color5\or color6\or color7\or color8\or color9\or color10\or color11\or color12\or color13\or color14\or color15\or color16\or color17\or color18\or color19\or color20\or color21\or color22\else color23\fi}
+  \setbeamercolor{frametitle}{fg=red}%
+  \pgfdeclareverticalshading{beamer@headfade}{\paperwidth}
+  {%
+    color(0.25cm)=(bg);
+    color(1.25cm)=(\sectioncolor)%
+  }
+}
+\setbeamerfont{frametitle}{size=\normalsize}
+
+\newlength\sectionboxwd
+
+\AtBeginDocument{%
+  \ifnum\totvalue{section}>0 
+    \setlength\sectionboxwd{\dimexpr\paperwidth/\totvalue{section}\relax}
+  \else
+    \setlength\sectionboxwd{\paperwidth}
+  \fi
+} 
+
+\newcommand\insertcolors{%
+  \ifnum\totvalue{section}>0
+    \setlength\fboxsep{0pt}%
+    \foreach \x in {1,...,\totvalue{section}}
+    {\colorbox{color\x}{\phantom{\rule{\dimexpr\the\sectionboxwd\relax}{5ex}}}}%
+  \else\fi
+}
+
+\setbeamertemplate{section in head/foot}{\setlength\fboxsep{0pt}\hspace{-1.875ex}%
+    \parbox[c][4ex][t]{\sectionboxwd}{%
+      \hfill\parbox{\dimexpr\sectionboxwd-8pt\relax}{%
+      \raggedright\insertsectionhead%
+      }\hfill\mbox{}%
+    }%
+}
+
+\setbeamertemplate{headline}
+{%
+  \begin{beamercolorbox}[wd=\paperwidth]{section in head/foot}
+    \insertcolors%
+    \vskip-4ex%
+    \insertsectionnavigationhorizontal{\paperwidth}{\hskip-1.875ex}{\hskip-8pt}\vskip2pt
+  \end{beamercolorbox}%
+}
+
+
+\pgfdeclareverticalshading{beamer@headfade}{\paperwidth}
+{% полоска вверху
+  color(0.25cm)=(bg);
+  color(1.25cm)=(color18)% титульный лист цвет
+}
+
+\addtoheadtemplate{}{\pgfuseshading{beamer@headfade}\vskip-1.25cm}
+
+\setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{footline}{}{%
+  \hfill\color{\sectioncolor}\rule[0.5cm]{2.5cm}{1pt}\rule[0.5cm]{1pt}{1cm}\hspace*{0.5cm}}
+  
+ \setbeamerfont{institute}{size=\normalfont}
+% ----------------------------------------------------------------------------
+% *** END SETUP <<<
+% ----------------------------------------------------------------------------
+
+% ----------------------------------------------------------------------------
+% *** START BIBLIOGRAPHY <<<
+% ----------------------------------------------------------------------------
+\usepackage[
+	backend=biber, 
+%	style = numeric,
+	style = phys,
+	maxbibnames=99,
+	citestyle=numeric,
+	giveninits=true,
+	isbn=true,
+	url=true,
+	natbib=true,
+	sorting=ndymdt,
+	bibencoding=utf8,
+	useprefix=false,
+	language=auto, 
+	autolang=other,
+	backref=true,
+	backrefstyle=none,
+	indexing=cite,
+]{biblatex}
+\DeclareSortingTemplate{ndymdt}{
+  \sort{
+    \field{presort}
+  }
+  \sort[final]{
+    \field{sortkey}
+  }
+  \sort{
+    \field{sortname}
+    \field{author}
+    \field{editor}
+    \field{translator}
+    \field{sorttitle}
+    \field{title}
+  }
+  \sort[direction=descending]{
+    \field{sortyear}
+    \field{year}
+    \literal{9999}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{month}
+    \literal{99}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{day}
+    \literal{99}
+  }
+  \sort{
+    \field{sorttitle}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=4,padchar=0]{volume}
+    \literal{9999}
+  }
+}
+
+\addbibresource{AGUBib.bib}
+%\renewcommand*{\bibfont}{\footnotesize}
+\renewcommand*{\bibfont}{\scriptsize}
+
+%%%%%%%%%%%% значок Open Access: начало %%%%%%%
+%\usepackage[tikzsymbol=plos]{biblatex-ext-oa}
+%\DeclareOpenAccessEprintUrl[always]{hal}{%
+ % http://hal.archives-ouvertes.fr/\thefield{eprint}}
+%\DeclareOpenAccessEprintAlias{HAL}{hal}
+%%%%%%%%%%% значок Open Access:: конец %%%%%%%
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+%\setbeamertemplate{bibliography item}{}
+
+% ----------------------------------------------------------------------------
+% *** END BIBLIOGRAPHY <<<
+% ----------------------------------------------------------------------------
+%%%%%%%%% hyper ref setup %%%%%%%%%
+\usepackage[colorlinks=true]{hyperref}
+\hypersetup{pdftitle={Accurate and rapid big spatial data processing by scripting cartographic algorithms:
+advanced seafloor mapping of the deep-sea trenches along the margins of the Pacific Ocean}, 
+	pdfauthor={Lemenkova Polina}, 
+	pdfsubject={PhD Thesis}, 
+	pdfcreator={Lemenkova Polina}, 
+	pdfproducer={Lemenkova Polina}, 
+	colorlinks=true,linkcolor=blue, 
+	citecolor=NavyBlue, 
+	filecolor=magenta, 
+	urlcolor=blue,
+	pdfkeywords={Pacific Ocean, hadal trench, deep-sea trench, geomorphology, bathymetry, cartography, mapping, GMT, Generic Mapping Tools, Python, R, programming language, Matplotlib, Seaborn, submarine geomorphology, data analysis, statistics, spatial analysis, comparative analysis, statistical analysis, cluster analysis, factor analysis, algorithm, oceanography, GIS, marine geology, geomorphology}
+	}	
+
+%%%%%%%% цветные разделители
+\usepackage[object=vectorian]{pgfornament}
+%%%%%%%% цветные разделители
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ----------------------------------------------------------------------------
+% *** TITLE <<<
+% ---------------------------------------------------------------------------
+\vspace{1em}
+\title{Accurate and rapid big spatial data processing \\
+by scripting cartographic algorithms: \\
+advanced seafloor mapping of the deep-sea trenches \\along the margins of the Pacific Ocean}
+\subtitle{Presented at \\
+\href{https://agu.confex.com/agu/21workshop2/meetingapp.cgi/Home/0}{Bringing Land, Ocean, Atmosphere and Ionosphere Data \\to the Community for Hazard Alerts}\\
+American Geophysical Union (AGU) \\
+Online: 24-28 May 2021 \\
+Section 'Big Data and Machine Learning'}
+\author{Polina Lemenkova}
+%\institute{Schmidt Institute of Physics of the Earth, Russian Academy of Science (IPE RAS)\\
+%\small{Department of Natural Disasters, Anthropogenic Hazards and Seismicity of the Earth. \\
+%Laboratory of Regional Geophysics and Natural Disasters (Nr. 303)}}
+\date{May 24, 2021}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\logo{\includegraphics[width=.25\textwidth]{AGU100_logo_H-CMYK.png}\vspace{-35pt}\hspace{10pt}}
+%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% ----------------------------------------------------------------------------
+% *** Titlepage <<<
+% ----------------------------------------------------------------------------
+\maketitle
+% ----------------------------------------------------------------------------
+% *** END of Titlepage >>>
+% ----------------------------------------------------------------------------
+\setbeamertemplate{footline}[text line]{%
+\parbox{\linewidth}{\vspace*{-8pt}Polina Lemenkova: \emph{Accurate and rapid big spatial data processing by scripting cartographic algorithms...}, AGU, 24/05/2021} \hfill\insertpagenumber}
+%\setbeamertemplate{headline}{\insertpagenumber}
+
+
+% ----------------------------------------------------------------------------
+% *** END of Footnote >>>
+% ----------------------------------------------------------------------------
+% ----------------------------------------------------------------------------
+% *** Introduction <<<
+% ----------------------------------------------------------------------------
+\section{Int}
+
+\begin{frame}\frametitle{Introduction}
+\begin{exampleblock}{What is Big Earth Data ?}
+\begin{itemize}
+        	\item \textcolor{red}{Concept}: Large and complex massifs (collections) of digital geospatia data
+	\item \textcolor{red}{Features}: massive, multi-source, heterogeneous, multi-temporal, multi-scalar, highly dimensional, highly complex, nonstationary, and unstructured \cite{Guo2017}
+	\item \textcolor{red}{Nature}: Big Earth data are associated with geosciences (geology, geography)
+	\item \textcolor{red}{VVV}: Three major magic 'V' characterising Big Data: 
+		\begin{itemize}\small
+      		  	\item \textcolor{ProcessBlue}{volume} (unprecedented wealth of data)
+			\item \textcolor{ProcessBlue}{velocity} (growth rate and the demand for high-speed processing and mapping)
+			\item \textcolor{ProcessBlue}{variety} (multi-source heterogeneous spatial data
+		\end{itemize}
+	\item \textcolor{red}{Complexity}: need for simultaneous handling of various types of structured and non-structured data \cite{Yangetal2019}
+	\item \textcolor{red}{Origin}: Big Earth data are derived from Earth observations (EO) \cite{Datcuetal2020} captured by Remote Sensing (RS) methods \cite{Guoetal2016}
+	\item \textcolor{red}{Sources}: from orbiting satellites (Landsat TM/ETM+, Sentinel-2A, SPOT, etc), weather monitoring stations, ecological observatories, seismic stations, model simulations and forecasts, atmospheric and oceanic gridded data, time series observations and other data streams \cite{Sellarsetal2013}, \cite{Lemenkova202014}
+	\item \textcolor{red}{Importance}: The value of big Earth data processing to geoscience research: development of \emph{data-driven science} \cite{Lemenkova202101}
+\end{itemize}
+\end{exampleblock}
+
+\end{frame}
+
+% ---------------------------------------------------------------------------- 
+\begin{frame}\frametitle{Introduction}
+
+\begin{exampleblock}{Big Spatial Data as an Opportunity}
+\begin{itemize}	
+	\item \textcolor{red}{Possibilities}: Technical revolution in the amount of Earth data (satellite imagery, digital raster and vector datasets, tabular data) enabled smooth and quick access to monitoring of the large regions of the Earth, such as Pacific Ocean \cite{Lemenkova202106}
+	\item \textcolor{red}{Access}: Open datasets and repositories available online enable to access, download, examine, and map big spatial data for various \\geospatial applications \cite{Baumannetal2015}, \cite{Lemenkova202103}
+	\item \textcolor{red}{Coverage}: Big Earth data provide information on spatial events across local, regional, and global scales 
+\end{itemize}
+\end{exampleblock}
+
+\begin{exampleblock}{Machine Learning for Processing big Earth data}
+\begin{itemize}
+	\item \textcolor{blue}{Problem}: Extracting knowledge and information from big Earth data requires special technical tools $=>$ need for Machine Learning (ML) algorithms and approaches to data handling \cite{Hanetal2019}
+	\item \textcolor{red}{Paradigm}: ML is a method of Earth data analysis that automates data processing, modeling, mapping and visualization \cite{Lemenkova202021}, \cite{Lemenkova202024}, \cite{Lemenkova202026}, \cite{Lemenkova202102}. 
+	\item \textcolor{red}{Hierarchy}: ML is a branch of Artificial Intelligence (AI). It is based on the assumption that GIS can \emph{learn from data and extract information}, identify geospatial patterns and make decisions (e.g. risk assessment, tsunami, earthquakes, landslides)
+\end{itemize}
+\end{exampleblock}
+	
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Research Highlights}
+ 
+\begin{alertblock}{Machine Learning in big Earth data processing}
+\begin{itemize}
+	\item \textcolor{red}{Core Idea}: \emph{minimal} human intervention, \emph{maximal} machine-based processing
+	\item \textcolor{blue}{Examples}: programming languages (Python, Julia, R, Octave), scripting GIS and toolsets (GRASS GIS \cite{NetelerMitasova}, GMT (\cite{Wessel2019}, \cite{Wessel2018})
+	\item \textcolor{red}{Applications}: Geotectonics, geology, geophysics, sedimentation \cite{Lemenkova2006e}, \cite{Lemenkova2006a}, seafloor mapping \cite{Lemenkova202013}, 3D modeling, geodynamics \cite{Lemenkova2006b}, \cite{Lemenkova2006c}, environment \cite{Amanietal2019}, \cite{Lemenkova202104}, \cite{Lemenkova202105} for automatization of big Earth data processing
+	\item \textcolor{red}{Case}: This research uses Generic Mapping Tools (GMT) scripting toolset that is based on special syntax enabling to quickly operate with big spatial data using shell scripts from the console \cite{Lemenkova202028}, \cite{Lemenkova202025}, \cite{Lemenkova202020}.
+\end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{Challenge of the Research Topic}
+\begin{itemize}
+        	\item Using scripting algorithms for mapping deep-sea trenches of the Pacific Ocean
+\end{itemize}
+\end{exampleblock}
+	
+\begin{alertblock}{Research Techniques}
+\begin{itemize}
+	\item This research includes algorithms of Generic Mapping Tools (GMT) that has a scripting syntax enabling to quickly operate with spatial data using shell scripts
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{PO}
+
+\begin{frame}\frametitle{Pacific Ocean}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8cm]{Fig-PO.jpg}
+	\caption{General bathymetric map of the seafloor of the Pacific Ocean, ETOPO1. Source: \cite{Lemenkova202106}}\label{fig:PO.jpg}
+\end{figure}\small
+The \textcolor{red}{biggest} ocean on the Earth, Pacific Ocean differs in \textcolor{DarkOrchid}{western} and \textcolor{DarkOrchid}{eastern} parts according to relief, geotectonics and geological evolution.
+Western Pacific (WP) and Eastern Pacific (EP) are different basins, separated by the East Pacific Rise. 
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Pacific Ocean}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8.0cm]{Fig-POg.jpg}
+	\caption{General geologic map of the seafloor of the Pacific Ocean. Source: \cite{Lemenkova202106}}\label{fig:POg.jpg}
+\end{figure}
+\small{Pacific Ocean is known for variability of morphostructures, complexity of tectonic features, high seismicity and magmatism, lithology and geologic evolution. \\Pacific Ocean differs from others: enormous size (ca. 40\% of the Earth's surface and ca. 50\% of the World Ocean, 178.7 M $km^2$), geologic structural complexity and bathymetric asymmetry}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Pacific Ocean}
+\begin{alertblock}{Research Highlights: Trenches of the Pacific Ocean}
+\begin{itemize}\footnotesize
+            \item Trenches of the Pacific Ocean are located along its margins and have diverse geomorphology. 
+            \item Geomorphology of trenches reflects a variety of impact factors: tectonic, geographic and geologic setting
+\end{itemize}
+\end{alertblock}	
+
+\begin{table}\scriptsize
+\caption{General statistics on major 20 deep-sea trenches of the Pacific Ocean}
+\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{3.5cm} p{1.2cm} p{1.2cm} p{0.7cm} |}
+\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Name} & Max depth & Length* & Width* \\ 
+		\arrayrulecolor[RGB]{184,210,0}\hline\hline
+	Aleutian & 8,109 & 3,400 & 59 \\
+       		\arrayrulecolor[RGB]{195,216,37}\hline
+	Mariana & 11,034 & 2,550 & 59 \\
+        		\arrayrulecolor[RGB]{170,207,83}\hline
+	Philippine & 10,540 & 1,320 & 65 \\
+        		\arrayrulecolor[RGB]{199,220,104}\hline
+	Kuril-Kamchatka & 10,542 & 2,900 & 59 \\
+        		\arrayrulecolor[RGB]{216,230,152}\hline
+	Middle America & 6,669 & 2,750 & 34 \\
+        		\arrayrulecolor[RGB]{224,235,175}\hline
+	Peru-Chile & 8,065 & 5,900 & 64 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	Hikurangi & 3,750 & 350 & 80 \\
+		\arrayrulecolor[RGB]{185,208,139}\hline	
+	Puysegur & 6,300 & 620 & 76 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	Palau & 10,994 & 700 & 47 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Japan & 8,513 & 800 & 59 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Kermadec & 10,047 & 1,200 & 88 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Tonga & 10,882 & 1,375 & 78 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Izu-Bonin & 9,780 & 2,800 & 82 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	New Britain (Bougainville) & 9,140 & 335 & 70 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	San Cristobal & 8,255 & 742 & 64 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Manila & 5,400 & 648 & 76 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Yap & 8,850 & 500 & 45 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Vanuatu (New Hebrides) & 7,600 & 1,200 & 34 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Vityaz & 5,984 & 580 & 65 \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Ryukyu & 7,460 & 2,250 & 38 \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline\hline
+\end{tabular}
+\end{table}
+*\footnotesize{Length and width are indicated in km}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{Data}
+
+\begin{frame}\frametitle{Data}
+\vspace{1em}
+\begin{itemize}\footnotesize
+            \item Understanding complexity and variability of trenches requires processing of large amounts of diverse datasets 
+            \item Datasets used in this project are non-coherent and multi-source 
+            \item Data should be handled effectively, rapidly yet accurately.
+            \item High-resolution datasets aimed at print-quality mapping and modelling. Accuracy of digital Earth data is of crucial importance \cite{Smith}, because it directly controls research output. 
+\end{itemize}
+
+\begin{table}\footnotesize\caption{Data used in this project: their sources, types and precision}\label{tab:T2}
+\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{1.5cm} p{1.5cm} p{5cm} }
+\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Data} & Origine & Type, resolution \\ 
+		\arrayrulecolor[RGB]{211,204,214}\hline\hline		
+        ETOPO1 & NOAA & 1 arc-min GRM grid \cite{AmanteEakins2009}\\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline
+	ETOPO5 & NOAA & 5 arc min GRM grid \\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline
+	GEBCO & BODC & 15 arc sec DEM raster grid \cite{Mayeretal2018}; \cite{Monahan2004} \\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline				
+        SRTM & NASA & 15-sec DEM raster grid \cite{Beckeretal2009} \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	Geology & USGS & Vector layers \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	Gravity & Scripps IO & CryoSat-2, Jason-1 grid \cite{Sandwelletal2013}\\ 
+		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	EGM96 & Scripps IO & Geopotential geoid model \cite{Lemoineetal1998} \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	EGM-2008 & Scripps IO & Geopotential geoid model \cite{Pavlisetal2012} \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
+	GlobSed & NOAA & Total Sediment Thickness of the World's Oceans and Marginal Seas  \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
+	GLOBE dataset & NOAA & Topography model \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline		
+	ASCII & Scripps IO & Topo tables (xyz format) \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	GEBCO & IHO-IOC & Geographic gazetteer \cite{IHOIOC2012} \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+\end{tabular}
+\end{table}
+\footnotesize{*30 arc second = ca. 1km cell size, 15 arc sec = ca. 500 m cell size, etc.}
+
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{KKT}
+
+\begin{frame}\frametitle{GEBCO}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\vspace{2em}
+\begin{dinglist}{51}\small
+     \item Satellite Altimetry and Earth Observation (EO) have generated huge massives of data stored in big data repositories
+     \item GEBCO produces and makes open a range of bathymetric datasets widely used in topographic mapping \cite{Lemenkova202012}
+     \item GEBCO global gridded bathymetric datasets; GEBCO Gazetteer of Undersea Feature Names; GEBCO world map 
+     \item Advanced cartographic methodologies of GMT are capable of handling the size (e.g. large GEBCO grid), complexity of formats (with help of reformatting by AWK) and variety of data, as a response to such needs. 
+     \item Data manipulation, mapping, information extraction (metadata), visualisation $=>$ processes of big Earth data handling.            
+\end{dinglist}	
+\end{column}
+\begin{column}{0.6\textwidth}
+\vspace{2ex}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.5cm]{Fig-KKT1.jpg}
+	\caption{Example of the GEBCO grid used for mapping trench. Source: \cite{Lemenkova201995}}\label{fig:KKT1}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Octave/MATLAB}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{S02.jpg}
+	\caption{Snippet of the Octave/MATLAB script used for modeling the Kuril-Kamchatka Trench}\label{fig:S2}
+\end{figure}	
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5cm]{Fig-KKT6.jpg}
+	\caption{Cross-section profiles of the Kuril-Kamchatka Trench. Plotting: Octave. Source: \cite{Lemenkova2019100}}\label{fig:KKT6}
+\end{figure}
+\begin{dinglist}{224}\scriptsize
+     \item Modelling geospatial data using ML methods and programming languages enables to detect hidden correlations and patterns that a human may not see. 
+     \item Inaccessible location $=>$ seafloor of the deep-sea trenches can only be visualized using modelling tools and programming approach
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+
+\section{AT}
+\begin{frame}\frametitle{Aleutian Trench}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=7cm]{Fig-A1.jpg}
+	\caption{ETOPO1 grid for topographic mapping: example of Aleutian Trench. Source: author.}\label{fig:AT1}
+\end{figure}
+Solutions of GMT: 
+ \begin{dingautolist}{202}\footnotesize
+     \item Advanced level of cartographic functionality: variety of projections, data processing, import/export, etc
+     \item High-quality cartographic solutions: colour palettes, layouts, grids, vector lines, advanced design approaches
+     \item Flexibility of coding / shell scripting from UNIX console
+     \item Embedded data analysis and visualisation: mapping, modelling, logical queries, \\ statistical analysis, import/export, vector and raster
+     processing
+     \item GMT-based mapping provides accurate visualization of the seafloor \cite{Lemenkova2007f}
+\end{dingautolist}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Data Integration}
+\vspace{1em}
+Multi-source data mixing and integration using GMT adjustments:
+ \begin{dingautolist}{172}\small
+     \item Open Data Mining (e.g. GEBCO, ETOPO1, geological datasets and other open sources) 
+     \item Predictive analytics in geology: forecasting and prognosis in hazard risk assessment
+     \item Simulation modelling in Earth sciences: landslides, volcanic activity, seismicity, earthquakes \cite{Xuetal2020}, \cite{SANDWELL201884}
+     \item Data analysis by GMT has potential to advance development of cartography
+     \item It enables scientific discoveries, based on spatial analysis in geology
+\end{dingautolist}	
+   
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-MAT5.jpg}
+	\caption{Map showing geological settings in the Middle America Trench. Source: \cite{Lemenkova2019108}}\label{fig:MAT5}
+\end{figure}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Middle America Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-MAT10.jpg}
+	\caption{Cross-section profiles of the Middle America Trench (Guatemala segment). Source: \cite{Lemenkova2019108}}\label{fig:MAT10}
+\end{figure}
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\vspace{2em}
+An example of data analysis \\using GMT: Guatemala Trench: 
+ \begin{dinglist}{52} \scriptsize
+     \item MAT geometry demonstrates its relatively steep and strait shape. 
+     \item major depth samples: between the -3000 and -6200 m; seafloor 3-5 km wide.
+     \item frequency samples distribution shows changes by profiles. Increase of frequency between -3000 to -4000 m caused by the geologic settings of the Cocos Plate. 
+     \item the deepest depth data range with 1,111 records takes 25\% of the samples. 
+     \item mean sample values: -2,200, and 7,5\% at -4,000 to -3,500 m
+     \item median values: -3,200 to -3,300 m. 
+ \end{dinglist}  		
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{MA}
+\begin{frame}\frametitle{Middle America Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{S01.jpg}
+	\caption{Snippet of the GMT script for mapping Middle America Trench}\label{fig:S01}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-MAT1.jpg}
+	\caption{Topographic map and location of the Middle America Trench. Source: \cite{Lemenkova2019108}}\label{fig:MAT1}
+\end{figure}	
+\begin{itemize}\footnotesize
+            \item Processing large volumes of heterogeneous and rapidly arriving digital geoinformation using traditional GIS is time-consuming. 
+            \item GMT-based mapping uses scripts which optimises cartographic workflow
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{PC}
+
+\begin{frame}\frametitle{Peru-Chile Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=3.8cm]{Fig-PCT1.jpg}
+	\caption{Topographic map of the PCT. Source: \cite{Lemenkova2019107}}\label{fig:PCT1}
+\end{figure}
+\end{column}
+
+\begin{column}{0.6\textwidth}
+
+\begin{alertblock}{GMT: advantages in big Earth data processing}
+\begin{itemize}\footnotesize
+	\item \textcolor{red}{Data structure}: Structured big data are stored in the relevant folders known by GMT
+	\item \textcolor{red}{Data management}: Earth data are managed by specific GMT modules that support visualisation
+	\item \textcolor{red}{Flexibility}: certain cartographic elements can be conveniently extracted for only the part of the data relevant to study area
+\end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{Big Earth data technologies benefit geoscience research}
+\begin{dinglist}{43}\footnotesize
+     \item Visualisation of the analytical data: e.g. bathymetric analysis
+     \item Analysis of big Earth data reveals the topography of the Peru-Chile Trench (PCT), a.k.a. Atacama Trench
+     \item PCT - the longest Pacific trench (5900 km)
+     \item PCT stretches from Ecuador to Chile and covers area of ca. 590,000 km$^2$
+     \item PCT is narrower than other Pacific trenches (64 km). 
+     \item Max depth 8065 m $=>$ deepest trench in South PO        
+\end{dinglist}
+\end{exampleblock}	
+
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Peru-Chile Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.5cm]{S03.jpg}
+	\caption{Snippet of the GMT script for mapping Peru-Chile Trench}\label{fig:S03}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-PCT6.jpg}
+	\caption{Cross-section profiles of the Peru-Chile Trench. Source: \cite{Lemenkova2019107}}\label{fig:PCT6}
+\end{figure}
+\begin{dingautolist}{192}\scriptsize
+	\item Automatic modelling of trenches to study landforms, detect correlation with geologic and tectonic settings
+	\item Automatization in data analysis: automated digitizing has been discussed in literature \cite{Lemenkova202031}, \cite{WANG2021104190}, \cite{Lemenkova202027}, \cite{Lemenkova2008b}
+\end{dingautolist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\section{H}
+\begin{frame}\frametitle{Hikurangi Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig-H1.jpg}
+	\caption{Topographic settings of the Hikurangi Trench. Source: \cite{Lemenkova202031}}\label{fig:H1}
+\end{figure}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig-H2.jpg}
+	\caption{Modeled cross-section profiles of the Hikurangi Trench. Source: \cite{Lemenkova202031}}\label{fig:H2}
+\end{figure}
+\begin{dinglist}{105}\scriptsize
+     \item Various cartographic techniques can be used for modelling and mapping of deep-sea trenches in the Pacific Ocean.
+     \item Advanced cartographic techniques consist in two important characteristics: they are \textcolor{red}{script-based} and \textcolor{red}{data-driven}
+     \item Rapid mapping is essential for hazard risk assessment and crucial for operative monitoring \cite{Dumitruetal2015}   
+     \item Cartographic scripting is a console-based technique that provides detailed stepwise controlling of the cartographic workflow enabling rapid mapping 
+     \item Rapid mapping by GMT enables visualisation and representation of the tectonic processes in the seafloor \cite{Lemenkova202009}
+     \item Data-driven techniques use Earth big data to capture the correlation between geological, tectonic and bathymetric variables
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{Ps}
+
+\begin{frame}\frametitle{Puysegur Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.5cm]{Fig-P1.jpg}
+		\caption{Geologic map: Puysegur and Hjort trenches. Source: \cite{Lemenkova202031}}\label{fig:P1}
+\end{figure}
+\end{column}
+
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.5cm]{Fig-P2.jpg}
+		\caption{Modeled cross-section profiles of the Puysegur and Hjort trenches. Source: \cite{Lemenkova202031}}\label{fig:P2}
+\end{figure}
+ \begin{dinglist}{234}\scriptsize
+     \item GMT-based mapping techniques have the advantage of increased speed, accuracy and precision of mapping which enables rapid big data processing
+     \item Validity and utility of data models in GMT are based on embedded mathematical algorithms of data modelling and cartographic principles enabling deeper understanding of the underlying processes affecting the shape of the trench
+\end{dinglist}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\section{K}
+
+\begin{frame}\frametitle{Kermadec Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-TK1.jpg}
+	\caption{Topographic map and location of the Kermadec and Tonga trenches. Source: \cite{Lemenkova201994}}\label{fig:TK1}
+\end{figure}
+\end{column}
+\begin{column}{0.38\textwidth}
+
+ \begin{dinglist}{46}\footnotesize
+     \item In order to analyse the geomorphology of the seafloor landforms, it is important to use  \textcolor{red}{powerful cartographic tools}, such as  \textcolor{red}{GMT} that can handle \textcolor{red}{big Earth data}
+      \item \textcolor{red}{Modelling links} among seafloor geomorphology, tectonics and geology requires more deep insights into geologic evolution of the Pacific Ocean and current topography of the seabed
+      \item However, visualisation of the hidden relief of the seafloor can be difficult without \textcolor{red}{high-tech cartographic solutions}
+      \item Cartographic applications of machine learning as scripts provides better techniques in understanding the links of geology, seismicity and bathymetry 
+      \item \textcolor{red}{Accurate and rapid mapping} enables to efficiently analyse impact factors controlling geomorphological structures through observing big Earth data related to interactions among seafloor geomorphology and tectonics 
+ \end{dinglist}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+
+ % ----------------------------------------------------------------------------
+\section{T}
+
+\section{TT}
+\begin{frame}\frametitle{Tonga Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-TK3.jpg}
+	\caption{Cross-section profiles of the Tonga and Kermadec trenches. Source: \cite{Lemenkova201994}}\label{fig:TK3}
+\end{figure}
+\end{column}
+\begin{column}{0.4\textwidth}
+
+\begin{dinglist}{47}\footnotesize
+     \item Applying machine learning and scripting techniques of GMT in cartography for mapping seafloor helps tackling problems relating to \textcolor{red}{analysing, mapping, visualising and cross-section modelling} of the submarine geomorphology of the trenches.
+      \item Big Earth data come from different \textcolor{red}{heterogeneous sources} and are spatially not uniform. 
+      \item Big Earth data are of \textcolor{red}{varying spatio-temporal resolution and origin} which understandably poses some problems to use raw data for mapping and requires \textcolor{red}{data pre-processing, sorting and management}.
+      \item Therefore, \textcolor{red}{common resolution} is required in order to perform Earth \textcolor{red}{data integration} and spatial analysis in a project of Pacific Ocean 
+      \item Accurate mapping helps more thoughtful interpretation of the underlying tectonic processes affecting the geomorphology of the trench. 
+\end{dinglist}  	
+
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{Vt}
+\begin{frame}\frametitle{Vityaz Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-VV2.jpg}
+	\caption{Geologic map and tectonic setting of the Vanuatu (New Hebrides) and Vityaz trenches. Source: \cite{Lemenkova202003}}\label{fig:VV2}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{3em}
+Challenges of machine learning and data-driven mapping: 
+\begin{dinglist}{237}\footnotesize
+     \item Data-driven GMT-based scripting mapping  enables to use the benefits of large amount of geological data
+     \item Seafloor mapping includes multiple steps in technological process which may include: Hydrosweep DS sonar echo-sounding \cite{Lemenkova201569}, CARIS HIPS data processing \cite{Lemenkova2007f}, GMT data processing \cite{Lemenkova201565}. 
+     \item To understand the challenges of deep-sea trench formation, it is crucial to model and define the behavior of various components of Earth system in an integrated manner. 
+     \item This requires an advanced, scripting-based modelling method (GMT) of interacting components of the seafloor: tectonic movements, geologic evolution, geomorphology and topography
+     \item With increasing rise and constant updates in big Earth data availability in geology, it is essential to apply data-driven mapping and script-based cartographic visualisation where the use of machine learning is an accepted strategy that facilitates cartographic workflow
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\section{Vn}
+\begin{frame}\frametitle{Vanuatu Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-VV9.jpg}
+	\caption{Example of the automated modelling performed using GMT and large arrays of data: modelled cross-sections: Vanuatu (New Hebrides) and Vityaz trenches. Source: \cite{Lemenkova202003}}\label{fig:VV9}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+Multi-source big Earth data
+\begin{dinglist}{123}\footnotesize
+     \item The application of geological big data enables to utilise both \textcolor{red}{structured} and \textcolor{red}{unstructured} datasets
+     \item These include data from \textcolor{red}{a variety of disciplines}, such as geology \cite{Huangetal2017}, geophysics \cite{Lietal2019}, geochemistry \cite{Jiaoetal2018}, geoinformatics and remote sensing \cite{Lemenkova202019}, submarine geomorphology \cite{Lemenkova202018}, hydrology and risk disasters (tsunamis, submarine landslides, submarine volcanoes, earthquakes) \cite{Chenetal2015}.
+     \item Digital geological Big data present an \textcolor{red}{integration} of geospatial data, collection of resources, data transmission, information extraction and knowledge mining \cite{Zhuetal2018}
+     \item \textcolor{red}{Structural, semi-structured}, and \textcolor{red}{non-structured} multidimensional big Earth data are integrated together. Different data sources $=>$ different formats of data. 
+     \item \textcolor{red}{Data heterogeneity} raises a need for effective \textcolor{red}{aggregation} of geological big Earth data
+     \item Big Earth data collection start with \textcolor{red}{categorising} geological datasets obtained from geological surveys \cite{ZHANG201973}, \cite{Lemenkova202107}, \cite{Lindh1999}, \cite{Lindh2004}, remotes sensing digital information, and literature sources.
+     \item  \textcolor{red}{Sorted} data can further be processed using either cartographic (GMT) or statistical methods (e.g. R)
+\end{dinglist}  
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\section{NB}
+\begin{frame}\frametitle{New Britain Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-NBT1.jpg}
+	\caption{Topographic map of the New Britain and San Cristobal trenches, east Papua New Guinea. Source: \cite{Lemenkova202025}}\label{fig:NBT1}
+\end{figure}
+\end{column}
+\begin{column}{0.4\textwidth}	
+\begin{dinglist}{124}\footnotesize
+     \item \textcolor{red}{Increasing massifs} of big Earth data in marine geology need to be interpreted in a rapid and accurate way
+     \item \textcolor{red}{Organised information retreaval} from the results of this interpretation  requires enhanced methods of both cartographic approaches (GMT) and statistical computation (Python, R) of tabular data aimed to detect patterns and correlations within datasets. 
+     \item \textcolor{red}{Quantifying} submarine landforms and \textcolor{red}{identifying dependencies} of the trench's geomorphology from tectonic factors becomes possibles thanks to the advancement in cartographic techniques
+     \item \textcolor{red}{Impact factors} affecting the formation of these landforms include speed of slab subduction, seismicity, volcanism, age of the tectonic plate), sedimentation in the trench's talweg
+     \end{dinglist} 
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{SC}
+\begin{frame}\frametitle{San Cristobal Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-NBT6.jpg}
+	\caption{Example of the cross-section profiles of the New Britain and San Cristobal trenches. Source: \cite{Lemenkova202025}}\label{fig:NBT6}
+\end{figure}
+\end{column}
+\begin{column}{0.4\textwidth}	
+\begin{dinglist}{49}\footnotesize
+      \item  \textcolor{red}{Distributed computing technologies} \\in geologic cartography together with growing open source data, cloud computing and development of programming libraries facilitate sharing and processing the extremely big Earth datasets
+     \item \textcolor{red}{Deep Learning} can present the next step in processing big Earth data
+     \item \textcolor{red}{Deep learning} is a new, rapidly evolving field of machine learning and consists in advanced algorithms of computer vision and analysis. It consists in methods of Artificial Neural Networks (ANN), Convolution Neural Networks (CNN) and Recurrent Neural Networks (RNN)
+     \item Applied in geology deep learning enables to gain more \textcolor{red}{insights} into the fundamental causes of deep-sea trench formation based on rapid automatic processing of large amount of marine geological and bathymetric data
+ \end{dinglist} 
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+
+% ----------------------------------------------------------------------------
+\section{PhT}
+\begin{frame}\frametitle{Philippine Trench}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8.0cm]{Fig-Ph08.jpg}
+	\caption{Plotting by Python (Matplotlib library): distribution of the bathymetric samples of the cross-section profiles. Source: \cite{Lemenkova202010}}\label{fig:Ph08}
+\end{figure}
+%\vspace{1em}
+\begin{exampleblock}{Data Processing by Python}
+ \begin{dinglist}{247}\footnotesize
+     \item Python can handle a huge amount of data, which it uses not only to process, but also to create analytical plots, such as assessment of bathymetric variability or analytics in geology. 
+     \item Big data analysis in Python is based on a full range of algorithms used in statistics
+     \item Statistical analysis: well developed stand-alone libraries (Matplotlib, SciPy, NumPy, Pandas, StatsModels)
+     \item Beauty \& elegance of graphs: advanced design solutions for data visualization in Matplotlib \& Seaborn
+     \item Scripting approach with more readable syntax
+     \item Open-source
+\end{dinglist}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}\frametitle{Philippine Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig-Ph09.jpg}
+	\caption{Correlation matrix. Source: \cite{Lemenkova2019104}}\label{fig:H1}
+\end{figure}
+ \begin{dinglist}{101}\footnotesize
+     \item Example of data analysis by R: correlation matrix visualising \textcolor{red}{influence of impact factors} affecting the geomorphology of the profiles. Plotting: R.
+     \item Other examples of R application in big Earth data analysis: geomorphological mapping \cite{Lemenkova202030}. 
+\end{dinglist} 
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig-Ph10.jpg}
+	\caption{Ranking dot plot. Source: \cite{Lemenkova2019104}}\label{fig:H1}
+\end{figure}
+\begin{dinglist}{122}\footnotesize
+     \item Analysing the interactions between the variables in big datasets by R presents a solution to \textcolor{red}{visualising heterogeneity} of topographic features formed under various geologic setting: ranking geomorphology of the cross-section profiles. 
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{Mn}
+
+\begin{frame}\frametitle{Manila Trench}
+
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig-M1.jpg}
+	\caption{Example of GMT-based mapping: topographic map of the Manila Trench in South China Sea. Source: \cite{Lemenkova202004}}\label{fig:M1}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{dinglist}{112}\footnotesize
+     \item \textcolor{red}{Interactions} between deep-sea trench and factors affecting their formation have considerable variations across western and eastern parts the Pacific Ocean. This is reflected in form and shape of the trenches.
+     \item It is important to \textcolor{red}{model correlations} among these factors (geophysics, seismicity, tectonics, geology, physical geography, currents, sediment thickness \cite{Lemenkova202008}) in a way that effectively handles uncertainties of formations of the trenches
+     \item Effective Earth data modelling highlights the impact on geomorphology of the trenches \cite{Lemenkova202015} as a result of \textcolor{red}{variations} in tectonic setting (speed of slab subduction, density and age of the lithosphere plate) and regional oceanological parameters
+      \item Benefits of automatisation for big Earth data processing:
+		\begin{dinglist}{42}\scriptsize
+   			  \item \textcolor{red}{precision} and \textcolor{red}{reliability} of the results
+			  \item \textcolor{red}{increased speed} of data processing
+			  \item \textcolor{red}{accuracy} and \textcolor{red}{precision} of data modelling
+		\end{dinglist}
+     \item So it is necessary to apply automatisation in cartographic processing through scripting cartographic methods and machine learning models using Python and R statistical libraries in order to visualise and analyse the seafloor structure    
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\section{R}
+
+\begin{frame}\frametitle{Geologic mapping: Ryukyu Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig-R2.jpg}
+	\caption{Geologic map of the Ryukyu Trench. Source: \cite{Lemenkova202017}}\label{fig:R2}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{dinglist}{233}\scriptsize
+     \item Geological research of the Ryukyu trench area is concerned with problems of \textcolor{red}{Philippine Sea Plate subduction}, \textcolor{red}{seismic activity} and associated formation of the trench-arc system 
+     \item Geology is special discipline compared to other natural and technical science in that it is an observational science branch
+     \item Geologic observations received from geological fieldwork, investigations and \emph{in-situ} data collection can be stored in large amount of the multi-format data
+     \item Geologic case data include rock genesis, mineral deposit genesis, metamorphic rock genesis, sedimentary rock genesis, etc \cite{ZhangLiu2019}: e.g. basalt magma undergoes separation and crystallisation.
+     \item Explosive growth in the overwhelming amount of geological data is now processed by the high-performance computers and machine learning methods of statistical analysis for effective data processing
+     \item Advanced methods of data analysis and scripting mapping technologies applied for big geologic datasets made possible to move geology into the \textcolor{red}{quantitative research}
+     \item Marine geological big datasets are taken from cruise observations and regular survey on R/V, drilling and engineering exploration, remote seising and analytical testing, statistical analysis and modelling
+     \item Big Earth datasets designed for visualising deep-sea trenches in the zones of subduction 
+     \item \textcolor{red}{Smart geologic intelligent systems} will be developing in the future using Artificial Intelligence (AI) for predictive mineral prospecting, seismic prognosis and hazard risk mitigation \cite{Zhouetal2018}
+ \end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\section{Pl}
+
+\begin{frame}\frametitle{Palau Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig-YPT1.jpg}
+	\caption{Topographic location of the Yap and Palau Trenches. Source: \cite{Lemenkova2019106}}\label{fig:H1}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+Machine learning opportunities: 
+\begin{dinglist}{217}\footnotesize
+     \item Mapping and modelling \textcolor{red}{interactions} of marine geologic and tectonic processes is important to understanding the geomorphology of the deep-sea trenches
+     \item To this end, \textcolor{red}{scripting technical advancement} in cartography (GMT, GRASS GIS \cite{Lemenkova202022}, \cite{Lemenkova202016}, \cite{Lemenkova202011}, \cite{Lemenkova202032}) has enabled the generation of large volumes of Earth data through rapid and accurate mapping 
+     \item Besides, \textcolor{red}{statistical and machine learning techniques} (Python, R) can help visualise bathymetric patterns in trenches
+     \item Geomorphology of the deep-sea trenches and seafloor tectonics are inherently linked with regional geologic setting (subduction zones, high seismicity)
+     \item So it is necessary to get useful \textcolor{red}{insights into topographic patterns of each trench} (asymmetry, depth, width, slope steepness) formed in various conditions of the margins of the Pacific Ocean
+     \item This insight is difficult to develop without machine learning techniques and advanced cartography because it requires rapid and accurate processing of \textcolor{red}{large volumes of spatial data}
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{Y}
+
+\begin{frame}\frametitle{Yap Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=7.0cm]{Fig-YPT7.jpg}
+	\caption{Example of the rapid machine-based modelling by GMT: automatically digitised profiles of Yap and Palau trenches. Source: \cite{Lemenkova2019106}}\label{fig:H1}
+\end{figure}
+\end{column}
+\begin{column}{0.4\textwidth}
+\vspace{2em}
+Big Earth data as a massive information system: 
+\begin{dinglist}{239}\footnotesize
+     \item Big Earth data are a \textcolor{red}{digitally networked system}
+     \item The functionality of this system is supported by \textcolor{red}{researchers, societies and institutes}.
+     \item Big Earth databases are based on generating, receiving and creatively utilising \textcolor{red}{exponentially increasing data and information fluxes} \cite{Boulton2018}.
+     \item Earth data present a \textcolor{red}{complex, mathematically defined digital information system} that we need to model and map in order to better understand the functionality and fundamental structure of the Earth
+     \item The \textcolor{red}{perspectives} of big Earth data for ocean tectonics and marine geology are in rapid and accurate mapping and modelling of the seafloor, analysing the processes of tectonic plate subduction
+     \item Effective data processing aims at understanding the geologic complexity of the Pacific Ocean seafloor
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{MT}
+
+\begin{frame}\frametitle{Mariana Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+ \begin{dinglist}{254}\small
+     \item Large amount of Earth data brings a technical problem: how we can \textcolor{red}{extract necessary information} from the massive quantities (millions) of cells, pixels and variables?
+     \item The answer to this question: effective means of statistical data analysis by \textcolor{red}{Python or R} (Julia, MATLAB/Octave) can help analyse, visualise and model data.
+     \item \textcolor{red}{Automatisation of the massive digital data processing} for effective cartographic visualisation and statistical modelling. 
+     \item As a response to such needs, \textcolor{red}{scripting cartography} and \textcolor{red}{statistical libraries} of the programming languages present effective and advanced approach in Earth data analysis and modelling. 
+\end{dinglist}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig-MT20.jpg}
+	\caption{Project Mindmap. Plotting: \LaTeX \space \cite{Lemenkova201993}}\label{fig:MT20}
+\end{figure}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Mariana Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{itemize}\footnotesize
+	\item Various GMT techniques and modules have been used for rapid and accurate mapping
+	\item Main GMT modules:
+	\begin{dinglist}{224}\footnotesize
+		\item  \textcolor{SlateBlue}{gmt makecpt} for making color palette
+		\item  \textcolor{SlateBlue}{gmt grdimage} for generating raster image
+		\item  \textcolor{SlateBlue}{gmt psscale} for adding legend for adding scale
+		\item  \textcolor{SlateBlue}{gmt grdcontour} for adding isolines
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding grid
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding scale and directional rose
+		\item  \textcolor{SlateBlue}{echo} UNIX utility for adding text labels
+		\item  \textcolor{SlateBlue}{gmt pstext} for adding subtitle
+		\item  \textcolor{SlateBlue}{gmt logo} for adding GMT logo
+		\item  \textcolor{SlateBlue}{gmt psconvert} for convert PS to image (by GhostScript interpreter)
+	 \end{dinglist}
+\end{itemize}
+\begin{itemize}\footnotesize
+	\item As a result, plotting a map by GMT becomes a rapid procedure, fully controlled by the cartographer 
+	\item Such automatisation by GMT facilitates mapping and decreases time of cartographic workflow
+\end{itemize}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig-MT1.jpg}
+	\caption{Topographic map and location of the Mariana Trench. \cite{Lemenkova201992}}\label{fig:MT1}
+\end{figure}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Mariana Trench}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8cm]{Fig-MT11.jpg}
+	\caption{Kernel Density Estimation (KDE) for the profiles bathymetry. \\
+	Python libraries: Matplotlib, Seaborn, Pandas \cite{Rossumatal2018}. Source: \cite{Lemenkova201905}}\label{fig:MT11}
+\end{figure}
+\begin{dinglist}{109}\footnotesize
+     \item Example of Python based data analysis: Kernel Density Estimation (KDE) analysis showing facetted plots of the cross-section profiles. 
+     \item It shows the range of density distribution in the elevations across the Mariana Trench
+\end{dinglist} 
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Mariana Trench}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=10cm]{Fig-MT14.jpg}
+	\caption{R based ridgeline plots by tectonic plates and bathymetric profiles, library \{ggplot\}. Source: \cite{Lemenkova201991}}\label{fig:MT14}
+\end{figure}
+
+Key points on the ridgeline plot by R:
+\begin{dinglist}{96}\footnotesize
+	\item Analysing the interactions between the variables in big datasets by R presents a solution to \textcolor{red}{visualising heterogeneity} of topographic features formed under various geologic setting
+	\item Ridgeline plot shows \textcolor{red}{data distribution} aimed to understand the variability of elevations as a \textcolor{red}{stream view}
+	\item Ridgeline profiling shows a comparative visualisation of the \textcolor{red}{density distribution} of depths by profiles
+	\item Ridgeline plot provides the insight into the statistical distribution of the \textcolor{red}{elevation ranges} in the Mariana Trench.
+\end{dinglist}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\section{IBT}
+\begin{frame}\frametitle{Izu-Bonin Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+Challenges of big Earth data manipulation 
+\begin{dinglist}{84}\footnotesize
+   	 \item Big Earth data capture is a technical challenge: data are gathered from the diverse sources and quantities of pixels (e.g. GEBCO2019.nc 11.72 Gb of data). This provides a problem of storing data \cite{Merrittetal2018}
+	 \item Another problem: \textcolor{red}{useability and compatibility} of data with other datasets
+	 \item Hence, big Earth data requires \textcolor{red}{considerable resources} (powerful computers), skills and time investing to ensure their usability
+	 \item Effects of visualisation by GMT enable to plot pseudo-3D maps
+	 \item Techniques of the perspective view combining 3D effects through artificial hillshade illumination that improve the \textcolor{red}{readability} and \textcolor{red}{interpretation} of the maps  
+\end{dinglist}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig-IBT1.jpg}
+	\caption{Topographic map and location of the Izu-Bonin Trench. Source: \cite{Lemenkova202005}}\label{fig:IBT1}
+\end{figure}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Izu-Bonin Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.5cm]{S04.jpg}
+	\caption{Automatic digitizing of the IBT profiles: fragment of the GMT script}\label{fig:MAT1}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.5cm]{Fig-IBT7.jpg}
+	\caption{Cross-section profiles of the IBT. Source: \cite{Lemenkova202005}}\label{fig:IBT7}
+\end{figure}	
+\begin{itemize}\scriptsize
+            \item Automatic digitising by GMT enables visualising variations of geomorphology and model trends of the geomorphic shape curves of trenches
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ----------------------------------------------------------------------------
+
+\section{JT}
+
+\begin{frame}\frametitle{Japan Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig-JT1.jpg}
+	\caption{Topographic location of the Japan Trench. Source: \cite{Lemenkova202012}}\label{fig:H1}
+\end{figure}
+\begin{dinglist}{105}\footnotesize
+     \item GMT module 'grdview' turns Earth data (e.g. GEBCO, ETOPO1, ETOPO5) into visual 3D representations of the trenches
+\end{dinglist} 
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+3D modelling as important cartographic approach in big Earth data analysis 
+\begin{dinglist}{120}\footnotesize
+     \item 3D topographic scene effectively illustrates the relief representation \cite{Tarolli2017}, \cite{Lemenkova202017}
+     \item Advanced \textcolor{red}{GMT functionalities} specify different cartographic elements on the map for each layer by a combination of the GMT modules (grdview, grdcontour, pscoast, pstext). 
+     \item Cartographic processing includes
+     	 \begin{dinglist}{229}\scriptsize
+   		  \item visualisation of layers (raster grids vector lines)
+		  \item text annotations
+		  \item subplots, hierarchical sub-levels of the elements 
+		  \item coordinate axis labels and grids, translucency of layers
+		  \item general layout setting
+	  \end{dinglist}    
+     \item The outcome of the GMT cartographic processing: \textcolor{red}{print-quality maps}
+     \item 3D modelling of Earth data creates potential for cartographic opportunities in \textcolor{red}{visual data analytics} and interpretation of the seafloor structure
+     \item GMT enables \textcolor{red}{flexible, accurate and rapid visualisation} of the 2D and 3D Earth big data
+     \item Data selection: 3D modelling of trenches is limited by massive data processing (3D arrays of cells) $=>$  ETOPO5 presents better
+ \end{dinglist} 
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\begin{frame}\frametitle{Japan Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.5cm]{S05.jpg}
+	\caption{Snippet of the GMT script for mapping Japan Trench}\label{fig:S05}
+\end{figure}
+\end{column}
+\begin{column}{0.45\textwidth}
+\vspace{2em}	
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.5cm]{Fig-JT6.jpg}
+	\caption{GMT-based 3D modelling of the Japan Trench. Source: \cite{Lemenkova202012}}\label{fig:JT6}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\section{Con}
+
+\begin{frame}\frametitle{Conclusion}
+
+\begin{dinglist}{51}\footnotesize
+     \item In the era of big Earth data, these slides presented the application of GMT scripting methods for cartographic 2D and 3D modelling and cross-section profiling of the deep-sea trenches of the Pacific Ocean
+     \item Machine learning methods of the statistical analysis by Python and R were presented for the cases of Mariana and Philippine trenches
+     \item The demands from geology for effective methods of big Earth data processing is explained by the overwhelming increase of data that should be processed rapidly yet effectively
+     \item The study presented cartographic requirements and challenges faced in big Earth data management technologies: multi-source, multi-origin, multi-format characteristics of data  \cite{Lemenkova202029} that should be integrated smoothly by GMT
+     \item Benefits of GMT for processing Earth data include various data size that GMT may export, convert and import (including via GDAL), data type (raster, vector and tabular), high processing speed, and mapping accuracy
+     \item Cartographic development opportunities in the era of big Earth data are related to the machine-based data processing, that is scripting and algorithms of automatization
+     \item Modelling deep-sea trenches starts with several steps of pre-processing: big Earth data \textcolor{red}{capture, metadata check-up, storage, sorting, organising} in folders, \textcolor{red}{scripting and visualisation} by GMT as an example of cartographic technology for big Earth data processing
+     \item GMT presents a mature and smart direction for cartographic development compared to the traditional GIS (e.g. \cite{Lemenkova2005b2}, \cite{RID09251802355041}, \cite{RID:0925180235504-2}, \cite{Lemenkova2014d}, \cite{Lemenkova2011c}, \cite{Lemenkova2005a}, \cite{Lemenkova2012j}, \cite{Lemenkova2012d}, \cite{Lemenkova2012g})
+     \item Development of big Earth data technologies in marine geological analysis, results in the need of processing large amounts of data with complex heterogeneous characteristics that must be modelled and mapped rapidly yet accurately. GMT fully satisfies such needs and presents the best cartographic technology for big Earth data processing
+ \end{dinglist} 
+
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{Thx}
+\begin{frame}\frametitle{Thanks}
+\begin{tikzpicture}%
+\node[anchor=south west, inner sep=0] (X) at (-0,0){\includegraphics[width=11.5cm]{Fig-Final.jpg}};%
+\begin{scope}[x={(X.south east)},y={(X.north west)}]%
+%% This makes all measurements with no units into fractions of the width
+%% and height of the graphic contained in the node.
+\fill[fill = white,fill opacity=0.6] ($(X.south west) + (0,1in)$) rectangle ($(X.north east) - (0,1in)$);%
+\node[text width=8cm] (Z) at (0.5,0.5) {%
+  \sffamily\centering\large \textcolor{NavyBlue}{Thank you for attention !}\\[3pt]
+  \normalsize \textcolor{NavyBlue}{Questions ?}\par%
+};
+\end{scope}%
+\end{tikzpicture}
+
+\end{frame}
+
+% ----------------------------------------------------------------------------
+% *** START: Final Slide <<<
+% ----------------------------------------------------------------------------
+
+%\section{End}
+%\begin{frame}\frametitle{Thank you for attention!}
+
+%\begin{figure}[H]
+%	\centering
+%		\includegraphics[width=7cm]{Wordcloud.jpg}
+%\end{figure}	
+
+%\end{frame}
+
+%\section{Thx}
+%\begin{frame}\frametitle{Acknowledgements}
+
+%I gratefully acknowledge the funding of this research from the China Scholarship Council (CSC),
+%State Ocean Administration (SOA), Marine Scholarship of China, People's Republic of China 
+%(P. R. C.), Beijing, Grant \#2016SOA002, 2016-2020.
+
+%\end{frame}
+ 
+% ----------------------------------------------------------------------------
+% *** END: Final Slide >>>
+% ----------------------------------------------------------------------------
+%%%%%%%%%%% Bibliography %%%%%%%
+\section{Bib}
+	\markright{Bibliography}
+References
+	\printbibliography[heading=none]
+	
+\end{document}
+
+%Changing the font size locally (from biggest to smallest):	
+%\Huge
+%\huge
+%\LARGE
+%\Large
+%\large
+%\normalsize (default)
+%\small
+%\footnotesize
+%\scriptsize
+%\tiny
