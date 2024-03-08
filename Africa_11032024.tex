@@ -41,6 +41,7 @@
 %%%%%%%%  цветная таблица: конец
 \usepackage{wrapfig}
 \usepackage{csquotes}
+%\usepackage{subcaption}
 
 % ------------------------ для разных буллитов в списках -------------------------------
 \usepackage{enumitem} 
@@ -403,13 +404,13 @@ Department of Geoinformatics}
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\section{PO}
+\section{AF}
 
-\begin{frame}\frametitle{Pacific Ocean}
+\begin{frame}\frametitle{Africa}
 \vspace{1em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=8cm]{Fig-PO.jpg}
+		\includegraphics[width=5cm]{Fig_01.jpg}
 	\caption{General bathymetric map of the seafloor of the Pacific Ocean, ETOPO1. Source: \cite{Lemenkova202106}}\label{fig:PO.jpg}
 \end{figure}\small
 The \textcolor{red}{biggest} ocean on the Earth, Pacific Ocean differs in \textcolor{DarkOrchid}{western} and \textcolor{DarkOrchid}{eastern} parts according to relief, geotectonics and geological evolution.
@@ -421,8 +422,8 @@ Western Pacific (WP) and Eastern Pacific (EP) are different basins, separated by
 \vspace{1em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=8.0cm]{Fig-POg.jpg}
-	\caption{General geologic map of the seafloor of the Pacific Ocean. Source: \cite{Lemenkova202106}}\label{fig:POg.jpg}
+		\includegraphics[width=5.0cm]{Fig_02.jpg}
+	\caption{General geologic map of the seafloor of the Pacific Ocean. Source: \cite{Lemenkova202106}}\label{fig:02.jpg}
 \end{figure}
 \small{Landscape ecology of diverse regions of Africa reflects a variety of impact factors: tectonic-geologic setting, climate change and anthropogenic activities}
 \end{frame}
@@ -556,7 +557,7 @@ Current state: mapping of 26 African countries is published in 31 journal articl
 \vspace{2ex}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6.5cm]{Fig-KKT1.jpg}
+		\includegraphics[width=6.5cm]{Fig_03.jpg}
 	\caption{Example of the GEBCO grid used for mapping trench. Source: \cite{Lemenkova201995}}\label{fig:KKT1}
 \end{figure}
 \end{column}
@@ -572,7 +573,7 @@ Current state: mapping of 26 African countries is published in 31 journal articl
 \begin{column}{0.5\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6cm]{S02.jpg}
+		\includegraphics[width=6cm]{Fig_04.jpg}
 	\caption{Snippet of the Octave/MATLAB script used for modeling the Kuril-Kamchatka Trench}\label{fig:S2}
 \end{figure}	
 \end{column}
@@ -580,7 +581,7 @@ Current state: mapping of 26 African countries is published in 31 journal articl
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=5cm]{Fig-KKT6.jpg}
+		\includegraphics[width=5cm]{Fig_05.jpg}
 	\caption{Cross-section profiles of the Kuril-Kamchatka Trench. Plotting: Octave. Source: \cite{Lemenkova2019100}}\label{fig:KKT6}
 \end{figure}
 \begin{dinglist}{224}\scriptsize
@@ -592,15 +593,18 @@ Current state: mapping of 26 African countries is published in 31 journal articl
 \end{minipage}
 \end{frame}
 
-% ----------------------------------------------------------------------------
-
+% ---------------------------------------------------------------------------->
 \section{AT}
-\begin{frame}\frametitle{Aleutian Trench}
-\vspace{1em}
+
+\begin{frame}\frametitle{Philippine Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=7cm]{Fig-A1.jpg}
-	\caption{ETOPO1 grid for topographic mapping: example of Aleutian Trench. Source: author.}\label{fig:AT1}
+		\includegraphics[width=5.0cm]{Fig_06.jpg}
+	\caption{Correlation matrix. Source: \cite{Lemenkova2019104}}\label{fig:H1}
 \end{figure}
 Solutions of GMT: 
  \begin{dingautolist}{202}\footnotesize
@@ -611,9 +615,24 @@ Solutions of GMT:
      processing
      \item GMT-based mapping provides accurate visualization of the seafloor \cite{Lemenkova2007f}
 \end{dingautolist}
+
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_07.jpg}
+	\caption{Ranking dot plot. Source: \cite{Lemenkova2019104}}\label{fig:H1}
+\end{figure}
+\begin{dinglist}{122}\footnotesize
+     \item Analysing the interactions between the variables in big datasets by R presents a solution to \textcolor{red}{visualising heterogeneity} of topographic features formed under various geologic setting: ranking geomorphology of the cross-section profiles. 
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
 \end{frame}
 
-% ----------------------------------------------------------------------------
+% ---------------------------------------------------------------------------->
 \begin{frame}\frametitle{Data Integration}
 \vspace{1em}
 Multi-source data mixing and integration using GMT adjustments:
@@ -627,8 +646,8 @@ Multi-source data mixing and integration using GMT adjustments:
    
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6cm]{Fig-MAT5.jpg}
-	\caption{Map showing geological settings in the Middle America Trench. Source: \cite{Lemenkova2019108}}\label{fig:MAT5}
+		\includegraphics[width=8cm]{Fig_08.jpg}
+	\caption{ Data capture from the EarthExplorer repository of the USGS: Landsat-8 OLI/TIRS satellite image, central Burkina Faso, Ouagadougou. Background image: ESRI World imagery. Source: \cite{Lemenkova2019108}}\label{fig:MAT5}
 \end{figure}
 \end{frame}
 
@@ -640,7 +659,7 @@ Multi-source data mixing and integration using GMT adjustments:
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6cm]{Fig-MAT10.jpg}
+		\includegraphics[width=5cm]{Fig_09.jpg}
 	\caption{Cross-section profiles of the Middle America Trench (Guatemala segment). Source: \cite{Lemenkova2019108}}\label{fig:MAT10}
 \end{figure}
 \end{column}
@@ -648,14 +667,12 @@ Multi-source data mixing and integration using GMT adjustments:
 \begin{column}{0.4\textwidth}
 \vspace{2em}
 An example of data analysis \\using GMT: Guatemala Trench: 
- \begin{dinglist}{52} \scriptsize
-     \item MAT geometry demonstrates its relatively steep and strait shape. 
-     \item major depth samples: between the -3000 and -6200 m; seafloor 3-5 km wide.
-     \item frequency samples distribution shows changes by profiles. Increase of frequency between -3000 to -4000 m caused by the geologic settings of the Cocos Plate. 
-     \item the deepest depth data range with 1,111 records takes 25\% of the samples. 
-     \item mean sample values: -2,200, and 7,5\% at -4,000 to -3,500 m
-     \item median values: -3,200 to -3,300 m. 
- \end{dinglist}  		
+ \begin{dinglist}{234}\scriptsize
+     \item GMT-based mapping techniques have the advantage of increased speed, accuracy and precision of mapping which enables rapid big data processing
+     \item Validity and utility of data models in GMT are 
+     \item Embedded mathematical algorithms of data modelling and cartographic principles 
+     \item GMT => deeper understanding of the underlying processes affecting the Earth's landscapes
+\end{dinglist} 		
 \end{column}
 \end{columns}
 \end{minipage}
@@ -670,15 +687,15 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6cm]{S01.jpg}
-	\caption{Snippet of the GMT script for mapping Middle America Trench}\label{fig:S01}
+		\includegraphics[width=6cm]{Fig_10.jpg}
+	\caption{Snippet of the GMT script for cartographic mapping}\label{fig:S01}
 \end{figure}
 \end{column}
 
 \begin{column}{0.5\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6cm]{Fig-MAT1.jpg}
+		\includegraphics[width=6cm]{Fig_11.jpg}
 	\caption{Topographic map and location of the Middle America Trench. Source: \cite{Lemenkova2019108}}\label{fig:MAT1}
 \end{figure}	
 \begin{itemize}\footnotesize
@@ -690,7 +707,7 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{minipage}
 \end{frame}
 
-% ----------------------------------------------------------------------------
+% ---------------------------------------------------------------------------->
 \section{PC}
 
 \begin{frame}\frametitle{Peru-Chile Trench}
@@ -700,30 +717,31 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=3.8cm]{Fig-PCT1.jpg}
+		\includegraphics[width=3.8cm]{Fig_12.jpg}
 	\caption{Topographic map of the PCT. Source: \cite{Lemenkova2019107}}\label{fig:PCT1}
 \end{figure}
 \end{column}
 
 \begin{column}{0.6\textwidth}
 
-\begin{alertblock}{GMT: advantages in big Earth data processing}
+\begin{alertblock}{GMT: advantages in data processing}
 \begin{itemize}\footnotesize
-	\item \textcolor{red}{Data structure}: Structured big data are stored in the relevant folders known by GMT
-	\item \textcolor{red}{Data management}: Earth data are managed by specific GMT modules that support visualisation
-	\item \textcolor{red}{Flexibility}: certain cartographic elements can be conveniently extracted for only the part of the data relevant to study area
+	\item \textcolor{red}{Data structure}: Structured data are stored in the folders
+	\item \textcolor{red}{Data management}: by GMT modules for visualisation
+	\item \textcolor{red}{Flexibility}: cartographic elements extracted for study area
 \end{itemize}
 \end{alertblock}
 
-\begin{exampleblock}{Big Earth data technologies benefit geoscience research}
+\begin{exampleblock}{Cartography: benefit for geologic analysis}
 \begin{dinglist}{43}\footnotesize
-     \item Visualisation of the analytical data: e.g. bathymetric analysis
-     \item Analysis of big Earth data reveals the topography of the Peru-Chile Trench (PCT), a.k.a. Atacama Trench
-     \item PCT - the longest Pacific trench (5900 km)
-     \item PCT stretches from Ecuador to Chile and covers area of ca. 590,000 km$^2$
-     \item PCT is narrower than other Pacific trenches (64 km). 
-     \item Max depth 8065 m $=>$ deepest trench in South PO        
+     \item Visualisation of the analytical data: e.g. topographi analysis
+     \item Analysis of Earth data reveals the geologic setting   
 \end{dinglist}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_13.jpg}
+	\caption{Topographic map of the PCT. Source: \cite{Lemenkova2019107}}\label{fig:PCT1}
+\end{figure}
 \end{exampleblock}	
 
 \end{column}
@@ -731,7 +749,38 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{minipage}
 \end{frame}
 
-% ----------------------------------------------------------------------------
+% ---------------------------------------------------------------------------->
+\section{Ps}
+
+\begin{frame}\frametitle{Puysegur Trench}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.5cm]{Fig_14.jpg}
+		\caption{Geologic map: Puysegur and Hjort trenches. Source: \cite{Lemenkova202031}}\label{fig:P1}
+\end{figure}
+\end{column}
+
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.5cm]{Fig_15.jpg}
+		\caption{Modeled cross-section profiles. Source: \cite{Lemenkova202031}}\label{fig:P2}
+\end{figure}	
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.5cm]{Fig_16.jpg}
+		\caption{Modeled cross-section profiles. Source: \cite{Lemenkova202031}}\label{fig:P2}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
 \begin{frame}\frametitle{Peru-Chile Trench}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
@@ -739,15 +788,15 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=5.5cm]{S03.jpg}
-	\caption{Snippet of the GMT script for mapping Peru-Chile Trench}\label{fig:S03}
+		\includegraphics[width=5.0cm]{Fig_17.jpg}
+	\caption{Snippet of the R code for unsupervised classification by k-means clustering (Basoko, Congo).}\label{fig:S03}
 \end{figure}
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6cm]{Fig-PCT6.jpg}
-	\caption{Cross-section profiles of the Peru-Chile Trench. Source: \cite{Lemenkova2019107}}\label{fig:PCT6}
+		\includegraphics[width=6cm]{Fig_18.jpg}
+	\caption{ k-means clustering classification algorithm in RStudio using the RStoolbox package. Source: \cite{Lemenkova2019107}}\label{fig:PCT6}
 \end{figure}
 \begin{dingautolist}{192}\scriptsize
 	\item Automatic modelling of trenches to study landforms, detect correlation with geologic and tectonic settings
@@ -758,7 +807,7 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{minipage}
 \end{frame}
 
- % ----------------------------------------------------------------------------
+ % ---------------------------------------------------------------------------->
 \section{H}
 \begin{frame}\frametitle{Hikurangi Trench}
 \vspace{2em}
@@ -767,54 +816,26 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=5.0cm]{Fig-H1.jpg}
+		\includegraphics[width=5.0cm]{Fig_19.jpg}
 	\caption{Topographic settings of the Hikurangi Trench. Source: \cite{Lemenkova202031}}\label{fig:H1}
 \end{figure}
+\begin{dinglist}{105}\scriptsize
+     \item Various cartographic techniques can be used for modelling and mapping.
+     \item Advanced cartographic techniques consist in two key characteristics: \textcolor{red}{script-based} and \textcolor{red}{data-driven}
+     \item Rapid mapping is essential for hazard risk assessment and crucial for operative monitoring \cite{Dumitruetal2015}   
+\end{dinglist}
 \end{column}
 \begin{column}{0.6\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6.0cm]{Fig-H2.jpg}
-	\caption{Modeled cross-section profiles of the Hikurangi Trench. Source: \cite{Lemenkova202031}}\label{fig:H2}
+		\includegraphics[width=6.0cm]{Fig_20.jpg}
+	\caption{3D perspective view of Qena Bend, Nile River, Upper Egypt. Software: GMT. Data: GEBCO. Source: \cite{Lemenkova202031}}\label{fig:H2}
 \end{figure}
-\begin{dinglist}{105}\scriptsize
-     \item Various cartographic techniques can be used for modelling and mapping of deep-sea trenches in the Pacific Ocean.
-     \item Advanced cartographic techniques consist in two important characteristics: they are \textcolor{red}{script-based} and \textcolor{red}{data-driven}
-     \item Rapid mapping is essential for hazard risk assessment and crucial for operative monitoring \cite{Dumitruetal2015}   
+\begin{dinglist}{105}\scriptsize  
      \item Cartographic scripting is a console-based technique that provides detailed stepwise controlling of the cartographic workflow enabling rapid mapping 
      \item Rapid mapping by GMT enables visualisation and representation of the tectonic processes in the seafloor \cite{Lemenkova202009}
      \item Data-driven techniques use Earth big data to capture the correlation between geological, tectonic and bathymetric variables
 \end{dinglist}
-\end{column}
-\end{columns}
-\end{minipage}
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\section{Ps}
-
-\begin{frame}\frametitle{Puysegur Trench}
-\vspace{2em}
-\begin{minipage}[0.4\textheight]{\textwidth}
-\begin{columns}[T]
-\begin{column}{0.4\textwidth}
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=4.5cm]{Fig-P1.jpg}
-		\caption{Geologic map: Puysegur and Hjort trenches. Source: \cite{Lemenkova202031}}\label{fig:P1}
-\end{figure}
-\end{column}
-
-\begin{column}{0.6\textwidth}
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=5.5cm]{Fig-P2.jpg}
-		\caption{Modeled cross-section profiles of the Puysegur and Hjort trenches. Source: \cite{Lemenkova202031}}\label{fig:P2}
-\end{figure}
- \begin{dinglist}{234}\scriptsize
-     \item GMT-based mapping techniques have the advantage of increased speed, accuracy and precision of mapping which enables rapid big data processing
-     \item Validity and utility of data models in GMT are based on embedded mathematical algorithms of data modelling and cartographic principles enabling deeper understanding of the underlying processes affecting the shape of the trench
-\end{dinglist}	
 \end{column}
 \end{columns}
 \end{minipage}
@@ -1404,7 +1425,7 @@ Challenges of big Earth data manipulation
 \section{Thx}
 \begin{frame}\frametitle{Thanks}
 \begin{tikzpicture}%
-\node[anchor=south west, inner sep=0] (X) at (-0,0){\includegraphics[width=11.5cm]{Fig-Final.jpg}};%
+\node[anchor=south west, inner sep=0] (X) at (-0,0){\includegraphics[width=8.0cm]{Fig_01.jpg}};%
 \begin{scope}[x={(X.south east)},y={(X.north west)}]%
 %% This makes all measurements with no units into fractions of the width
 %% and height of the graphic contained in the node.
