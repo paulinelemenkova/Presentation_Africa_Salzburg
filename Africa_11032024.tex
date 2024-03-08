@@ -477,8 +477,6 @@ Current state: mapping of 26 African countries is published in 31 journal articl
         		\arrayrulecolor[RGB]{131,155,92}\hline
 	Sudan & \citep{Lemenkova202310} \\
         		\arrayrulecolor[RGB]{131,155,92}\hline
-	South Sudan & \citep{Lemenkova202320} \\
-        		\arrayrulecolor[RGB]{131,155,92}\hline
 	Tanzania & \citep{Lemenkova202206} \\
         		\arrayrulecolor[RGB]{131,155,92}\hline
 	Tunisia & \citep{Lemenkova202322} \\
@@ -1168,6 +1166,28 @@ Multi-source big Earth data
 \end{column}
 \begin{column}{0.5\textwidth}
 \vspace{2em}
+\begin{column}{0.9\textwidth}
+\begin{itemize}\footnotesize
+	\item Various GMT techniques and modules have been used for rapid and accurate mapping
+	\item Main GMT modules:
+	\begin{dinglist}{224}\footnotesize
+		\item  \textcolor{SlateBlue}{gmt makecpt} for making color palette
+		\item  \textcolor{SlateBlue}{gmt grdimage} for generating raster image
+		\item  \textcolor{SlateBlue}{gmt psscale} for adding legend for adding scale
+		\item  \textcolor{SlateBlue}{gmt grdcontour} for adding isolines
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding grid
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding scale and directional rose
+		\item  \textcolor{SlateBlue}{echo} UNIX utility for adding text labels
+		\item  \textcolor{SlateBlue}{gmt pstext} for adding subtitle
+		\item  \textcolor{SlateBlue}{gmt logo} for adding GMT logo
+		\item  \textcolor{SlateBlue}{gmt psconvert} for convert PS to image (by GhostScript interpreter)
+	 \end{dinglist}
+\end{itemize}
+\begin{itemize}\footnotesize
+	\item As a result, plotting a map by GMT becomes a rapid procedure, fully controlled by the cartographer 
+	\item Such automatisation by GMT facilitates mapping and decreases time of cartographic workflow
+\end{itemize}
+\end{column}
 \end{column}
 \end{columns}
 \end{minipage}
@@ -1220,7 +1240,7 @@ Machine learning opportunities:
 \vspace{2em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=7.0cm]{Fig-YPT7.jpg}
+		\includegraphics[width=7.0cm]{Fig_41.jpg}
 	\caption{Example of the rapid machine-based modelling by GMT: automatically digitised profiles of Yap and Palau trenches. Source: \cite{Lemenkova2019106}}\label{fig:H1}
 \end{figure}
 \end{column}
@@ -1248,56 +1268,18 @@ Big Earth data as a massive information system:
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
- \begin{dinglist}{254}\small
-     \item Large amount of Earth data brings a technical problem: how we can \textcolor{red}{extract necessary information} from the massive quantities (millions) of cells, pixels and variables?
-     \item The answer to this question: effective means of statistical data analysis by \textcolor{red}{Python or R} (Julia, MATLAB/Octave) can help analyse, visualise and model data.
-     \item \textcolor{red}{Automatisation of the massive digital data processing} for effective cartographic visualisation and statistical modelling. 
-     \item As a response to such needs, \textcolor{red}{scripting cartography} and \textcolor{red}{statistical libraries} of the programming languages present effective and advanced approach in Earth data analysis and modelling. 
-\end{dinglist}
-\end{column}
-\begin{column}{0.6\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=5.0cm]{Fig-MT20.jpg}
+		\includegraphics[width=6.0cm]{Fig_42.jpg}
 	\caption{Project Mindmap. Plotting: \LaTeX \space \cite{Lemenkova201993}}\label{fig:MT20}
-\end{figure}	
-\end{column}
-\end{columns}
-\end{minipage}
-\end{frame}
-
- % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Mariana Trench}
-\vspace{2em}
-\begin{minipage}[0.4\textheight]{\textwidth}
-\begin{columns}[T]
-\begin{column}{0.4\textwidth}
-\begin{itemize}\footnotesize
-	\item Various GMT techniques and modules have been used for rapid and accurate mapping
-	\item Main GMT modules:
-	\begin{dinglist}{224}\footnotesize
-		\item  \textcolor{SlateBlue}{gmt makecpt} for making color palette
-		\item  \textcolor{SlateBlue}{gmt grdimage} for generating raster image
-		\item  \textcolor{SlateBlue}{gmt psscale} for adding legend for adding scale
-		\item  \textcolor{SlateBlue}{gmt grdcontour} for adding isolines
-		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding grid
-		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding scale and directional rose
-		\item  \textcolor{SlateBlue}{echo} UNIX utility for adding text labels
-		\item  \textcolor{SlateBlue}{gmt pstext} for adding subtitle
-		\item  \textcolor{SlateBlue}{gmt logo} for adding GMT logo
-		\item  \textcolor{SlateBlue}{gmt psconvert} for convert PS to image (by GhostScript interpreter)
-	 \end{dinglist}
-\end{itemize}
-\begin{itemize}\footnotesize
-	\item As a result, plotting a map by GMT becomes a rapid procedure, fully controlled by the cartographer 
-	\item Such automatisation by GMT facilitates mapping and decreases time of cartographic workflow
-\end{itemize}
+\end{figure}
+\textcolor{red}{Automatisation of the massive digital data processing} for effective cartographic visualisation and statistical modelling. 
 \end{column}
 \begin{column}{0.6\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6.0cm]{Fig-MT1.jpg}
-	\caption{Topographic map and location of the Mariana Trench. \cite{Lemenkova201992}}\label{fig:MT1}
+		\includegraphics[width=6.0cm]{Fig_43.jpg}
+	\caption{Project Mindmap. Plotting: \LaTeX \space \cite{Lemenkova201993}}\label{fig:MT20}
 \end{figure}	
 \end{column}
 \end{columns}
@@ -1309,7 +1291,7 @@ Big Earth data as a massive information system:
 \vspace{1em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=8cm]{Fig-MT11.jpg}
+		\includegraphics[width=11cm]{Fig_44.jpg}
 	\caption{Kernel Density Estimation (KDE) for the profiles bathymetry. \\
 	Python libraries: Matplotlib, Seaborn, Pandas \cite{Rossumatal2018}. Source: \cite{Lemenkova201905}}\label{fig:MT11}
 \end{figure}
@@ -1324,7 +1306,7 @@ Big Earth data as a massive information system:
 \vspace{1em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=10cm]{Fig-MT14.jpg}
+		\includegraphics[width=10cm]{Fig_45.jpg}
 	\caption{R based ridgeline plots by tectonic plates and bathymetric profiles, library \{ggplot\}. Source: \cite{Lemenkova201991}}\label{fig:MT14}
 \end{figure}
 
@@ -1344,19 +1326,21 @@ Key points on the ridgeline plot by R:
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
-Challenges of big Earth data manipulation 
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_47.jpg}
+	\caption{Topographic map and location of the Izu-Bonin Trench. Source: \cite{Lemenkova202005}}\label{fig:IBT1}
+\end{figure}
 \begin{dinglist}{84}\footnotesize
-   	 \item Big Earth data capture is a technical challenge: data are gathered from the diverse sources and quantities of pixels (e.g. GEBCO2019.nc 11.72 Gb of data). This provides a problem of storing data \cite{Merrittetal2018}
 	 \item Another problem: \textcolor{red}{useability and compatibility} of data with other datasets
 	 \item Hence, big Earth data requires \textcolor{red}{considerable resources} (powerful computers), skills and time investing to ensure their usability
-	 \item Effects of visualisation by GMT enable to plot pseudo-3D maps
 	 \item Techniques of the perspective view combining 3D effects through artificial hillshade illumination that improve the \textcolor{red}{readability} and \textcolor{red}{interpretation} of the maps  
 \end{dinglist}
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6.0cm]{Fig-IBT1.jpg}
+		\includegraphics[width=6.0cm]{Fig_46.jpg}
 	\caption{Topographic map and location of the Izu-Bonin Trench. Source: \cite{Lemenkova202005}}\label{fig:IBT1}
 \end{figure}	
 \end{column}
@@ -1367,27 +1351,11 @@ Challenges of big Earth data manipulation
  % ----------------------------------------------------------------------------
 \begin{frame}\frametitle{Izu-Bonin Trench}
 \vspace{2em}
-\begin{minipage}[0.4\textheight]{\textwidth}
-\begin{columns}[T]
-\begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=5.5cm]{S04.jpg}
+		\includegraphics[width=8.cm]{Fig_48.jpg}
 	\caption{Automatic digitizing of the IBT profiles: fragment of the GMT script}\label{fig:MAT1}
 \end{figure}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=6.5cm]{Fig-IBT7.jpg}
-	\caption{Cross-section profiles of the IBT. Source: \cite{Lemenkova202005}}\label{fig:IBT7}
-\end{figure}	
-\begin{itemize}\scriptsize
-            \item Automatic digitising by GMT enables visualising variations of geomorphology and model trends of the geomorphic shape curves of trenches
-\end{itemize}
-\end{column}
-\end{columns}
-\end{minipage}
 \end{frame}
 
  % ----------------------------------------------------------------------------
@@ -1401,12 +1369,15 @@ Challenges of big Earth data manipulation
 \vspace{2em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6.0cm]{Fig-JT1.jpg}
+		\includegraphics[width=4.0cm]{Fig_49.jpg}
 	\caption{Topographic location of the Japan Trench. Source: \cite{Lemenkova202012}}\label{fig:H1}
 \end{figure}
-\begin{dinglist}{105}\footnotesize
-     \item GMT module 'grdview' turns Earth data (e.g. GEBCO, ETOPO1, ETOPO5) into visual 3D representations of the trenches
-\end{dinglist} 
+\vspace{-35pt}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_50.jpg}
+	\caption{Topographic location of the Japan Trench. Source: \cite{Lemenkova202012}}\label{fig:H1}
+\end{figure}
 \end{column}
 \begin{column}{0.5\textwidth}
 \vspace{2em}
