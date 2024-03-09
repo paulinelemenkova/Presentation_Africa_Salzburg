@@ -141,7 +141,7 @@
 \AtBeginSection{%
   \renewcommand\sectioncolor{%
     \ifcase\value{section} color0\or color1\or color2\or color3\or color4\or color5\or color6\or color7\or color8\or color9\or color10\or color11\or color12\or color13\or color14\or color15\or color16\or color17\or color18\or color19\or color20\or color21\or color22\else color23\fi}
-  \setbeamercolor{frametitle}{fg=red}%
+  \setbeamercolor{frametitle}{fg=yellow}%
   \pgfdeclareverticalshading{beamer@headfade}{\paperwidth}
   {%
     color(0.25cm)=(bg);
@@ -266,13 +266,6 @@
 %\renewcommand*{\bibfont}{\footnotesize}
 \renewcommand*{\bibfont}{\scriptsize}
 
-%%%%%%%%%%%% значок Open Access: начало %%%%%%%
-%\usepackage[tikzsymbol=plos]{biblatex-ext-oa}
-%\DeclareOpenAccessEprintUrl[always]{hal}{%
- % http://hal.archives-ouvertes.fr/\thefield{eprint}}
-%\DeclareOpenAccessEprintAlias{HAL}{hal}
-%%%%%%%%%%% значок Open Access:: конец %%%%%%%
-
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 %\setbeamertemplate{bibliography item}{}
 
@@ -301,11 +294,13 @@
 % ----------------------------------------------------------------------------
 % *** TITLE <<<
 % ---------------------------------------------------------------------------
-\vspace{1em}
+\vspace{2em}
 \title{Mapping landscapes of Africa using remote sensing data: \\detecting spatio-temporal environmental dynamics \\from the satellite images}
-\subtitle{Presented at \\
+\subtitle{Research Proposal for PhD Thesis\\
+Supervisors: Prof. Dr. Stefan Lang and Prof. Dr. Dirk Tiede \\\vspace{15pt}
+Presented at \\
 \href{https://www.plus.ac.at/geoinformatik/}{Universität Salzburg}\\
-Faculty of Digital and Analytical Sciences \\
+Faculty of Digital and Analytical Sciences,\\
 Department of Geoinformatics}
 \author{Polina Lemenkova}
 \date{March 11, 2024}
@@ -380,7 +375,7 @@ Department of Geoinformatics}
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Research Highlights}
+\begin{frame}\frametitle{Objectives and Goals}
  
 \begin{alertblock}{Machine Learning in big Earth data processing}
 \begin{itemize}
@@ -404,33 +399,36 @@ Department of Geoinformatics}
 \end{alertblock}
 \end{frame}
 
-% ----------------------------------------------------------------------------
+% ---------------------------------------------------------------------------->
 \section{AF}
-
-\begin{frame}\frametitle{Africa}
-\vspace{1em}
+\begin{frame}\frametitle{Research Highlights: Variability of African landscapes}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=5cm]{Fig_01.jpg}
-	\caption{General bathymetric map of the seafloor of the Pacific Ocean, ETOPO1. Source:}\label{fig:PO.jpg}
-\end{figure}\small
-The \textcolor{red}{biggest} ocean on the Earth, Pacific Ocean differs in \textcolor{DarkOrchid}{western} and \textcolor{DarkOrchid}{eastern} parts according to relief, geotectonics and geological evolution.
-Western Pacific (WP) and Eastern Pacific (EP) are different basins, separated by the East Pacific Rise. 
-\end{frame}
-
-% ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Research Highlights: Variability of African landscapes}
-\vspace{1em}
+		\includegraphics[width=5.0cm]{Fig_01.jpg}
+	\caption{Correlation matrix. Source:}\label{fig:H1}
+\end{figure}
+\small{Landscape ecology of diverse regions of Africa reflects a variety of impact factors: tectonic-geologic setting, climate change and anthropogenic activities}
+\end{column}
+%
+\begin{column}{0.5\textwidth}
+\vspace{2em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_02.jpg}
-	\caption{General geologic map of the seafloor of the Pacific Ocean. Source:}\label{fig:02.jpg}
+	\caption{Ranking dot plot. Source: }\label{fig:H1}
 \end{figure}
-\small{Landscape ecology of diverse regions of Africa reflects a variety of impact factors: tectonic-geologic setting, climate change and anthropogenic activities}
+\end{column}
+\end{columns}
+\end{minipage}
 \end{frame}
 
 % ----------------------------------------------------------------------------
 \begin{frame}\frametitle{Research Progress: Current state of the project}
+\vspace{8pt}
 Current state: mapping of 25 African countries is published in 30 journal articles
 \begin{table}\scriptsize
 \begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{2.2cm} p{1.2cm} p{9.0cm} |}
@@ -538,9 +536,9 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\section{KKT}
+\section{DZ}
 
-\begin{frame}\frametitle{GEBCO}
+\begin{frame}\frametitle{Algeria}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
@@ -566,7 +564,7 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Octave/MATLAB}
+\begin{frame}\frametitle{Algeria, Sahara: Sabkhas Salt Lakes}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -594,9 +592,9 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{AT}
+\section{BW}
 
-\begin{frame}\frametitle{Philippine Trench}
+\begin{frame}\frametitle{Botswana}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -652,7 +650,7 @@ Multi-source data mixing and integration using GMT adjustments:
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Middle America Trench}
+\begin{frame}\frametitle{Cameroon}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -682,8 +680,8 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\section{MA}
-\begin{frame}\frametitle{Middle America Trench}
+\section{CAR}
+\begin{frame}\frametitle{Central African Republic (CAR)}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -707,9 +705,9 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{PC}
+\section{TD}
 
-\begin{frame}\frametitle{Peru-Chile Trench}
+\begin{frame}\frametitle{Chad}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -749,9 +747,9 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{Ps}
+\section{CG}
 
-\begin{frame}\frametitle{Puysegur Trench}
+\begin{frame}\frametitle{Congo (D.R.C)}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -781,7 +779,7 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\begin{frame}\frametitle{Peru-Chile Trench}
+\begin{frame}\frametitle{Congo (D.R.C.)}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -808,8 +806,8 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{frame}
 
  % ---------------------------------------------------------------------------->
-\section{H}
-\begin{frame}\frametitle{Hikurangi Trench}
+\section{EG}
+\begin{frame}\frametitle{Egypt}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -842,9 +840,9 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{frame}
 
  % ---------------------------------------------------------------------------->
-\section{K}
+\section{ET}
 
-\begin{frame}\frametitle{Kermadec Trench}
+\begin{frame}\frametitle{Ethiopia}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -876,8 +874,8 @@ An example of data analysis \\using GMT: Guatemala Trench:
 
  % ---------------------------------------------------------------------------->
 
-\section{TT}
-\begin{frame}\frametitle{Tonga Trench}
+\section{GH}
+\begin{frame}\frametitle{Ghana}
 \vspace{2em}
 \begin{minipage}[0.9\textheight]{\textwidth}
 \begin{columns}[T]
@@ -900,8 +898,8 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\section{Vt}
-\begin{frame}\frametitle{Vityaz Trench}
+\section{GN}
+\begin{frame}\frametitle{Guinea}
 \begin{minipage}[0.4\textheight]{\textwidth}
 
 \begin{columns}[T]
@@ -935,8 +933,8 @@ Challenges of machine learning and data-driven mapping:
 \end{frame}
 
  % ---------------------------------------------------------------------------->
-\section{NB}
-\begin{frame}\frametitle{New Britain Trench}
+\section{CI}
+\begin{frame}\frametitle{Côte d'Ivoire (Ivory Coast)}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -968,8 +966,8 @@ Challenges of machine learning and data-driven mapping:
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{Vn}
-\begin{frame}\frametitle{Vanuatu Trench}
+\section{KE}
+\begin{frame}\frametitle{Kenya}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1001,22 +999,22 @@ Multi-source big Earth data
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\section{SC}
-\begin{frame}\frametitle{San Cristobal Trench}
+\section{TZ}
+\begin{frame}\frametitle{Tanzania}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6cm]{Fig_29.jpg}
-	\caption{Information extraction from RS data: classification the Landsat images of Lorian swamp, Kenya. Source: }\label{fig:NBT6}
+		\includegraphics[width=3cm]{Fig_29.jpg}
+	\caption{Source: }\label{fig:NBT6}
 \end{figure}
-\vspace{-35pt}
+\vspace{-45pt}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6cm]{Fig_30.jpg}
-	\caption{False color composites of the Landsat 8-9 OLI/TIRS images: wetlands around Lorian swamp, Kenya. Source: }\label{fig:NBT6}
+		\includegraphics[width=5cm]{Fig_30.jpg}
+	\caption{Source: }\label{fig:NBT6}
 \end{figure}
 \end{column}
 
@@ -1033,8 +1031,8 @@ Multi-source big Earth data
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{PT}
-\begin{frame}\frametitle{San Cristobal Trench}
+\section{MW}
+\begin{frame}\frametitle{Malawi}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -1042,7 +1040,7 @@ Multi-source big Earth data
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_31.jpg}
-	\caption{False color composites of the Landsat 8-9 OLI/TIRS images: wetlands around Lorian swamp, Kenya. Source: }\label{fig:NBT6}
+	\caption{}\label{fig:NBT6}
 \end{figure}
 \end{column}
 %
@@ -1061,7 +1059,8 @@ Multi-source big Earth data
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\begin{frame}\frametitle{Philippine Trench}
+\section{ML}
+\begin{frame}\frametitle{\textcolor{red}{Mali}}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1069,7 +1068,7 @@ Multi-source big Earth data
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6.0cm]{Fig_32.jpg}
-	\caption{Correlation matrix. Source: }\label{fig:H1}
+	\caption{Landsat 8-9 OLI/TIRS images: showing Niger Inner Delta in natural colors. Source: }\label{fig:H1}
 \end{figure}
 \end{column}
 \begin{column}{0.5\textwidth}
@@ -1077,7 +1076,7 @@ Multi-source big Earth data
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_33.jpg}
-	\caption{Ranking dot plot. Source: }\label{fig:H1}
+	\caption{Information extraction from RS data: Source: }\label{fig:H1}
 \end{figure}
 \end{column}
 \end{columns}
@@ -1085,7 +1084,7 @@ Multi-source big Earth data
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\begin{frame}\frametitle{Philippine Trench}
+\begin{frame}\frametitle{\textcolor{red}{Mali: Inner Niger Delta}}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1115,9 +1114,9 @@ Multi-source big Earth data
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\section{Mn}
+\section{MZ}
 
-\begin{frame}\frametitle{Manila Trench}
+\begin{frame}\frametitle{\textcolor{red}{Mozambique}}
 
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -1153,9 +1152,9 @@ Multi-source big Earth data
 \end{frame}
 
  % ---------------------------------------------------------------------------->
-\section{R}
+\section{GMT}
 
-\begin{frame}\frametitle{Geologic mapping: Ryukyu Trench}
+\begin{frame}\frametitle{\textcolor{purple}{Generic Mapping Tools (GMT)}}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1196,9 +1195,9 @@ Multi-source big Earth data
 \end{frame}
 
  % ----------------------------------------------------------------------------
-\section{Pl}
+\section{ML}
 
-\begin{frame}\frametitle{Palau Trench}
+\begin{frame}\frametitle{\textcolor{purple}{Deep Learning / Machine Learning}}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1233,9 +1232,9 @@ Machine learning opportunities:
 \end{frame}
 
 % ----------------------------------------------------------------------------
-\section{Y}
+\section{NG}
 
-\begin{frame}\frametitle{Yap Trench}
+\begin{frame}\frametitle{\textcolor{Brown}{Nigeria}}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.6\textwidth}
@@ -1262,10 +1261,7 @@ Big Earth data as a massive information system:
 \end{minipage}
 \end{frame}
 
-% ----------------------------------------------------------------------------
-\section{MT}
-
-\begin{frame}\frametitle{Mariana Trench}
+\begin{frame}\frametitle{\textcolor{Brown}{Nigeria}}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -1288,8 +1284,9 @@ Big Earth data as a massive information system:
 \end{minipage}
 \end{frame}
 
- % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Mariana Trench}
+% ---------------------------------------------------------------------------->
+\section{RW}
+\begin{frame}\frametitle{\textcolor{Brown}{Rwanda}}
 \vspace{1em}
 \begin{figure}[H]
 	\centering
@@ -1303,8 +1300,9 @@ Big Earth data as a massive information system:
 \end{dinglist} 
 \end{frame}
 
- % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Mariana Trench}
+% ---------------------------------------------------------------------------->
+\section{SS}
+\begin{frame}\frametitle{\textcolor{Brown}{South Sudan}}
 \vspace{1em}
 \begin{figure}[H]
 	\centering
@@ -1321,9 +1319,9 @@ Key points on the ridgeline plot by R:
 \end{dinglist}
 \end{frame}
 
- % ----------------------------------------------------------------------------
-\section{IBT}
-\begin{frame}\frametitle{Izu-Bonin Trench}
+ % ---------------------------------------------------------------------------->
+\section{SD}
+\begin{frame}\frametitle{\textcolor{Brown}{Sudan}}
 \vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
@@ -1350,8 +1348,9 @@ Key points on the ridgeline plot by R:
 \end{minipage}
 \end{frame}
 
- % ----------------------------------------------------------------------------
-\begin{frame}\frametitle{Izu-Bonin Trench}
+ % ---------------------------------------------------------------------------->
+\section{TN}
+\begin{frame}\frametitle{\textcolor{Brown}{Tunisia}}
 \vspace{2em}
 \begin{figure}[H]
 	\centering
@@ -1360,11 +1359,52 @@ Key points on the ridgeline plot by R:
 \end{figure}
 \end{frame}
 
- % ----------------------------------------------------------------------------
+ % ---------------------------------------------------------------------------->
+\section{UG}
+\begin{frame}\frametitle{\textcolor{Brown}{Uganda}}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_49.jpg}
+	\caption{Topographic location of the Japan Trench. Source: }\label{fig:H1}
+\end{figure}
+\vspace{-35pt}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_50.jpg}
+	\caption{Topographic location of the Japan Trench. Source: }\label{fig:H1}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+3D modelling as important cartographic approach in big Earth data analysis 
+\begin{dinglist}{120}\footnotesize
+     \item 3D topographic scene effectively illustrates the relief representation 
+     \item Advanced \textcolor{red}{GMT functionalities} specify different cartographic elements on the map for each layer by a combination of the GMT modules (grdview, grdcontour, pscoast, pstext). 
+     \item Cartographic processing includes
+     	 \begin{dinglist}{229}\scriptsize
+   		  \item visualisation of layers (raster grids vector lines)
+		  \item text annotations
+		  \item subplots, hierarchical sub-levels of the elements 
+		  \item coordinate axis labels and grids, translucency of layers
+		  \item general layout setting
+	  \end{dinglist}    
+     \item The outcome of the GMT cartographic processing: \textcolor{red}{print-quality maps}
+     \item 3D modelling of Earth data creates potential for cartographic opportunities in \textcolor{red}{visual data analytics} and interpretation of the seafloor structure
+     \item GMT enables \textcolor{red}{flexible, accurate and rapid visualisation} of the 2D and 3D Earth big data
+     \item Data selection: 3D modelling of trenches is limited by massive data processing (3D arrays of cells) $=>$  ETOPO5 presents better
+ \end{dinglist} 
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
 
-\section{JT}
-
-\begin{frame}\frametitle{Japan Trench}
+ % ---------------------------------------------------------------------------->
+\section{ZM}
+\begin{frame}\frametitle{\textcolor{Brown}{Zambia}}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1407,7 +1447,7 @@ Key points on the ridgeline plot by R:
 
 \section{Con}
 
-\begin{frame}\frametitle{Conclusion}
+\begin{frame}\frametitle{\textcolor{red}{Conclusions}}
 
 \begin{dinglist}{51}\footnotesize
      \item In the era of big Earth data, these slides presented the application of GMT scripting methods for cartographic 2D and 3D modelling and cross-section profiling of the deep-sea trenches of the Pacific Ocean
@@ -1420,14 +1460,14 @@ Key points on the ridgeline plot by R:
      \item GMT presents a mature and smart direction for cartographic development compared to the traditional GIS
      \item Development of big Earth data technologies in marine geological analysis, results in the need of processing large amounts of data with complex heterogeneous characteristics that must be modelled and mapped rapidly yet accurately. GMT fully satisfies such needs and presents the best cartographic technology for big Earth data processing
  \end{dinglist} 
-
 \end{frame}
 
 % ----------------------------------------------------------------------------
 \section{Thx}
-\begin{frame}\frametitle{Thanks}
+\begin{frame}\frametitle{\textcolor{red}{Thanks}}
+\vspace{2em}
 \begin{tikzpicture}%
-\node[anchor=south west, inner sep=0] (X) at (-0,0){\includegraphics[width=8.0cm]{Fig_01.jpg}};%
+\node[anchor=south west, inner sep=0] (X) at (-0,5){\includegraphics[width=8.0cm]{Fig_52.jpg}};%
 \begin{scope}[x={(X.south east)},y={(X.north west)}]%
 %% This makes all measurements with no units into fractions of the width
 %% and height of the graphic contained in the node.
@@ -1437,7 +1477,6 @@ Key points on the ridgeline plot by R:
 };
 \end{scope}%
 \end{tikzpicture}
-
 \end{frame}
 
 % ----------------------------------------------------------------------------
@@ -1469,7 +1508,7 @@ Key points on the ridgeline plot by R:
 %%%%%%%%%%% Bibliography %%%%%%%
 \section{Bib}
 	\markright{Bibliography}
-References
+Author's publications:
 	\printbibliography[heading=none]
 	
 \end{document}
