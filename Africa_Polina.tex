@@ -339,7 +339,58 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 
 \end{frame}
 
-% ----------------------------------------------------------------------------
+% ---------------------------------------------------------------------------->
+\section{Methods}
+
+\begin{frame}\frametitle{Methods}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{-0.1em}
+Cartographic tasks by scripts: Generic Mapping Tools (GMT)
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_38.jpg}
+	\caption{Using GMT as integrated tools for cartographic workflow}
+\end{figure}
+\vspace{-1em}
+\begin{itemize}\footnotesize
+	\item Plotting a map by GMT becomes a rapid procedure, fully controlled by the cartographer 
+	\item Such automatisation by GMT facilitates mapping and decreases time of cartographic workflow
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+%\vspace{-0.1em}
+\begin{column}{0.9\textwidth}
+\begin{itemize}\footnotesize
+	\item Various GMT techniques and modules have been used in this research for rapid and accurate mapping
+	\begin{dinglist}{224}\footnotesize
+		\item  \textcolor{SlateBlue}{gmt psxy} for plotting graphs and adding annotations on raster map
+		\item  \textcolor{SlateBlue}{gmt makecpt} for making color palette
+		\item  \textcolor{SlateBlue}{gmt grdimage} for generating raster image
+		\item  \textcolor{SlateBlue}{gmt psscale} for adding legend for adding scale
+		\item  \textcolor{SlateBlue}{gmt grdcontour} for adding isolines
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding grid and essential cartographic marks
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding scale and directional rose
+		\item  \textcolor{SlateBlue}{echo} UNIX utility for adding text labels
+		\item  \textcolor{SlateBlue}{gmt pstext} for adding subtitle
+		\item  \textcolor{SlateBlue}{gmt logo} for adding GMT logo
+		\item  \textcolor{SlateBlue}{gmt psconvert} for convert PS to image (by GhostScript interpreter)
+		\item  \textcolor{SlateBlue}{gmt legend} adding legend on maps with cartographic annotations
+		\item  \textcolor{SlateBlue}{gmt pshistogram} for statistical analysis of topographic data distribution (relief)
+		\item  \textcolor{SlateBlue}{gmt psrose} for plotting rose diagrams
+		\item  \textcolor{SlateBlue}{gmt img2grd} converting geospatial formats
+		\item  \textcolor{SlateBlue}{gmt grdcut} selecting study area and clipping the region from the world map
+	 \end{dinglist}
+\end{itemize}
+These and many other modules of GMT were used in this research.
+\end{column}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
 \section{DZ}
 
 \begin{frame}\frametitle{Algeria}
@@ -559,7 +610,7 @@ Multi-source data mixing and integration using GMT adjustments:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=4.5cm]{Fig_12.jpg}
-	\caption{Topographic map of the PCT. Source: }\label{fig:PCT1}
+	\caption{Topographic map of Chad}
 \end{figure}
 \end{column}
 
@@ -666,7 +717,7 @@ Multi-source data mixing and integration using GMT adjustments:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_19.jpg}
-	\caption{Topographic settings of the Hikurangi Trench. Source: }\label{fig:H1}
+	\caption{Topographic map of Egypt with Qena Bend marked as study area}
 \end{figure}
 \begin{itemize}
      \item Various cartographic techniques can be used for modelling and mapping.
@@ -821,27 +872,30 @@ Challenges of machine learning and data-driven mapping:
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\vspace{2em}
+\vspace{-0.5em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_27.jpg}
-	\caption{Example of the automated modelling performed using GMT and large arrays of data: modelled cross-sections: Vanuatu (New Hebrides) and Vityaz trenches. Source: }\label{fig:VV9}
+	\caption{Map of Kenya performed using GMT and GEBCO data}
 \end{figure}
+\vspace{-1.5em}
+\begin{alertblock}{East African Rift}
+\textcolor{red}{Tectonics}: active continental rift zone in East Africa which affected countries $=>$ active and dormant volcanoes (incl. Mt. Kilimanjaro, Mt. Kenya etc).
+\end{alertblock}
 \end{column}
 \begin{column}{0.5\textwidth}
-\vspace{2em}
+\vspace{-0.5em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6cm]{Fig_28.jpg}
+		\includegraphics[width=5cm]{Fig_28.jpg}
 	\caption{Geological map of Kenya. Source: }\label{fig:VV9}
 \end{figure}
-Multi-source big Earth data
-\begin{itemize}
-     \item Earth data pool presents an \textcolor{red}{integration} of geospatial data, collection of Landsat resources,  information extraction and knowledge mining
-     \item \textcolor{red}{Structural, semi-structured}, and \textcolor{red}{non-structured} multidimensional big Earth data are integrated together. Different data sources $=>$ different formats of data. 
-     \item \textcolor{red}{Data heterogeneity} raises a need for effective \textcolor{red}{aggregation} of geological big Earth data
-     \item Big Earth data collection start with \textcolor{red}{categorising} geological datasets obtained from geological surveys, remotes sensing digital information, and literature sources.
-     \item  \textcolor{red}{Sorted} data can further be processed using either cartographic (GMT) or statistical methods (e.g. R)
+\vspace{-1.5em}
+Multi-source EO data
+\begin{itemize}\small
+     \item \textcolor{red}{Analysis} of geological data to understand topographic structure which affects distribution of vegetation and landscape formation through relief forms.
+     \item EO data present an \textcolor{red}{integration} of geospatial data, collection of RS resources (Landsat images, topographic and geologic data, climate, vegetation) $=>$ information extraction and knowledge mining 
+     \item \textcolor{red}{Data heterogeneity}: multi-source data of different formats and scales $=>$ data integration and analysis.
 \end{itemize}  
 \end{column}
 \end{columns}
@@ -851,30 +905,42 @@ Multi-source big Earth data
 % ---------------------------------------------------------------------------->
 \section{TZ}
 \begin{frame}\frametitle{Tanzania}
-\vspace{2em}
+\vspace{-0.5em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=3cm]{Fig_29.jpg}
-	\caption{Source: }\label{fig:NBT6}
+	\caption{Script used for 3D mapping}
 \end{figure}
-\vspace{-45pt}
+\vspace{-15pt}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=5cm]{Fig_30.jpg}
-	\caption{Source: }\label{fig:NBT6}
+		\includegraphics[width=4.5cm]{Fig_30.jpg}
+	\caption{3D mapping of Tanzania}
 \end{figure}
 \end{column}
-
-\begin{column}{0.4\textwidth}	
-\begin{itemize}
-      \item  \textcolor{red}{Distributed computing technologies} \\in geologic cartography together with growing open source data, cloud computing and development of programming libraries facilitate sharing and processing the extremely big Earth datasets
-     \item \textcolor{red}{Deep Learning} can present the next step in processing big Earth data
-     \item \textcolor{red}{Deep learning} is a new, rapidly evolving field of machine learning and consists in advanced algorithms of computer vision and analysis. It consists in methods of Artificial Neural Networks (ANN), Convolution Neural Networks (CNN) and Recurrent Neural Networks (RNN)
-     \item Applied in geology deep learning enables to gain more \textcolor{red}{insights} into the fundamental causes of deep-sea trench formation based on rapid automatic processing of large amount of marine geological and bathymetric data
- \end{itemize} 
+%
+\begin{column}{0.5\textwidth}	
+\vspace{1em}
+3D modelling as important cartographic approach in EO data analysis 
+\begin{dinglist}{120}\footnotesize
+     \item 3D topographic scene effectively illustrates the relief representation 
+     \item Advanced \textcolor{red}{GMT functionalities} specify different cartographic elements on the map for each layer by a combination of the GMT modules (grdview, grdcontour, pscoast, pstext). 
+     \item Cartographic processing includes
+     	 \begin{dinglist}{229}\scriptsize
+   		  \item visualisation of layers (raster grids vector lines)
+		  \item text annotations
+		  \item subplots, hierarchical sub-levels of the elements 
+		  \item coordinate axis labels and grids, translucency of layers
+		  \item general layout setting
+	  \end{dinglist}    
+     \item The outcome of the GMT cartographic processing: \textcolor{red}{print-quality maps}
+     \item 3D modelling of Earth data creates potential for cartographic opportunities in \textcolor{red}{visual data analytics} and interpretation of the seafloor structure
+     \item GMT enables \textcolor{red}{flexible, accurate and rapid visualisation} of the 2D and 3D EO data
+     \item Data selection: 3D modelling of terrain landscapes is limited by massive data processing (3D arrays of cells) $=>$  ETOPO5 presents better
+ \end{dinglist} 
 \end{column}
 \end{columns}
 \end{minipage}
@@ -914,19 +980,19 @@ Multi-source big Earth data
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\vspace{2em}
+\vspace{-0.5em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6.0cm]{Fig_32.jpg}
-	\caption{Landsat 8-9 OLI/TIRS images: showing Niger Inner Delta in natural colors. Source: }\label{fig:H1}
+	\caption{Topographic map of Mali plotted using GMT scripts and GEBCO data. The green rotated square shows the location of the Landsat satellite images used for image analysis. These images cover the area of Inner Niger Delta.}
 \end{figure}
 \end{column}
 \begin{column}{0.5\textwidth}
-\vspace{2em}
+\vspace{-0.5em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_33.jpg}
-	\caption{Information extraction from RS data: Source: }\label{fig:H1}
+	\caption{Scheme of information extraction from RS data to analyse vegetation indices for ecological monitoring of Niger Inner Delta, Mali. For time series analysis, images are collected in various years.}
 \end{figure}
 \end{column}
 \end{columns}
@@ -942,7 +1008,7 @@ Multi-source big Earth data
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_34.jpg}
-	\caption{Correlation matrix. Source: }\label{fig:H1}
+	\caption{Landsat 8-9 OLI/TIRS images: showing Niger Inner Delta, Mali in natural colours.}
 \end{figure}
  \begin{itemize}
       \item Analysing the interactions between the variables in big datasets by R presents a solution to \textcolor{red}{visualising heterogeneity} of topographic features formed under various geologic setting: ranking geomorphology of the cross-section profiles. 
@@ -996,49 +1062,6 @@ Multi-source big Earth data
 			  \item \textcolor{red}{accuracy} and \textcolor{red}{precision} of data modelling
 		\end{itemize}   
 \end{itemize}
-\end{column}
-\end{columns}
-\end{minipage}
-\end{frame}
-
-% ---------------------------------------------------------------------------->
-\section{GMT}
-
-\begin{frame}\frametitle{Generic Mapping Tools (GMT)}
-\begin{minipage}[0.4\textheight]{\textwidth}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\vspace{2em}
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=5.0cm]{Fig_38.jpg}
-	\caption{Geologic map of the Ryukyu Trench. Source: }\label{fig:R2}
-\end{figure}
-\end{column}
-\begin{column}{0.5\textwidth}
-\vspace{2em}
-\begin{column}{0.9\textwidth}
-\begin{itemize}\footnotesize
-	\item Various GMT techniques and modules have been used for rapid and accurate mapping
-	\item Main GMT modules:
-	\begin{dinglist}{224}\footnotesize
-		\item  \textcolor{SlateBlue}{gmt makecpt} for making color palette
-		\item  \textcolor{SlateBlue}{gmt grdimage} for generating raster image
-		\item  \textcolor{SlateBlue}{gmt psscale} for adding legend for adding scale
-		\item  \textcolor{SlateBlue}{gmt grdcontour} for adding isolines
-		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding grid
-		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding scale and directional rose
-		\item  \textcolor{SlateBlue}{echo} UNIX utility for adding text labels
-		\item  \textcolor{SlateBlue}{gmt pstext} for adding subtitle
-		\item  \textcolor{SlateBlue}{gmt logo} for adding GMT logo
-		\item  \textcolor{SlateBlue}{gmt psconvert} for convert PS to image (by GhostScript interpreter)
-	 \end{dinglist}
-\end{itemize}
-\begin{itemize}\footnotesize
-	\item As a result, plotting a map by GMT becomes a rapid procedure, fully controlled by the cartographer 
-	\item Such automatisation by GMT facilitates mapping and decreases time of cartographic workflow
-\end{itemize}
-\end{column}
 \end{column}
 \end{columns}
 \end{minipage}
@@ -1201,11 +1224,11 @@ Key points on the ridgeline plot by R:
  % ---------------------------------------------------------------------------->
 \section{TN}
 \begin{frame}\frametitle{Tunisia}
-\vspace{2em}
+\vspace{-0.5em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=8.cm]{Fig_48.jpg}
-	\caption{Automatic digitizing of the IBT profiles: fragment of the GMT script}\label{fig:MAT1}
+		\includegraphics[width=9.0cm]{Fig_48.jpg}
+	\caption{RS data processing to compared two gulfs of Tunisia (Gulf of Gabes and Gulf of Hammamet): A GRASS GIS approach}
 \end{figure}
 \end{frame}
 
@@ -1228,25 +1251,9 @@ Key points on the ridgeline plot by R:
 	\caption{Topographic location of the Japan Trench. Source: }\label{fig:H1}
 \end{figure}
 \end{column}
+%
 \begin{column}{0.5\textwidth}
-\vspace{2em}
-3D modelling as important cartographic approach in big Earth data analysis 
-\begin{dinglist}{120}\footnotesize
-     \item 3D topographic scene effectively illustrates the relief representation 
-     \item Advanced \textcolor{red}{GMT functionalities} specify different cartographic elements on the map for each layer by a combination of the GMT modules (grdview, grdcontour, pscoast, pstext). 
-     \item Cartographic processing includes
-     	 \begin{dinglist}{229}\scriptsize
-   		  \item visualisation of layers (raster grids vector lines)
-		  \item text annotations
-		  \item subplots, hierarchical sub-levels of the elements 
-		  \item coordinate axis labels and grids, translucency of layers
-		  \item general layout setting
-	  \end{dinglist}    
-     \item The outcome of the GMT cartographic processing: \textcolor{red}{print-quality maps}
-     \item 3D modelling of Earth data creates potential for cartographic opportunities in \textcolor{red}{visual data analytics} and interpretation of the seafloor structure
-     \item GMT enables \textcolor{red}{flexible, accurate and rapid visualisation} of the 2D and 3D Earth big data
-     \item Data selection: 3D modelling of trenches is limited by massive data processing (3D arrays of cells) $=>$  ETOPO5 presents better
- \end{dinglist} 
+%
 \end{column}
 \end{columns}
 \end{minipage}
@@ -1258,38 +1265,36 @@ Key points on the ridgeline plot by R:
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\vspace{2em}
+\vspace{-0.5em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=4.0cm]{Fig_49.jpg}
-	\caption{Topographic location of the Japan Trench. Source: }\label{fig:H1}
+		\includegraphics[width=4.5cm]{Fig_49.jpg}
+	\caption{Topographic location of Zambia}
 \end{figure}
-\vspace{-35pt}
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=4.0cm]{Fig_50.jpg}
-	\caption{Topographic location of the Japan Trench. Source: }\label{fig:H1}
-\end{figure}
+\vspace{-15pt}
+\begin{alertblock}{Zambia: geographic and environmental features}
+ \begin{itemize}\footnotesize
+ 	\item \textcolor{red}{Climate}: humid subtropical or tropical wet and dry (Source: Köppen climate classification). 
+	\item \textcolor{red}{Lication}: Landlocked country in southern Africa which influences types of vegetation 
+	\item \textcolor{red}{Biodiversity}: ecosystems in Zambia include forest, thicket, woodland and grassland vegetation
+	\item \textcolor{red}{Geomorphology}: high plateaus with some hills and mountains, dissected by river valleys
+\end{itemize}
+\end{alertblock}
 \end{column}
 \begin{column}{0.5\textwidth}
-\vspace{2em}
-3D modelling as important cartographic approach in big Earth data analysis 
-\begin{dinglist}{120}\footnotesize
-     \item 3D topographic scene effectively illustrates the relief representation 
-     \item Advanced \textcolor{red}{GMT functionalities} specify different cartographic elements on the map for each layer by a combination of the GMT modules (grdview, grdcontour, pscoast, pstext). 
-     \item Cartographic processing includes
-     	 \begin{dinglist}{229}\scriptsize
-   		  \item visualisation of layers (raster grids vector lines)
-		  \item text annotations
-		  \item subplots, hierarchical sub-levels of the elements 
-		  \item coordinate axis labels and grids, translucency of layers
-		  \item general layout setting
-	  \end{dinglist}    
-     \item The outcome of the GMT cartographic processing: \textcolor{red}{print-quality maps}
-     \item 3D modelling of Earth data creates potential for cartographic opportunities in \textcolor{red}{visual data analytics} and interpretation of the seafloor structure
-     \item GMT enables \textcolor{red}{flexible, accurate and rapid visualisation} of the 2D and 3D Earth big data
-     \item Data selection: 3D modelling of trenches is limited by massive data processing (3D arrays of cells) $=>$  ETOPO5 presents better
- \end{dinglist} 
+\vspace{-0.5em}
+\begin{alertblock}{GMT-based mapping}
+ \begin{itemize}\small
+     \item Scripting techniques have the advantage of increased speed, accuracy and precision of mapping which enables rapid EO and RS data processing
+     \item Validity and utility of data models in GMT 
+     \item Embedded mathematical algorithms of data modelling and cartographic principles 
+     \item GMT $=>$ deeper understanding of the underlying processes affecting the Earth's landscapes across Africa
+     \item With increasing rise and constant updates in EO data availability in environmental analysis, it is essential to apply data-driven mapping and script-based cartographic visualisation 
+      \item ML facilitates cartographic workflow
+       \item Processing large volumes of heterogeneous and rapidly arriving digital geodata using scripts and ML supports GIS. 
+       \item GMT-based mapping uses scripts which optimises cartographic workflow
+\end{itemize} 
+\end{alertblock}
 \end{column}
 \end{columns}
 \end{minipage}
