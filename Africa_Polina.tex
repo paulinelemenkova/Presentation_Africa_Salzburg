@@ -121,10 +121,10 @@
            \titlepage
 \end{frame}
 
-\section*{Outline}
-        \begin{frame}
-           \tableofcontents
-         \end{frame}
+%\section*{Outline}
+   %     \begin{frame}
+      %     \tableofcontents
+         %\end{frame}
 
 % ---------------------------------------------------------------------------->
 \section{Introduction}
@@ -158,21 +158,21 @@
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\begin{frame}\frametitle{Introduction}
+\begin{frame}\frametitle{Concept}
 
-\begin{exampleblock}{Big Spatial Data as an Opportunity}
+\begin{exampleblock}{EO Data as an Opportunity}
 \begin{itemize}	
-	\item \textcolor{red}{Possibilities}: Technical revolution in the amount of Earth data (satellite imagery, digital raster and vector datasets, tabular data) enabled smooth and quick access to monitoring of the large regions of the Earth, such as Pacific Ocean
-	\item \textcolor{red}{Access}: Open datasets and repositories available online enable to access, download, examine, and map big spatial data for various \\geospatial applications
-	\item \textcolor{red}{Coverage}: Big Earth data provide information on spatial events across local, regional, and global scales 
+	\item \textcolor{red}{Possibilities}: Technical revolution in the amount of Earth data (satellite imagery, digital raster and vector datasets, tabular data) enabled smooth and quick access to monitoring of the large regions of the Earth, such as African continent
+	\item \textcolor{red}{Access}: Open datasets and repositories available online enable to access, download, examine, and map RS and cartographic spatial data for mapping Africa
+	\item \textcolor{red}{Coverage}: EO data provide information on spatial events across local, regional, and global scales of African landscapes: e.g. risk assessment, tsunami caused by monsoons, earthquakes (East African rift), landslides
 \end{itemize}
 \end{exampleblock}
 
 \begin{exampleblock}{Machine Learning for Processing big Earth data}
 \begin{itemize}
-	\item \textcolor{blue}{Problem}: Extracting knowledge and information from big Earth data requires special technical tools $=>$ need for Machine Learning (ML) algorithms and approaches to data handling
-	\item \textcolor{red}{Paradigm}: ML is a method of Earth data analysis that automates data processing, modeling, mapping and visualization.
-	\item \textcolor{red}{Hierarchy}: ML is a branch of Artificial Intelligence (AI). It is based on the assumption that GIS can \emph{learn from data and extract information}, identify geospatial patterns and make decisions (e.g. risk assessment, tsunami, earthquakes, landslides)
+	\item \textcolor{blue}{Problem}: Extracting knowledge and information from EO data requires advanced technical tools $=>$ need for ML/DL algorithms and scripting approaches to data handling
+	\item \textcolor{red}{Paradigm}: ML and scripts present advanced methods of EO data analysis that automate data processing, modelling, mapping and visualization.
+	\item \textcolor{red}{Hierarchy}: ML is a branch of Artificial Intelligence (AI) $=>$ GIS \emph{learns from data and extracts information}. Identification of landscape patterns and detecting land cover changes 
 \end{itemize}
 \end{exampleblock}
 	
@@ -181,18 +181,17 @@
 % ---------------------------------------------------------------------------->
 \begin{frame}\frametitle{Objectives and Goals}
  
-\begin{alertblock}{Machine Learning in big Earth data processing}
+\begin{alertblock}{Machine Learning in Earth data processing for mapping Africa}
 \begin{itemize}
-	\item \textcolor{red}{Core Idea}: \emph{minimal} human intervention, \emph{maximal} machine-based processing
-	\item \textcolor{blue}{Examples}: programming languages (Python, Julia, R, Octave), scripting GIS and toolsets (GRASS GIS, GMT)
-	\item \textcolor{red}{Applications}: Geotectonics, geology, geophysics, sedimentation, mapping, 3D modeling, geodynamics, environment for automatization of big Earth data processing
-	\item \textcolor{red}{Case}: This research uses Generic Mapping Tools (GMT) scripting toolset that is based on special syntax enabling to quickly operate with big spatial data using shell scripts from the console.
+	\item \textcolor{red}{Mapping}: Environmental analysis of African landscapes through processing of RS data
+	\item \textcolor{red}{Cartography}: Generic Mapping Tools (GMT): special syntax enabling to quickly operate with cartographic data using shell scripts
+	\item \textcolor{blue}{Examples}: Automation of data processing: programming languages (Python and R), scripting GIS and scripting toolsets (GRASS GIS, GMT)
 \end{itemize}
 \end{alertblock}
 
-\begin{exampleblock}{Challenge of the Research Topic}
+\begin{exampleblock}{Remote sensing}
 \begin{itemize}
-        	\item Using scripting algorithms for mapping deep-sea trenches of the Pacific Ocean
+        	\item Using scripting algorithms for RS data (satellite images, e.g., Landsat) to extract environmental information for mapping variability of landscapes across Africa
 \end{itemize}
 \end{exampleblock}
 	
@@ -235,7 +234,7 @@
 \vspace{8pt}
 Current state: mapping of 25 African countries is published in 30 journal articles
 \begin{table}\scriptsize
-\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{2.2cm} p{1.2cm} p{9.0cm} |}
+\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{2.2cm} p{1.2cm} p{6.0cm} |}
 \multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Name} & Publication & Link  \\ 
 		\arrayrulecolor[RGB]{184,210,0}\hline\hline
 	Algeria & \cite{Lemenkova202313} & \href{https://doi.org/10.3390/asi6040061}{doi: 10.3390/asi6040061} \\
@@ -299,17 +298,18 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 \begin{frame}\frametitle{Data}
 \vspace{1em}
 \begin{itemize}\footnotesize
-            \item Understanding complexity and variability of trenches requires processing of large amounts of diverse datasets 
-            \item Datasets used in this project are non-coherent and multi-source 
-            \item Data should be handled effectively, rapidly yet accurately.
-            \item High-resolution datasets aimed at print-quality mapping and modelling. Accuracy of digital Earth data is of crucial importance, because it directly controls research output. 
+            \item Understanding complexity and variability of landscapes requires processing of large amounts of diverse datasets 
+            \item Multi-source data $=>$ effective, rapid yet accurate processing
+            \item High-resolution data $=>$ at print-quality mapping and modelling. Accuracy of digital Earth data is of crucial importance, because it directly controls research output. 
 \end{itemize}
 
 \begin{table}\footnotesize\caption{Data used in this project: their sources, types and precision}\label{tab:T2}
-\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{1.5cm} p{1.5cm} p{5cm} }
+\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{2.5cm} p{1.5cm} p{5cm} }
 \multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Data} & Origine & Type, resolution \\ 
 		\arrayrulecolor[RGB]{211,204,214}\hline\hline		
-        ETOPO1 & NOAA & 1 arc-min GRM grid\\       
+         Landsat 8-9 OLI/TIRS & USGS & satellite images \\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline
+	ETOPO1 & NOAA & 1 arc-min GRM grid\\       
        		\arrayrulecolor[RGB]{166,154,189}\hline
 	ETOPO5 & NOAA & 5 arc min GRM grid \\       
        		\arrayrulecolor[RGB]{166,154,189}\hline
@@ -317,20 +317,20 @@ Current state: mapping of 25 African countries is published in 30 journal articl
        		\arrayrulecolor[RGB]{166,154,189}\hline				
         SRTM & NASA & 15-sec DEM raster grid \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline
-	Geology & USGS & Vector layers \\      
+	Geology & USGS & Vector layers for diverse African countries \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	Social data & FAO & Vector layers for administrative borders and population \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline
 	Gravity & Scripps IO & CryoSat-2, Jason-1 grid \\ 
 		\arrayrulecolor[RGB]{166,165,196}\hline\hline
-	EGM96 & Scripps IO & Geopotential geoid model \\      
+	EGM96 & Scripps IO & Geopotential data: geoid \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline
-	EGM-2008 & Scripps IO & Geopotential geoid model \\      
+	EGM-2008 & Scripps IO & Geoid model \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline	
+	TerraClimate & NOAA & Climate characteristics of African landscapes  \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
-	GlobSed & NOAA & Total Sediment Thickness of the World's Oceans and Marginal Seas  \\      
-        		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
-	GLOBE dataset & NOAA & Topography model \\      
-        		\arrayrulecolor[RGB]{166,165,196}\hline\hline		
-	ASCII & Scripps IO & Topo tables (xyz format) \\      
-        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	GLOBE dataset & NOAA & Topography model \\   
+		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
 	GEBCO & IHO-IOC & Geographic gazetteer \\      
         		\arrayrulecolor[RGB]{166,165,196}\hline\hline
 \end{tabular}
@@ -348,11 +348,15 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 \begin{column}{0.4\textwidth}
 \vspace{2em}
 \begin{itemize}
-     \item Satellite Altimetry and Earth Observation (EO) have generated huge massives of data stored in big data repositories
-     \item GEBCO produces and makes open a range of bathymetric datasets widely used in topographic mapping
-     \item GEBCO global gridded bathymetric datasets; GEBCO Gazetteer of Undersea Feature Names; GEBCO world map 
-     \item Advanced cartographic methodologies of GMT are capable of handling the size (e.g. large GEBCO grid), complexity of formats (with help of reformatting by AWK) and variety of data, as a response to such needs. 
-     \item Data manipulation, mapping, information extraction (metadata), visualisation $=>$ processes of big Earth data handling.            
+     \item Algeria -- the largest country in Africa and the Mediterranean Basin.
+     \item Contrasting environment: 
+     	\begin{itemize}
+	     \item \textcolor{red}{south} - a significant part of Sahara Desert; 
+	     \item \textcolor{red}{center} --  Tell Atlas Mts. (Saharan Atlas) + vast plains, highlands (e.g., Hoggar Mts) \& mountain ranges
+	      \item \textcolor{red}{coastal} areas: hilly \& mountainous landscapes, a few harbours.
+	 \end{itemize}
+     \item Diverse topographic setting + climate setting = contrasting precipitation patterns
+     \item Salt lakes (saline sabkhas) in the semi-desert environment on border of Sahara            
 \end{itemize}	
 \end{column}
 \begin{column}{0.6\textwidth}
@@ -360,7 +364,7 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6.5cm]{Fig_03.jpg}
-	\caption{Example of the GEBCO grid used for mapping trench}
+	\caption{Topographic map of Algeria}
 \end{figure}
 \end{column}
 \end{columns}
@@ -376,7 +380,7 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_04.jpg}
-	\caption{Snippet of the Octave/MATLAB script used for modeling the Kuril-Kamchatka Trench}
+	\caption{Sabkha - coastal sandy flats of northern Algeria where evaporite and saline minerals accumulate. Sabkhas fluctuate seasonally and over years (subject to climate change)}
 \end{figure}	
 \end{column}
 
@@ -384,11 +388,10 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5cm]{Fig_05.jpg}
-	\caption{Cross-section profiles of the Kuril-Kamchatka Trench. Plotting: Octave. Source:}
+	\caption{Workflow used to map sabkhas of Algeria using RS data}
 \end{figure}
 \begin{itemize}
-     \item Modelling geospatial data using ML methods and programming languages enables to detect hidden correlations and patterns that a human may not see. 
-     \item Inaccessible location $=>$ seafloor of the deep-sea trenches can only be visualized using modelling tools and programming approach
+     \item Sabkha of Algeria - in semiarid to arid climate (border of Sahara + impact of Mediterranean).
 \end{itemize}
 \end{column}
 \end{columns}
@@ -402,53 +405,55 @@ Current state: mapping of 25 African countries is published in 30 journal articl
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\vspace{2em}
+%\vspace{1em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_06.jpg}
-	\caption{Correlation matrix. Source:}\label{fig:H1}
+	\caption{Topographic map of Botswana with specific geographic features.}
 \end{figure}
-Solutions of GMT: 
- \begin{itemize}
-     \item Advanced level of cartographic functionality: variety of projections, data processing, import/export, etc
-     \item High-quality cartographic solutions: colour palettes, layouts, grids, vector lines, advanced design approaches
-     \item Flexibility of coding / shell scripting from UNIX console
-     \item Embedded data analysis and visualisation: mapping, modelling, logical queries, \\ statistical analysis, import/export, vector and raster
-     processing
-     \item GMT-based mapping provides accurate visualization of the seafloor
+\vspace{-1em}
+ \begin{itemize}\footnotesize
+     \item \textcolor{red}{Relief}: mostly flat, gently rolling tableland    
+     \item \textcolor{red}{Climate}: dominated by the Kalahari Desert (ca. 70\% of its land surface)
+     \item \textcolor{red}{Hydrology}: Okavango Delta -- one of the world's largest inland river deltas (UNESCO World Heritage Site) is located in Botswana. 
 \end{itemize}
 
 \end{column}
 \begin{column}{0.5\textwidth}
-\vspace{2em}
+%\vspace{1em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_07.jpg}
-	\caption{Ranking dot plot. Source: }\label{fig:H1}
+	\caption{Right: climate variables over Botswana (here: droughts)}
 \end{figure}
-\begin{itemize}
-     \item Analysing the interactions between the variables in big datasets by R presents a solution to \textcolor{red}{visualising heterogeneity} of topographic features formed under various geologic setting: ranking geomorphology of the cross-section profiles. 
-\end{itemize}
+ \begin{itemize}\footnotesize
+     \item \textcolor{red}{Environment} Okavango Delta -- oasis in an arid climate of Botswana $=>$ large wetland system 
+     \item \textcolor{red}{Ecology} rich wildlife, swamp-dominant rare species. Habitats: salt inlands, lagoons.
+ \end{itemize}
 \end{column}
 \end{columns}
 \end{minipage}
 \end{frame}
 
 % ---------------------------------------------------------------------------->
-\begin{frame}\frametitle{Data Integration}
-\vspace{1em}
-Multi-source data mixing and integration using GMT adjustments:
- \begin{itemize}
-     \item Open Data Mining (e.g. GEBCO, ETOPO1, geological datasets and other open sources) 
-     \item Predictive analytics in geology: forecasting and prognosis in hazard risk assessment
-     \item Simulation modelling in Earth sciences: landslides, volcanic activity, seismicity, earthquakes
-     \item Data analysis by GMT has potential to advance development of cartography
-     \item It enables scientific discoveries, based on spatial analysis in geology
+\begin{frame}\frametitle{Burkina Faso}
+%\vspace{-1em}
+\textcolor{red}{Food insecurity \& Poverty (\$1,000) per capita - IMF '23} Reasons for food instability: 
+      	\begin{itemize}\footnotesize
+    		\item \textcolor{red}{Environmental hazards} Burkina Faso experiences one of the most \textcolor{red}{contrasting climatic variations} in the world with environmental hazards varying from severe floods to extreme drought $=>$ agriculture instability
+      		\item \textcolor{red}{Climate issues}: tropical with two very distinct seasons --  rainy and dry seasons. During dry period - effects from harmattan (hot dry Saharan winds )
+      		\item \textcolor{red}{Agricultural vulnerability}: insect attacks (locusts and crickets), which destroy crops
+		\item \textcolor{red}{Migration}: people migrate to other countries to find better jobs and support for their families
+    	 \end{itemize}
+Topography: flat relief with 2 major types of landscapes influenced by geologic setting.	 	
+ \begin{itemize}\footnotesize
+     \item \textcolor{red}{Peneplain}: larger part of the country (gently undulating landscape and a few isolated hills) from Precambrian massif. 
+     \item \textcolor{red}{Sandstone massif}: on the southwest of the country with the highest peak, Ténakourou
 \end{itemize}	
-   
+
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=8cm]{Fig_08.jpg}
+		\includegraphics[width=8.5cm]{Fig_08.jpg}
 	\caption{ Data capture from the EarthExplorer repository of the USGS: Landsat-8 OLI/TIRS satellite image, central Burkina Faso, Ouagadougou. Background image: ESRI World imagery. Source:}\label{fig:MAT5}
 \end{figure}
 \end{frame}
@@ -483,7 +488,37 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \end{minipage}
 \end{frame}
 
-% ----------------------------------------------------------------------------
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Data Integration}
+ 
+\begin{alertblock}{Mapping central African regions (complex geology)}
+Multi-source data mixing and integration using GMT adjustments:
+ \begin{itemize}\footnotesize
+     \item Data mining from open sources (e.g. Landsat, GEBCO, ETOPO1, geological data, etc) for geographic analysis 
+     \item Predictive environmental analytics: forecasting and prognosis in hazard risk assessment based on climate data and FAO information on food security
+     \item Mapping geophysical setting in central African countries, volcanic activity, seismicity, earthquakes
+     \item Data analysis by GMT has potential to advance development of cartography
+     \item It enables scientific discoveries, based on spatial analysis in geology
+\end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{Scripting techniques in cartography}
+\begin{itemize}\footnotesize
+        	\item GMT-based mapping provides accurate visualization of the complex terrain as in African countries
+\end{itemize}
+\end{exampleblock}
+	
+\begin{alertblock}{Solutions of GMT:}\footnotesize
+ \begin{itemize}
+     \item Advanced level of cartographic functionality: variety of projections, data processing, import/export, etc
+     \item High-quality cartographic output: colour palettes, layouts, grids, vector lines, advanced design approaches
+     \item Flexibility of coding / shell scripting from the console
+     \item Embedded data analysis and visualisation: mapping, modelling, statistical analysis, logical queries, import/export, vector and raster processing
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
 \section{CAR}
 \begin{frame}\frametitle{Central African Republic (CAR)}
 \vspace{2em}
@@ -501,7 +536,7 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_11.jpg}
-	\caption{Topographic map and location of the Middle America Trench. Source: }\label{fig:MAT1}
+	\caption{Topographic map and location of the CAR to analyse correlation between topography and geophysical setting}
 \end{figure}	
 \end{column}
 \end{columns}
@@ -554,28 +589,36 @@ An example of data analysis \\using GMT: Guatemala Trench:
 \section{CG}
 
 \begin{frame}\frametitle{Congo (D.R.C)}
-\vspace{2em}
-\begin{minipage}[0.4\textheight]{\textwidth}
+\vspace{-0.1em}
+\begin{minipage}[0.45\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=4.5cm]{Fig_14.jpg}
-		\caption{Geologic map: Puysegur and Hjort trenches. Source: }\label{fig:P1}
+		\includegraphics[width=4.0cm]{Fig_14.jpg}
+		\caption{Topographic map of Congo D.R.C.}\label{fig:P1}
 \end{figure}
+\vspace{-1em}
+\begin{itemize}\footnotesize
+	\item \textcolor{red}{Climate hazards}: Congo: high precipitation and the highest frequency of thunderstorms in the world.
+	\item \textcolor{red}{Environment}: Congolese rainforests -- the 2nd largest rain forest in the world after the Amazon 
+	\item \textcolor{red}{Biodiversity} of Congo: lush jungle rainforest + savannah + grasslands + mountainous terraces
+	\item \textcolor{red}{Geomorphology}: Rwenzori Mountains -- the source of the Nile River with unique (for Africa) alpine meadows
+\end{itemize}
 \end{column}
 
 \begin{column}{0.6\textwidth}
+\vspace{-0.3em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=5.5cm]{Fig_15.jpg}
-		\caption{Modeled cross-section profiles. Source: }\label{fig:P2}
+		\includegraphics[width=6.0cm]{Fig_15.jpg}
+		\caption{Advantages of R for satellite image processing (libraries)}\label{fig:P2}
 \end{figure}
-\vspace{-35pt}	
+\vspace{-5pt}	
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=6.5cm]{Fig_16.jpg}
-		\caption{Modeled cross-section profiles. Source: }\label{fig:P2}
+		\includegraphics[width=6.0cm]{Fig_16.jpg}
+		\caption{Workflow for research methodology}\label{fig:P2}
 \end{figure}
 \end{column}
 \end{columns}
@@ -585,24 +628,27 @@ An example of data analysis \\using GMT: Guatemala Trench:
 % ---------------------------------------------------------------------------->
 \begin{frame}\frametitle{Congo (D.R.C.)}
 \vspace{2em}
-\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{minipage}[0.45\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_17.jpg}
-	\caption{Snippet of the R code for unsupervised classification by k-means clustering (Basoko, Congo).}\label{fig:S03}
+	\caption{Snippet of the R code for unsupervised classification by k-means clustering (Basoko, Congo DRC)}.
 \end{figure}
+\begin{itemize}
+	\item Automatisation in RS data analysis for Congo: diverse geospatial libraries of R
+\end{itemize}
 \end{column}
+%
 \begin{column}{0.5\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_18.jpg}
-	\caption{ k-means clustering classification algorithm in RStudio using the RStoolbox package. Source: }\label{fig:PCT6}
+	\caption{ k-means clustering classification algorithm in RStudio using the RStoolbox package for satellite image processing (Landsat images covering Congo DRC)}\label{fig:PCT6}
 \end{figure}
 \begin{itemize}
-	\item Automatic modelling of trenches to study landforms, detect correlation with geologic and tectonic settings
-	\item Automatization in data analysis: automated digitizing has been discussed in literature 
+	\item Automatic image processing by R to study changes in vegetation of Congo, to analyse their correlation with landforms (topography), detect correlation with climate settings
 \end{itemize}
 \end{column}
 \end{columns}
