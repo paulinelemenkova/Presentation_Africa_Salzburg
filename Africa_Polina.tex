@@ -1,0 +1,1293 @@
+\documentclass[pdflatex,compress,8pt,
+	xcolor={dvipsnames,dvipsnames,svgnames,x11names,table},
+	hyperref={colorlinks = true,breaklinks = true, urlcolor = NavyBlue, breaklinks = true}]{beamer}
+\usetheme{AnnArbor}
+\graphicspath{{figures/}} % path to folder with Figures
+\usepackage{subfig}
+\usepackage{fancyhdr}
+\usepackage{metalogo}
+\usepackage[super]{nth}
+\usepackage[font={tiny,it}]{caption} % шрифт подписей к картинкам
+	\setbeamertemplate{caption}[numbered]
+\usepackage{graphicx}
+\usepackage{graphics}
+%\usepackage{textcomp}  % numero symbol
+\usepackage{gensymb} % degree symbol
+%%%%%%%% цветная таблица: начало
+\usepackage{booktabs} 
+\usepackage{tabularx}
+\usepackage{array,etoolbox}
+\usepackage{boldline}
+\usepackage{colortbl} %% цветная таблица
+\setlength{\arrayrulewidth}{0.3mm}
+%%%%%% нумерация внутри таблицы %%%
+\preto\tabular{\setcounter{magicrownumbers}{0}}
+\newcounter{magicrownumbers}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+\usepackage{longtable}
+%%%%%%%%  цветная таблица: конец
+\usepackage{wrapfig}
+\usepackage{csquotes}
+\usepackage{multirow}
+\usepackage{gensymb} % degree symbol
+\usepackage{pifont}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+% ----------------------------------------------------------------------------
+% *** START BIBLIOGRAPHY <<<
+% ----------------------------------------------------------------------------
+\usepackage[
+	backend=biber, 
+%	style=authortitle,
+	style = numeric,
+%	style=ieee,
+%	style=nature,
+%	style=science,
+%	style=apa,
+%	style=mla,
+%	style=phys, 
+	maxbibnames=99,
+%	citestyle=authoryear,
+	citestyle=numeric,
+	giveninits=true,
+	isbn=true,
+	url=true,
+	natbib=true,
+	sorting=ndymdt,
+	bibencoding=utf8,
+	useprefix=false,
+	language=auto, 
+	autolang=other,
+%	backref=true,
+	backref=false,
+	backrefstyle=none,
+	indexing=cite,
+]{biblatex}
+\DeclareSortingTemplate{ndymdt}{
+  \sort{
+    \field{presort}
+  }
+  \sort[final]{
+    \field{sortkey}
+  }
+  \sort{
+    \field{sortname}
+    \field{author}
+    \field{editor}
+    \field{translator}
+    \field{sorttitle}
+    \field{title}
+  }
+  \sort[direction=descending]{
+    \field{sortyear}
+    \field{year}
+    \literal{9999}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{month}
+    \literal{99}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{day}
+    \literal{99}
+  }
+  \sort{
+    \field{sorttitle}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=4,padchar=0]{volume}
+    \literal{9999}
+  }
+}
+
+\addbibresource{Africa_Present11032024.bib}
+\renewcommand*{\bibfont}{\scriptsize} %\footnotesize
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+% ----------------------------------------------------------------------------
+% *** END BIBLIOGRAPHY <<<
+% ----------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Mapping landscapes of Africa using remote sensing data: \\detecting spatio-temporal environmental dynamics \\from the satellite images}
+\author{Polina Lemenkova}
+         \date{March 11, 2024}
+
+\begin{document}
+
+\begin{frame}
+           \titlepage
+\end{frame}
+
+\section*{Outline}
+        \begin{frame}
+           \tableofcontents
+         \end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{Introduction}
+\begin{frame}\frametitle{Introduction}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\vspace{2em}
+\begin{itemize}
+        	\item \textcolor{red}{Concept}: Landscapes of Africa: land surface where diverse environmental processes interplay
+	\item \textcolor{red}{Understanding}  landscape dynamics: modelling and mapping complexity of factors that affect the shape of the Earth
+	\item \textcolor{red}{Dynamics}: spatio-temporal changes caused by \textcolor{red}{human} and \textcolor{red}{natural} forces
+	\item Applications of landscape ecology and environmental monitoring of Africa:
+		\begin{itemize}\small
+      		  	\item \textcolor{ProcessBlue}{Landscape monitoring} 
+			\item \textcolor{ProcessBlue}{Land management} (urban planning)
+			\item \textcolor{ProcessBlue}{Sustainable development} (food resources, agriculture)
+		\end{itemize}
+	\item \textcolor{red}{Nature}: Factors affecting formation of landscapes: geologic-tectonic setting, climate processes, anthropogenic activities => different relief, soil and vegetation
+\end{itemize}	
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2ex}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_02.jpg}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Introduction}
+
+\begin{exampleblock}{Big Spatial Data as an Opportunity}
+\begin{itemize}	
+	\item \textcolor{red}{Possibilities}: Technical revolution in the amount of Earth data (satellite imagery, digital raster and vector datasets, tabular data) enabled smooth and quick access to monitoring of the large regions of the Earth, such as Pacific Ocean
+	\item \textcolor{red}{Access}: Open datasets and repositories available online enable to access, download, examine, and map big spatial data for various \\geospatial applications
+	\item \textcolor{red}{Coverage}: Big Earth data provide information on spatial events across local, regional, and global scales 
+\end{itemize}
+\end{exampleblock}
+
+\begin{exampleblock}{Machine Learning for Processing big Earth data}
+\begin{itemize}
+	\item \textcolor{blue}{Problem}: Extracting knowledge and information from big Earth data requires special technical tools $=>$ need for Machine Learning (ML) algorithms and approaches to data handling
+	\item \textcolor{red}{Paradigm}: ML is a method of Earth data analysis that automates data processing, modeling, mapping and visualization.
+	\item \textcolor{red}{Hierarchy}: ML is a branch of Artificial Intelligence (AI). It is based on the assumption that GIS can \emph{learn from data and extract information}, identify geospatial patterns and make decisions (e.g. risk assessment, tsunami, earthquakes, landslides)
+\end{itemize}
+\end{exampleblock}
+	
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Objectives and Goals}
+ 
+\begin{alertblock}{Machine Learning in big Earth data processing}
+\begin{itemize}
+	\item \textcolor{red}{Core Idea}: \emph{minimal} human intervention, \emph{maximal} machine-based processing
+	\item \textcolor{blue}{Examples}: programming languages (Python, Julia, R, Octave), scripting GIS and toolsets (GRASS GIS, GMT)
+	\item \textcolor{red}{Applications}: Geotectonics, geology, geophysics, sedimentation, mapping, 3D modeling, geodynamics, environment for automatization of big Earth data processing
+	\item \textcolor{red}{Case}: This research uses Generic Mapping Tools (GMT) scripting toolset that is based on special syntax enabling to quickly operate with big spatial data using shell scripts from the console.
+\end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{Challenge of the Research Topic}
+\begin{itemize}
+        	\item Using scripting algorithms for mapping deep-sea trenches of the Pacific Ocean
+\end{itemize}
+\end{exampleblock}
+	
+\begin{alertblock}{Research Techniques}
+\begin{itemize}
+	\item This research includes algorithms of Generic Mapping Tools (GMT) that has a scripting syntax enabling to quickly operate with spatial data using shell scripts
+\end{itemize}
+\end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{AF}
+\begin{frame}\frametitle{Research Highlights: Variability of African landscapes}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\vspace{2em}
+\begin{itemize}
+	\item \textcolor{red}{Complexity}: variability of regional geographic setting on the African continent 
+	\item \textcolor{red}{Scale}: Handling multi-source spatial data for local, regional and continental scales
+	\item \textcolor{red}{Data-driven research}: Variety of RS data (Landsat TM/ETM+ OLI/TIRS, Sentinel-2A, SPOT), weather data as time series, climate forecasts, ecological monitoring, seismic observations (hazard assessment).
+	\item \textcolor{red}{Methods}: Processing spatial data by advanced tools and methods (scripts, programming algorithms)
+\end{itemize}	
+\end{column}
+%
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_01.jpg}
+\end{figure}
+\small{Landscape ecology of diverse regions of Africa reflects a variety of impact factors: tectonic-geologic setting, climate change and anthropogenic activities}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Research Progress: Current state of the project}
+\vspace{8pt}
+Current state: mapping of 25 African countries is published in 30 journal articles
+\begin{table}\scriptsize
+\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{2.2cm} p{1.2cm} p{9.0cm} |}
+\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Name} & Publication & Link  \\ 
+		\arrayrulecolor[RGB]{184,210,0}\hline\hline
+	Algeria & \cite{Lemenkova202313} & \href{https://doi.org/10.3390/asi6040061}{doi: 10.3390/asi6040061} \\
+       		\arrayrulecolor[RGB]{195,216,37}\hline
+	Botswana & \cite{Lemenkova202217} & \href{https://doi.org/10.3390/ijgi11090473}{doi: 10.3390/ijgi11090473}\\
+        		\arrayrulecolor[RGB]{170,207,83}\hline
+	Burkina Faso & \cite{Lemenkova202321} & \href{https://doi.org/10.24425/agg.2023.146157}{doi: 10.24425/agg.2023.146157} \\
+        		\arrayrulecolor[RGB]{199,220,104}\hline
+	Cameroon & \cite{Lemenkova202024} & \href{https://doi.org/10.47246/CEJGSD.2020.2.2.4}{doi: 10.47246/CEJGSD.2020.2.2.4} \\
+        		\arrayrulecolor[RGB]{216,230,152}\hline
+	Central Africa Republic & \cite{Lemenkova202308} & \href{https://doi.org/10.3390/min13050604}{doi: 10.3390/min13050604} \\
+        		\arrayrulecolor[RGB]{224,235,175}\hline
+	Chad & \cite{Lemenkova202323} & \href{https://doi.org/10.2478/boku-2023-0005}{doi: 10.2478/boku-2023-0005} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	D.R.C. Congo & \cite{Lemenkova202229} & \href{https://doi.org/10.3390/app122412554}{doi: 10.3390/app122412554} \\
+		\arrayrulecolor[RGB]{185,208,139}\hline	
+	Egypt & \cite{Lemenkova202306} & \href{https://doi.org/10.3390/info14040249}{doi: 10.3390/info14040249} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline	
+	\multirow{ 2}{*}{Ethiopia} & \cite{Lemenkova202221,Lemenkova202205} & \href{https://doi.org/10.24425/jwld.2022.141573}{doi: 10.24425/jwld.2022.141573}; \href{https://doi.org/10.5755/j01.erem.78.1.29963}{doi: 10.5755/j01.erem.78.1.29963} \\
+	& \cite{Lemenkova202118,Lemenkova202136} & \href{https://doi.org/10.4314/sinet.v44i1.9}{doi: 10.4314/sinet.v44i1.9}; \href{https://doi.org/10.2478/abmj-2021-0010}{doi: 10.2478/abmj-2021-0010} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Ghana & \cite{Lemenkova202211,Lemenkova202140} & \href{https://doi.org/10.24425/gac.2022.141169}{doi: 10.24425/gac.2022.141169}; \href{https://doi.org/10.32909/kg.20.36.2}{doi: 10.32909/kg.20.36.2} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Guinea & \cite{Lemenkova202325} & \href{https://doi.org/10.5281/zenodo.10673287}{doi: 10.5281/zenodo.10673287} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Ivory Coast (Côte d'Ivoire) & \cite{Lemenkova202227} & \href{https://doi.org/10.3390/jimaging8120317}{doi: 10.3390/jimaging8120317} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Kenya & \cite{Lemenkova202315} & \href{https://doi.org/10.2478/trser-2023-0008}{doi: 10.2478/trser-2023-0008} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Malawi & \cite{Lemenkova202209,Lemenkova202134} & \href{https://doi.org/10.5937/tehnika2202183L}{doi: 10.5937/tehnika2202183L};  \href{https://doi.org/10.5281/zenodo.5772315}{doi: 10.5281/zenodo.5772315} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Mali & \cite{Lemenkova202324} & \href{https://doi.org/10.2478/arsa-2023-0011}{doi: 10.2478/arsa-2023-0011} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Mozambique & \cite{Lemenkova202401} & \href{https://doi.org/10.3390/coasts4010008}{doi: 10.3390/coasts4010008} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Nigeria & \cite{Lemenkova202307} & \href{https://doi.org/10.3390/jmse11040871}{doi: 10.3390/jmse11040871} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Rwanda & \cite{Lemenkova202220} & \href{https://doi.org/10.5281/zenodo.7113414}{doi: 10.5281/zenodo.7113414} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	Somalia and Seychelles & \cite{Lemenkova202230} & \href{https://doi.org/10.2478/jaes-2022-0026}{doi: 10.2478/jaes-2022-0026} \\
+        		\arrayrulecolor[RGB]{185,208,139}\hline
+	South Sudan & \cite{Lemenkova202320} & \href{https://doi.org/10.3390/analytics2030040}{doi: 10.3390/analytics2030040} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Sudan & \cite{Lemenkova202310} & \href{https://doi.org/10.3390/jimaging9050098}{doi: 10.3390/jimaging9050098} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Tanzania & \cite{Lemenkova202206} & \href{https://doi.org/10.3176/earth.2022.05}{doi: 10.3176/earth.2022.05} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Tunisia & \cite{Lemenkova202322} & \href{https://doi.org/10.3390/land12111995}{doi: 10.3390/land12111995} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Uganda & \cite{Lemenkova202122} & \href{https://doi.org/10.5281/zenodo.5082861}{doi: 10.5281/zenodo.5082861} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+	Zambia & \cite{Lemenkova202108} & \href{https://doi.org/10.5937/ZemBilj2101117L}{doi: 10.5937/ZemBilj2101117L} \\
+        		\arrayrulecolor[RGB]{131,155,92}\hline
+\end{tabular}
+\end{table}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{Data}
+
+\begin{frame}\frametitle{Data}
+\vspace{1em}
+\begin{itemize}\footnotesize
+            \item Understanding complexity and variability of trenches requires processing of large amounts of diverse datasets 
+            \item Datasets used in this project are non-coherent and multi-source 
+            \item Data should be handled effectively, rapidly yet accurately.
+            \item High-resolution datasets aimed at print-quality mapping and modelling. Accuracy of digital Earth data is of crucial importance, because it directly controls research output. 
+\end{itemize}
+
+\begin{table}\footnotesize\caption{Data used in this project: their sources, types and precision}\label{tab:T2}
+\begin{tabular}{@{\makebox[2em][r]{\rownumber\space}} | p{1.5cm} p{1.5cm} p{5cm} }
+\multicolumn{1}{@{\makebox[2em][r]{No}} | l}{Data} & Origine & Type, resolution \\ 
+		\arrayrulecolor[RGB]{211,204,214}\hline\hline		
+        ETOPO1 & NOAA & 1 arc-min GRM grid\\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline
+	ETOPO5 & NOAA & 5 arc min GRM grid \\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline
+	GEBCO & BODC & 15 arc sec DEM raster grid \\       
+       		\arrayrulecolor[RGB]{166,154,189}\hline				
+        SRTM & NASA & 15-sec DEM raster grid \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	Geology & USGS & Vector layers \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	Gravity & Scripps IO & CryoSat-2, Jason-1 grid \\ 
+		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	EGM96 & Scripps IO & Geopotential geoid model \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	EGM-2008 & Scripps IO & Geopotential geoid model \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
+	GlobSed & NOAA & Total Sediment Thickness of the World's Oceans and Marginal Seas  \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline	
+	GLOBE dataset & NOAA & Topography model \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline		
+	ASCII & Scripps IO & Topo tables (xyz format) \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+	GEBCO & IHO-IOC & Geographic gazetteer \\      
+        		\arrayrulecolor[RGB]{166,165,196}\hline\hline
+\end{tabular}
+\end{table}
+\footnotesize{*30 arc second = ca. 1km cell size, 15 arc sec = ca. 500 m cell size, etc.}
+
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{DZ}
+
+\begin{frame}\frametitle{Algeria}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\vspace{2em}
+\begin{itemize}
+     \item Satellite Altimetry and Earth Observation (EO) have generated huge massives of data stored in big data repositories
+     \item GEBCO produces and makes open a range of bathymetric datasets widely used in topographic mapping
+     \item GEBCO global gridded bathymetric datasets; GEBCO Gazetteer of Undersea Feature Names; GEBCO world map 
+     \item Advanced cartographic methodologies of GMT are capable of handling the size (e.g. large GEBCO grid), complexity of formats (with help of reformatting by AWK) and variety of data, as a response to such needs. 
+     \item Data manipulation, mapping, information extraction (metadata), visualisation $=>$ processes of big Earth data handling.            
+\end{itemize}	
+\end{column}
+\begin{column}{0.6\textwidth}
+\vspace{2ex}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.5cm]{Fig_03.jpg}
+	\caption{Example of the GEBCO grid used for mapping trench}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\begin{frame}\frametitle{Algeria, Sahara: Sabkhas Salt Lakes}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_04.jpg}
+	\caption{Snippet of the Octave/MATLAB script used for modeling the Kuril-Kamchatka Trench}
+\end{figure}	
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5cm]{Fig_05.jpg}
+	\caption{Cross-section profiles of the Kuril-Kamchatka Trench. Plotting: Octave. Source:}
+\end{figure}
+\begin{itemize}
+     \item Modelling geospatial data using ML methods and programming languages enables to detect hidden correlations and patterns that a human may not see. 
+     \item Inaccessible location $=>$ seafloor of the deep-sea trenches can only be visualized using modelling tools and programming approach
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{BW}
+
+\begin{frame}\frametitle{Botswana}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_06.jpg}
+	\caption{Correlation matrix. Source:}\label{fig:H1}
+\end{figure}
+Solutions of GMT: 
+ \begin{itemize}
+     \item Advanced level of cartographic functionality: variety of projections, data processing, import/export, etc
+     \item High-quality cartographic solutions: colour palettes, layouts, grids, vector lines, advanced design approaches
+     \item Flexibility of coding / shell scripting from UNIX console
+     \item Embedded data analysis and visualisation: mapping, modelling, logical queries, \\ statistical analysis, import/export, vector and raster
+     processing
+     \item GMT-based mapping provides accurate visualization of the seafloor
+\end{itemize}
+
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_07.jpg}
+	\caption{Ranking dot plot. Source: }\label{fig:H1}
+\end{figure}
+\begin{itemize}
+     \item Analysing the interactions between the variables in big datasets by R presents a solution to \textcolor{red}{visualising heterogeneity} of topographic features formed under various geologic setting: ranking geomorphology of the cross-section profiles. 
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Data Integration}
+\vspace{1em}
+Multi-source data mixing and integration using GMT adjustments:
+ \begin{itemize}
+     \item Open Data Mining (e.g. GEBCO, ETOPO1, geological datasets and other open sources) 
+     \item Predictive analytics in geology: forecasting and prognosis in hazard risk assessment
+     \item Simulation modelling in Earth sciences: landslides, volcanic activity, seismicity, earthquakes
+     \item Data analysis by GMT has potential to advance development of cartography
+     \item It enables scientific discoveries, based on spatial analysis in geology
+\end{itemize}	
+   
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8cm]{Fig_08.jpg}
+	\caption{ Data capture from the EarthExplorer repository of the USGS: Landsat-8 OLI/TIRS satellite image, central Burkina Faso, Ouagadougou. Background image: ESRI World imagery. Source:}\label{fig:MAT5}
+\end{figure}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Cameroon}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5cm]{Fig_09.jpg}
+	\caption{Cross-section profiles of the Middle America Trench (Guatemala segment). Source: }\label{fig:MAT10}
+\end{figure}
+\end{column}
+
+\begin{column}{0.4\textwidth}
+\vspace{2em}
+An example of data analysis \\using GMT: Guatemala Trench: 
+ \begin{itemize}
+     \item GMT-based mapping techniques have the advantage of increased speed, accuracy and precision of mapping which enables rapid big data processing
+     \item Validity and utility of data models in GMT are 
+     \item Embedded mathematical algorithms of data modelling and cartographic principles 
+     \item GMT => deeper understanding of the underlying processes affecting the Earth's landscapes
+     \item With increasing rise and constant updates in big Earth data availability in geology, it is essential to apply data-driven mapping and script-based cartographic visualisation where the use of machine learning is an accepted strategy that facilitates cartographic workflow
+       \item Processing large volumes of heterogeneous and rapidly arriving digital geoinformation using traditional GIS is time-consuming. 
+       \item GMT-based mapping uses scripts which optimises cartographic workflow
+\end{itemize} 		
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{CAR}
+\begin{frame}\frametitle{Central African Republic (CAR)}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_10.jpg}
+	\caption{Snippet of the GMT script for cartographic mapping}\label{fig:S01}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_11.jpg}
+	\caption{Topographic map and location of the Middle America Trench. Source: }\label{fig:MAT1}
+\end{figure}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{TD}
+
+\begin{frame}\frametitle{Chad}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=3.8cm]{Fig_12.jpg}
+	\caption{Topographic map of the PCT. Source: }\label{fig:PCT1}
+\end{figure}
+\end{column}
+
+\begin{column}{0.6\textwidth}
+
+\begin{alertblock}{GMT: advantages in data processing}
+\begin{itemize}\footnotesize
+	\item \textcolor{red}{Data structure}: Structured data are stored in the folders
+	\item \textcolor{red}{Data management}: by GMT modules for visualisation
+	\item \textcolor{red}{Flexibility}: cartographic elements extracted for study area
+\end{itemize}
+\end{alertblock}
+
+\begin{exampleblock}{Cartography: benefit for geologic analysis}
+\begin{itemize}
+     \item Visualisation of the analytical data: e.g. topographi analysis
+     \item Analysis of Earth data reveals the geologic setting   
+\end{itemize}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_13.jpg}
+	\caption{Topographic map of the PCT. Source: }\label{fig:PCT1}
+\end{figure}
+\end{exampleblock}	
+
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{CG}
+
+\begin{frame}\frametitle{Congo (D.R.C)}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.5cm]{Fig_14.jpg}
+		\caption{Geologic map: Puysegur and Hjort trenches. Source: }\label{fig:P1}
+\end{figure}
+\end{column}
+
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.5cm]{Fig_15.jpg}
+		\caption{Modeled cross-section profiles. Source: }\label{fig:P2}
+\end{figure}
+\vspace{-35pt}	
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.5cm]{Fig_16.jpg}
+		\caption{Modeled cross-section profiles. Source: }\label{fig:P2}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Congo (D.R.C.)}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_17.jpg}
+	\caption{Snippet of the R code for unsupervised classification by k-means clustering (Basoko, Congo).}\label{fig:S03}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_18.jpg}
+	\caption{ k-means clustering classification algorithm in RStudio using the RStoolbox package. Source: }\label{fig:PCT6}
+\end{figure}
+\begin{itemize}
+	\item Automatic modelling of trenches to study landforms, detect correlation with geologic and tectonic settings
+	\item Automatization in data analysis: automated digitizing has been discussed in literature 
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{EG}
+\begin{frame}\frametitle{Egypt}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_19.jpg}
+	\caption{Topographic settings of the Hikurangi Trench. Source: }\label{fig:H1}
+\end{figure}
+\begin{itemize}
+     \item Various cartographic techniques can be used for modelling and mapping.
+     \item Advanced cartographic techniques consist in two key characteristics: \textcolor{red}{script-based} and \textcolor{red}{data-driven}
+     \item Rapid mapping is essential for hazard risk assessment and crucial for operative monitoring    
+\end{itemize}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_20.jpg}
+	\caption{3D perspective view of Qena Bend, Nile River, Upper Egypt. Software: GMT. Data: GEBCO. Source: }\label{fig:H2}
+\end{figure}
+\begin{itemize}
+     \item Cartographic scripting is a console-based technique that provides detailed stepwise controlling of the cartographic workflow enabling rapid mapping 
+     \item Rapid mapping by GMT enables visualisation and representation of the tectonic processes in the seafloor 
+     \item Data-driven techniques use Earth big data to capture the correlation between geological, tectonic and bathymetric variables
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{ET}
+
+\begin{frame}\frametitle{Ethiopia}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.50\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_21.jpg}
+	\caption{Topographic map and location of the Kermadec and Tonga trenches. Source: }\label{fig:TK1}
+\end{figure}
+ \begin{itemize}
+     \item \textcolor{red}{Structured} and \textcolor{red}{unstructured} data sources
+     \item Data from \textcolor{red}{a variety of disciplines}: geology, geophysics, geochemistry, landscape ecology and RS, geomorphology, hydrology and risk disasters (tsunamis, landslides, volcanoes, earthquakes).
+      \end{itemize}	
+\end{column}
+
+\begin{column}{0.38\textwidth}
+
+ \begin{itemize}
+     \item In order to analyse the geomorphology of the seafloor landforms, it is important to use  \textcolor{red}{powerful cartographic tools}, such as  \textcolor{red}{GMT} that can handle \textcolor{red}{big Earth data}
+      \item \textcolor{red}{Modelling links} among seafloor geomorphology, tectonics and geology requires more deep insights into geologic evolution of the Pacific Ocean and current topography of the seabed
+      \item However, visualisation of the hidden relief of the seafloor can be difficult without \textcolor{red}{high-tech cartographic solutions}
+      \item Cartographic applications of machine learning as scripts provides better techniques in understanding the links of geology, seismicity and bathymetry 
+      \item \textcolor{red}{Accurate and rapid mapping} enables to efficiently analyse impact factors controlling geomorphological structures through observing big Earth data related to interactions among seafloor geomorphology and tectonics 
+ \end{itemize}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{GH}
+\begin{frame}\frametitle{Ghana}
+\vspace{2em}
+\begin{minipage}[0.9\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.9\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=10cm]{Fig_22.jpg}
+	\caption{Cross-section profiles of the Tonga and Kermadec trenches. Source: }\label{fig:TK3}
+\end{figure}
+\begin{itemize}
+      \item Applying machine learning and scripting techniques of GMT in cartography for mapping seafloor helps tackling problems relating to \textcolor{red}{analysing, mapping, visualising and cross-section modelling} of the submarine geomorphology of the trenches.
+     \item Accurate mapping helps more thoughtful interpretation of the underlying tectonic processes affecting the geomorphology of the trench.    
+      \item Big Earth data come from different \textcolor{red}{heterogeneous sources} and are spatially not uniform. 
+      \item Big Earth data are of \textcolor{red}{varying spatio-temporal resolution and origin} which understandably poses some problems to use raw data for mapping and requires \textcolor{red}{data pre-processing, sorting and management}.
+      \item Therefore, \textcolor{red}{common resolution} is required in order to perform Earth \textcolor{red}{data integration} and spatial analysis in a project of Pacific Ocean  
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{GN}
+\begin{frame}\frametitle{Guinea}
+\begin{minipage}[0.4\textheight]{\textwidth}
+
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4cm]{Fig_23.jpg}
+	\caption{Geologic map and tectonic setting of Guinea. Source: }\label{fig:VV2}
+\end{figure}
+\begin{itemize}
+     \item Data-driven GMT-based scripting mapping  enables to use the benefits of large amount of geological data
+     \item Seafloor mapping includes multiple steps in technological process which may include: Hydrosweep DS sonar echo-sounding, CARIS HIPS data processing , GMT data processing. 
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_24.jpg}
+	\caption{Geologic map and tectonic setting of Guinea. Source:}\label{fig:VV2}
+\end{figure}
+Challenges of machine learning and data-driven mapping: 
+\begin{itemize}
+     \item To understand the challenges of deep-sea trench formation, it is crucial to model and define the behavior of various components of Earth system in an integrated manner. 
+     \item This requires an advanced, scripting-based modelling method (GMT) of interacting components of the seafloor: tectonic movements, geologic evolution, geomorphology and topography
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{CI}
+\begin{frame}\frametitle{Côte d'Ivoire (Ivory Coast)}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_26.jpg}
+	\caption{Topographic map of Ivory Caast, West Africa. Source: }\label{fig:NBT1}
+\end{figure}
+\begin{itemize}
+     \item \textcolor{red}{Increasing massifs} of big Earth data in marine geology need to be interpreted in a rapid and accurate way
+          \item \textcolor{red}{Organised information retreaval} from the results of this interpretation  requires enhanced methods of both cartographic approaches (GMT) and statistical computation (Python, R) of tabular data aimed to detect patterns and correlations within datasets. 
+           \item \textcolor{red}{Impact factors} affecting the formation of these landforms include speed of slab subduction, seismicity, volcanism, age of the tectonic plate), sedimentation in the trench's talweg
+     \end{itemize}
+\end{column}
+\begin{column}{0.4\textwidth}	
+%  \vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4cm]{Fig_25.jpg}
+	\caption{Example of the automated modelling performed using GMT and large arrays of data: modelled cross-sections: Vanuatu (New Hebrides) and Vityaz trenches. Source: }\label{fig:VV9}
+\end{figure}
+\begin{itemize}
+     \item \textcolor{red}{Quantifying} submarine landforms and \textcolor{red}{identifying dependencies} of the trench's geomorphology from tectonic factors becomes possibles thanks to the advancement in cartographic techniques
+    \end{itemize} 
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{KE}
+\begin{frame}\frametitle{Kenya}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_27.jpg}
+	\caption{Example of the automated modelling performed using GMT and large arrays of data: modelled cross-sections: Vanuatu (New Hebrides) and Vityaz trenches. Source: }\label{fig:VV9}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_28.jpg}
+	\caption{Geological map of Kenya. Source: }\label{fig:VV9}
+\end{figure}
+Multi-source big Earth data
+\begin{itemize}
+     \item Earth data pool presents an \textcolor{red}{integration} of geospatial data, collection of Landsat resources,  information extraction and knowledge mining
+     \item \textcolor{red}{Structural, semi-structured}, and \textcolor{red}{non-structured} multidimensional big Earth data are integrated together. Different data sources $=>$ different formats of data. 
+     \item \textcolor{red}{Data heterogeneity} raises a need for effective \textcolor{red}{aggregation} of geological big Earth data
+     \item Big Earth data collection start with \textcolor{red}{categorising} geological datasets obtained from geological surveys, remotes sensing digital information, and literature sources.
+     \item  \textcolor{red}{Sorted} data can further be processed using either cartographic (GMT) or statistical methods (e.g. R)
+\end{itemize}  
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{TZ}
+\begin{frame}\frametitle{Tanzania}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=3cm]{Fig_29.jpg}
+	\caption{Source: }\label{fig:NBT6}
+\end{figure}
+\vspace{-45pt}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5cm]{Fig_30.jpg}
+	\caption{Source: }\label{fig:NBT6}
+\end{figure}
+\end{column}
+
+\begin{column}{0.4\textwidth}	
+\begin{itemize}
+      \item  \textcolor{red}{Distributed computing technologies} \\in geologic cartography together with growing open source data, cloud computing and development of programming libraries facilitate sharing and processing the extremely big Earth datasets
+     \item \textcolor{red}{Deep Learning} can present the next step in processing big Earth data
+     \item \textcolor{red}{Deep learning} is a new, rapidly evolving field of machine learning and consists in advanced algorithms of computer vision and analysis. It consists in methods of Artificial Neural Networks (ANN), Convolution Neural Networks (CNN) and Recurrent Neural Networks (RNN)
+     \item Applied in geology deep learning enables to gain more \textcolor{red}{insights} into the fundamental causes of deep-sea trench formation based on rapid automatic processing of large amount of marine geological and bathymetric data
+ \end{itemize} 
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{MW}
+\begin{frame}\frametitle{Malawi}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig_31.jpg}
+	\caption{}\label{fig:NBT6}
+\end{figure}
+\end{column}
+%
+\begin{column}{0.4\textwidth}	
+ \begin{itemize}
+     \item Python can handle a huge amount of data, which it uses not only to process, but also to create analytical plots, such as assessment of bathymetric variability or analytics in geology. 
+     \item Big data analysis in Python is based on a full range of algorithms used in statistics
+     \item Statistical analysis: well developed stand-alone libraries (Matplotlib, SciPy, NumPy, Pandas, StatsModels)
+     \item Beauty \& elegance of graphs: advanced design solutions for data visualization in Matplotlib \& Seaborn
+     \item Scripting approach with more readable syntax
+     \item Open-source
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{ML}
+\begin{frame}\frametitle{Mali}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_32.jpg}
+	\caption{Landsat 8-9 OLI/TIRS images: showing Niger Inner Delta in natural colors. Source: }\label{fig:H1}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_33.jpg}
+	\caption{Information extraction from RS data: Source: }\label{fig:H1}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\begin{frame}\frametitle{Mali: Inner Niger Delta}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_34.jpg}
+	\caption{Correlation matrix. Source: }\label{fig:H1}
+\end{figure}
+ \begin{itemize}
+      \item Analysing the interactions between the variables in big datasets by R presents a solution to \textcolor{red}{visualising heterogeneity} of topographic features formed under various geologic setting: ranking geomorphology of the cross-section profiles. 
+     \item Example of data analysis by R: correlation matrix visualising \textcolor{red}{influence of impact factors} affecting the geomorphology of the profiles. Plotting: R.
+     \item Other examples of R application in big Earth data analysis: geomorphological mapping . 
+     \item \textcolor{red}{Interactions} between deep-sea trench and factors affecting their formation have considerable variations across western and eastern parts the Pacific Ocean. This is reflected in form and shape of the trenches.
+\end{itemize} 
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.5cm]{Fig_35.jpg}
+	\caption{Ranking dot plot. Source: }\label{fig:H1}
+\end{figure}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{MZ}
+
+\begin{frame}\frametitle{Mozambique}
+
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_36.jpg}
+	\caption{Example of GMT-based mapping: topographic map of the Manila Trench in South China Sea. Source: }\label{fig:M1}
+\end{figure}
+\begin{itemize}
+     \item It is necessary to apply automatisation in cartographic processing through scripting cartographic methods and machine learning models using Python and R statistical libraries in order to visualise and analyse the seafloor structure    
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_37.jpg}
+	\caption{Example of GMT-based mapping: topographic map of the Manila Trench in South China Sea. Source: }\label{fig:M1}
+\end{figure}
+\begin{itemize}
+      \item Benefits of automatisation for cartography:
+		\begin{itemize}
+   			  \item \textcolor{red}{precision} and \textcolor{red}{reliability} of the results
+			  \item \textcolor{red}{increased speed} of data processing
+			  \item \textcolor{red}{accuracy} and \textcolor{red}{precision} of data modelling
+		\end{itemize}   
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{GMT}
+
+\begin{frame}\frametitle{Generic Mapping Tools (GMT)}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_38.jpg}
+	\caption{Geologic map of the Ryukyu Trench. Source: }\label{fig:R2}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{column}{0.9\textwidth}
+\begin{itemize}\footnotesize
+	\item Various GMT techniques and modules have been used for rapid and accurate mapping
+	\item Main GMT modules:
+	\begin{dinglist}{224}\footnotesize
+		\item  \textcolor{SlateBlue}{gmt makecpt} for making color palette
+		\item  \textcolor{SlateBlue}{gmt grdimage} for generating raster image
+		\item  \textcolor{SlateBlue}{gmt psscale} for adding legend for adding scale
+		\item  \textcolor{SlateBlue}{gmt grdcontour} for adding isolines
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding grid
+		\item  \textcolor{SlateBlue}{gmt psbasemap} for adding scale and directional rose
+		\item  \textcolor{SlateBlue}{echo} UNIX utility for adding text labels
+		\item  \textcolor{SlateBlue}{gmt pstext} for adding subtitle
+		\item  \textcolor{SlateBlue}{gmt logo} for adding GMT logo
+		\item  \textcolor{SlateBlue}{gmt psconvert} for convert PS to image (by GhostScript interpreter)
+	 \end{dinglist}
+\end{itemize}
+\begin{itemize}\footnotesize
+	\item As a result, plotting a map by GMT becomes a rapid procedure, fully controlled by the cartographer 
+	\item Such automatisation by GMT facilitates mapping and decreases time of cartographic workflow
+\end{itemize}
+\end{column}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{ML}
+
+\begin{frame}\frametitle{Deep Learning / Machine Learning}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_39.jpg}
+	\caption{Geologic map of the Ryukyu Trench. Source: }\label{fig:R2}
+\end{figure}
+\begin{dinglist}{217}\footnotesize
+     \item Geomorphology of the deep-sea trenches and seafloor tectonics are inherently linked with regional geologic setting (subduction zones, high seismicity)
+     \item It is necessary to get useful \textcolor{red}{insights into topographic patterns of each trench} (asymmetry, depth, width, slope steepness) formed in various conditions of landscapes
+     \item ML techniques and advanced cartography enable rapid and accurate processing of \textcolor{red}{large volumes of spatial data}
+\end{dinglist}
+\end{column}
+\begin{column}{0.55\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_40.jpg}
+	\caption{Geologic map of the Ryukyu Trench. Source: }\label{fig:R2}
+\end{figure}
+Machine learning opportunities: 
+\begin{dinglist}{217}\footnotesize
+     \item \textcolor{red}{Statistical and machine learning techniques} (Python, R) can help visualise bathymetric patterns in trenches
+     \item Geomorphology of the deep-sea trenches and seafloor tectonics are inherently linked with regional geologic setting (subduction zones, high seismicity)
+     \item So it is necessary to get useful \textcolor{red}{insights into topographic patterns of each trench} (asymmetry, depth, width, slope steepness) formed in various conditions of the margins of the Pacific Ocean
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+\section{NG}
+
+\begin{frame}\frametitle{Nigeria}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=7.0cm]{Fig_41.jpg}
+	\caption{Example of the rapid machine-based modelling by GMT: automatically digitised profiles of Yap and Palau trenches. Source: }\label{fig:H1}
+\end{figure}
+\end{column}
+\begin{column}{0.4\textwidth}
+\vspace{2em}
+Big Earth data as a massive information system: 
+\begin{dinglist}{239}\footnotesize
+     \item Big Earth data are a \textcolor{red}{digitally networked system}
+     \item The functionality of this system is supported by \textcolor{red}{researchers, societies and institutes}.
+     \item Big Earth databases are based on generating, receiving and creatively utilising \textcolor{red}{exponentially increasing data and information fluxes} .
+     \item Earth data present a \textcolor{red}{complex, mathematically defined digital information system} that we need to model and map in order to better understand the functionality and fundamental structure of the Earth
+     \item The \textcolor{red}{perspectives} of big Earth data for ocean tectonics and marine geology are in rapid and accurate mapping and modelling of the seafloor, analysing the processes of tectonic plate subduction
+     \item Effective data processing aims at understanding the geologic complexity of the Pacific Ocean seafloor
+\end{dinglist}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\begin{frame}\frametitle{Nigeria}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_42.jpg}
+	\caption{Project Mindmap. Plotting: \LaTeX \space }\label{fig:MT20}
+\end{figure}
+\textcolor{red}{Automatisation of the massive digital data processing} for effective cartographic visualisation and statistical modelling. 
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_43.jpg}
+	\caption{Project Mindmap. Plotting: \LaTeX \space }\label{fig:MT20}
+\end{figure}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{RW}
+\begin{frame}\frametitle{Rwanda}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=11cm]{Fig_44.jpg}
+	\caption{Kernel Density Estimation (KDE) for the profiles bathymetry. \\
+	Python libraries: Matplotlib, Seaborn, Pandas . Source: }\label{fig:MT11}
+\end{figure}
+\begin{dinglist}{109}\footnotesize
+     \item Example of Python based data analysis: Kernel Density Estimation (KDE) analysis showing facetted plots of the cross-section profiles. 
+     \item It shows the range of density distribution in the elevations across the Mariana Trench
+\end{dinglist} 
+\end{frame}
+
+% ---------------------------------------------------------------------------->
+\section{SS}
+\begin{frame}\frametitle{South Sudan}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=10cm]{Fig_45.jpg}
+	\caption{R based ridgeline plots by tectonic plates and bathymetric profiles, library \{ggplot\}. Source: }\label{fig:MT14}
+\end{figure}
+
+Key points on the ridgeline plot by R:
+\begin{dinglist}{96}\footnotesize
+	\item Analysing the interactions between the variables in big datasets by R presents a solution to \textcolor{red}{visualising heterogeneity} of topographic features formed under various geologic setting
+	\item Ridgeline plot shows \textcolor{red}{data distribution} aimed to understand the variability of elevations as a \textcolor{red}{stream view}
+	\item Ridgeline profiling shows a comparative visualisation of the \textcolor{red}{density distribution} of depths by profiles
+	\item Ridgeline plot provides the insight into the statistical distribution of the \textcolor{red}{elevation ranges} in the Mariana Trench.
+\end{dinglist}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{SD}
+\begin{frame}\frametitle{Sudan}
+\vspace{2em}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig_47.jpg}
+	\caption{Topographic map and location of the Izu-Bonin Trench. Source: }\label{fig:IBT1}
+\end{figure}
+\begin{dinglist}{84}\footnotesize
+	 \item Another problem: \textcolor{red}{useability and compatibility} of data with other datasets
+	 \item Hence, big Earth data requires \textcolor{red}{considerable resources} (powerful computers), skills and time investing to ensure their usability
+	 \item Techniques of the perspective view combining 3D effects through artificial hillshade illumination that improve the \textcolor{red}{readability} and \textcolor{red}{interpretation} of the maps  
+\end{dinglist}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6.0cm]{Fig_46.jpg}
+	\caption{Topographic map and location of the Izu-Bonin Trench. Source: }\label{fig:IBT1}
+\end{figure}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{TN}
+\begin{frame}\frametitle{Tunisia}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8.cm]{Fig_48.jpg}
+	\caption{Automatic digitizing of the IBT profiles: fragment of the GMT script}\label{fig:MAT1}
+\end{figure}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{UG}
+\begin{frame}\frametitle{Uganda}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_49.jpg}
+	\caption{Topographic location of the Japan Trench. Source: }\label{fig:H1}
+\end{figure}
+\vspace{-35pt}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_50.jpg}
+	\caption{Topographic location of the Japan Trench. Source: }\label{fig:H1}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+3D modelling as important cartographic approach in big Earth data analysis 
+\begin{dinglist}{120}\footnotesize
+     \item 3D topographic scene effectively illustrates the relief representation 
+     \item Advanced \textcolor{red}{GMT functionalities} specify different cartographic elements on the map for each layer by a combination of the GMT modules (grdview, grdcontour, pscoast, pstext). 
+     \item Cartographic processing includes
+     	 \begin{dinglist}{229}\scriptsize
+   		  \item visualisation of layers (raster grids vector lines)
+		  \item text annotations
+		  \item subplots, hierarchical sub-levels of the elements 
+		  \item coordinate axis labels and grids, translucency of layers
+		  \item general layout setting
+	  \end{dinglist}    
+     \item The outcome of the GMT cartographic processing: \textcolor{red}{print-quality maps}
+     \item 3D modelling of Earth data creates potential for cartographic opportunities in \textcolor{red}{visual data analytics} and interpretation of the seafloor structure
+     \item GMT enables \textcolor{red}{flexible, accurate and rapid visualisation} of the 2D and 3D Earth big data
+     \item Data selection: 3D modelling of trenches is limited by massive data processing (3D arrays of cells) $=>$  ETOPO5 presents better
+ \end{dinglist} 
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+ % ---------------------------------------------------------------------------->
+\section{ZM}
+\begin{frame}\frametitle{Zambia}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_49.jpg}
+	\caption{Topographic location of the Japan Trench. Source: }\label{fig:H1}
+\end{figure}
+\vspace{-35pt}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=4.0cm]{Fig_50.jpg}
+	\caption{Topographic location of the Japan Trench. Source: }\label{fig:H1}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+3D modelling as important cartographic approach in big Earth data analysis 
+\begin{dinglist}{120}\footnotesize
+     \item 3D topographic scene effectively illustrates the relief representation 
+     \item Advanced \textcolor{red}{GMT functionalities} specify different cartographic elements on the map for each layer by a combination of the GMT modules (grdview, grdcontour, pscoast, pstext). 
+     \item Cartographic processing includes
+     	 \begin{dinglist}{229}\scriptsize
+   		  \item visualisation of layers (raster grids vector lines)
+		  \item text annotations
+		  \item subplots, hierarchical sub-levels of the elements 
+		  \item coordinate axis labels and grids, translucency of layers
+		  \item general layout setting
+	  \end{dinglist}    
+     \item The outcome of the GMT cartographic processing: \textcolor{red}{print-quality maps}
+     \item 3D modelling of Earth data creates potential for cartographic opportunities in \textcolor{red}{visual data analytics} and interpretation of the seafloor structure
+     \item GMT enables \textcolor{red}{flexible, accurate and rapid visualisation} of the 2D and 3D Earth big data
+     \item Data selection: 3D modelling of trenches is limited by massive data processing (3D arrays of cells) $=>$  ETOPO5 presents better
+ \end{dinglist} 
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\section{Con}
+
+\begin{frame}\frametitle{Conclusions}
+
+\begin{dinglist}{51}\footnotesize
+     \item In the era of big Earth data, these slides presented the application of GMT scripting methods for cartographic 2D and 3D modelling and cross-section profiling of the deep-sea trenches of the Pacific Ocean
+     \item Machine learning methods of the statistical analysis by Python and R were presented for the cases of Mariana and Philippine trenches
+     \item The demands from geology for effective methods of big Earth data processing is explained by the overwhelming increase of data that should be processed rapidly yet effectively
+     \item The study presented cartographic requirements and challenges faced in big Earth data management technologies: multi-source, multi-origin, multi-format characteristics of data that should be integrated smoothly by GMT
+     \item Benefits of GMT for processing Earth data include various data size that GMT may export, convert and import (including via GDAL), data type (raster, vector and tabular), high processing speed, and mapping accuracy
+     \item Cartographic development opportunities in the era of big Earth data are related to the machine-based data processing, that is scripting and algorithms of automatization
+     \item Modelling deep-sea trenches starts with several steps of pre-processing: big Earth data \textcolor{red}{capture, metadata check-up, storage, sorting, organising} in folders, \textcolor{red}{scripting and visualisation} by GMT as an example of cartographic technology for big Earth data processing
+     \item GMT presents a mature and smart direction for cartographic development compared to the traditional GIS
+     \item Development of big Earth data technologies in marine geological analysis, results in the need of processing large amounts of data with complex heterogeneous characteristics that must be modelled and mapped rapidly yet accurately. GMT fully satisfies such needs and presents the best cartographic technology for big Earth data processing
+ \end{dinglist} 
+\end{frame}
+
+\section{Thx}
+\begin{frame}\frametitle{Thanks}
+\vspace{2em}
+\begin{tikzpicture}%
+\node[anchor=south west, inner sep=0] (X) at (-0,5){\includegraphics[width=8.0cm]{Fig_52.jpg}};%
+\begin{scope}[x={(X.south east)},y={(X.north west)}]%
+%% This makes all measurements with no units into fractions of the width
+%% and height of the graphic contained in the node.
+\fill[fill = white,fill opacity=0.6] ($(X.south west) + (0,1in)$) rectangle ($(X.north east) - (0,1in)$);%
+\node[text width=8cm] (Z) at (0.5,0.5) {%
+  \sffamily\centering\large \textcolor{NavyBlue}{Thank you for attention !}\par%
+};
+\end{scope}%
+\end{tikzpicture}
+\end{frame}
+
+
+%%%%%%%%%%% Bibliography %%%%%%%
+\section{Bibliography}
+\large{Bibliography}
+\nocite{*}
+\printbibliography
+
+	
+%%%%%%%%%%% Bibliography %%%%%%%	
+\end{document}
