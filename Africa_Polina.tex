@@ -860,31 +860,41 @@ Features of Qena Bend:
 % ---------------------------------------------------------------------------->
 \section{CI}
 \begin{frame}\frametitle{Côte d'Ivoire (Ivory Coast)}
-\vspace{2em}
+%\vspace{2em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
-\begin{column}{0.4\textwidth}
+\begin{column}{0.5\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_26.jpg}
-	\caption{Topographic map of Ivory Caast, West Africa. Source: }\label{fig:NBT1}
+	\caption{Satellite image processing and DEM of Ivory Coast visualised using Python (fragment)}
 \end{figure}
-\begin{itemize}
-     \item \textcolor{red}{Increasing massifs} of big Earth data in marine geology need to be interpreted in a rapid and accurate way
-          \item \textcolor{red}{Organised information retreaval} from the results of this interpretation  requires enhanced methods of both cartographic approaches (GMT) and statistical computation (Python, R) of tabular data aimed to detect patterns and correlations within datasets. 
-           \item \textcolor{red}{Impact factors} affecting the formation of these landforms include speed of slab subduction, seismicity, volcanism, age of the tectonic plate), sedimentation in the trench's talweg
-     \end{itemize}
+\vspace{-2em}
+\begin{alertblock}{Environmental highlights of Ivory Coast:}
+\begin{itemize}\small
+      \item The \textcolor{red}{most biodiverse country in West Africa} (over 1,200 animal species, 223 mammals, 702 birds, 161 reptiles, 85 amphibians, 111 fish species, 4,700 plant species, of which 3,927 species of terrestrial plants)
+      \item The \textcolor{red}{world's largest exporter of cocoa beans}; 
+      \item The \textcolor{red}{largest economy in the West African} Economic and Monetary Union (40\% total GDP)
+      \item \textcolor{red}{9 national parks} (the largest -- Assgny National Park); \textcolor{red}{6 terrestrial ecoregions}
+      \item Economy grows fast; high-income country; highly diversified agriculture (cocoa, cashews, coffee, rubber, cotton, palm oil, bananas, etc)
+ \end{itemize}
+\end{alertblock}
 \end{column}
+%
 \begin{column}{0.4\textwidth}	
 %  \vspace{2em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=4cm]{Fig_25.jpg}
-	\caption{Example of the automated modelling performed using GMT and large arrays of data: modelled cross-sections: Vanuatu (New Hebrides) and Vityaz trenches. Source: }\label{fig:VV9}
+	\caption{Topographic map of Ivory Coast, West Africa}
 \end{figure}
-\begin{itemize}
-     \item \textcolor{red}{Quantifying} submarine landforms and \textcolor{red}{identifying dependencies} of the trench's geomorphology from tectonic factors becomes possibles thanks to the advancement in cartographic techniques
-    \end{itemize} 
+\vspace{-2em}
+\begin{alertblock}{Environmental problems and alerts in Ivory Coast:}
+\begin{itemize}\small
+      \item \textcolor{red}{High deforestation rates} due to high agriculture activities and economic activities: logging of timber, mineral exploration
+      \item \textcolor{red}{Loss of biodiversity} -- declining variety of flora and fauna
+ \end{itemize}
+\end{alertblock}
 \end{column}
 \end{columns}
 \end{minipage}
@@ -973,26 +983,37 @@ Multi-source EO data
 % ---------------------------------------------------------------------------->
 \section{MW}
 \begin{frame}\frametitle{Malawi}
-\vspace{2em}
+\vspace{-1em}
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
-\begin{column}{0.4\textwidth}
+\begin{column}{0.45\textwidth}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig_31.jpg}
-	\caption{}\label{fig:NBT6}
+	\caption{Topographic and seismic maps of Malawi (based on IRIS data on deep earthquakes).}
 \end{figure}
 \end{column}
 %
 \begin{column}{0.4\textwidth}	
- \begin{itemize}
-     \item Python can handle a huge amount of data, which it uses not only to process, but also to create analytical plots, such as assessment of bathymetric variability or analytics in geology. 
-     \item Big data analysis in Python is based on a full range of algorithms used in statistics
-     \item Statistical analysis: well developed stand-alone libraries (Matplotlib, SciPy, NumPy, Pandas, StatsModels)
-     \item Beauty \& elegance of graphs: advanced design solutions for data visualization in Matplotlib \& Seaborn
-     \item Scripting approach with more readable syntax
-     \item Open-source
+%\vspace{-2em}
+\begin{alertblock}{Geographic features of Malawi:}
+\begin{itemize}\footnotesize
+      \item The \textcolor{red}{Great Rift Valley} runs through the country from N to S
+      \item \textcolor{red}{Lake Malawi} --  (a.k.a. Lake Nyasa) - 3/4 of Malawi's eastern boundary; one of the major Rift Valley ancient lakes
+\item \textcolor{red}{Lake Malawi} - unique meromictic lake (layers of water that don't  intermix and don't circulate) with specific hydrology -- permanently stratified water layers
+ \item \textcolor{red}{Lake Malawi} - \nth{4} largest freshwater lake in the world by volume, the \nth{9} largest lake in the world by area and the \nth{3} largest and \nth{2} deepest lake in Africa.
+\item \textcolor{red}{Lake Malawi National Park} created to protect unique ecosystems of the lake
 \end{itemize}
+\end{alertblock}
+
+\begin{alertblock}{Problems in Malawi:}
+\begin{itemize}\footnotesize
+      \item \textcolor{red}{Tanzania--Malawi dispute} about the borders of the Malawi Lake
+      \item \textcolor{red}{Deforestation} - serious environmental issue
+      \item \textcolor{red}{Scarcity of natural resources} (landlocked)
+       \item \textcolor{red}{Extreme poverty} and rapidly growing population dependent on resources
+\end{itemize}
+\end{alertblock}
 \end{column}
 \end{columns}
 \end{minipage}
@@ -1028,25 +1049,28 @@ Multi-source EO data
 \begin{minipage}[0.4\textheight]{\textwidth}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\vspace{2em}
+%\vspace{-2em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5.0cm]{Fig_34.jpg}
 	\caption{Landsat 8-9 OLI/TIRS images: showing Niger Inner Delta, Mali in natural colours.}
 \end{figure}
- \begin{itemize}
-      \item Analysing the interactions between the variables in big datasets by R presents a solution to \textcolor{red}{visualising heterogeneity} of topographic features formed under various geologic setting: ranking geomorphology of the cross-section profiles. 
-     \item Example of data analysis by R: correlation matrix visualising \textcolor{red}{influence of impact factors} affecting the geomorphology of the profiles. Plotting: R.
-     \item Other examples of R application in big Earth data analysis: geomorphological mapping . 
-     \item \textcolor{red}{Interactions} between deep-sea trench and factors affecting their formation have considerable variations across western and eastern parts the Pacific Ocean. This is reflected in form and shape of the trenches.
+\vspace{-2em}
+\begin{alertblock}{Image processing by R}
+\begin{itemize}\footnotesize
+      \item Analysing land cover types by R-based satellite image processing $=>$ \textcolor{red}{visualising heterogeneity} of landscape features formed under various environmental setting: 
+      \item Example of data analysis by R: computing vegetation indices in Mali; clustering for image classification.
+      \item Data analysis in R is based on a full range of algorithms used in RS data processing.
 \end{itemize} 
+\end{alertblock}
 \end{column}
+%
 \begin{column}{0.5\textwidth}
-\vspace{2em}
+%\vspace{-2em}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=4.5cm]{Fig_35.jpg}
-	\caption{Ranking dot plot. Source: }\label{fig:H1}
+	\caption{Unsupervised classification by k-means clustering: Inner Niger Delta}
 \end{figure}
 \end{column}
 \end{columns}
